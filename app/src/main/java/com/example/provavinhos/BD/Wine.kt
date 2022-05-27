@@ -15,7 +15,7 @@ data class Wine(
         valores.put(TabelaBDVinhos.CAMPO_NOME, nome)
         valores.put(TabelaBDVinhos.CAMPO_STOCK, stock )
         valores.put(TabelaBDVinhos.CAMPO_ANO, ano)
-        valores.put(TabelaBDVinhos.CAMPO_REGIAO, regiao)
+        valores.put(TabelaBDVinhos.CAMPO_REGION, regiao)
 
         return valores
     }

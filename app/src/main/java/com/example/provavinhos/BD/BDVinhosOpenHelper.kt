@@ -4,12 +4,7 @@ import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 
-class BDVinhosOpenHelper(
-    context: Context?,
-    name: String?,
-    factory: SQLiteDatabase.CursorFactory?,
-    version: Int
-) : SQLiteOpenHelper(context, name, factory, version) {
+class BDVinhosOpenHelper(context: Context?) : SQLiteOpenHelper(context, NOME, null, VERSAO) {
     /**
      * Called when the database is created for the first time. This is where the
      * creation of tables and the initial population of the tables should happen.
@@ -19,9 +14,9 @@ class BDVinhosOpenHelper(
     override fun onCreate(db: SQLiteDatabase?) {
         requireNotNull(db)
 
-        TabelaBDVinhos(db).cria()
-        TabelaBDVendas(db).cria()
         TabelaBDClientes(db).cria()
+        TabelaBDVendas(db).cria()
+        TabelaBDVinhos(db).cria()
         TabelaBDRegiao(db).cria()
     }
 
@@ -50,7 +45,7 @@ class BDVinhosOpenHelper(
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
     }
 
-    companion object{
+    companion object {
         const val NOME = "vinhos.db"
         private const val VERSAO = 1
     }
