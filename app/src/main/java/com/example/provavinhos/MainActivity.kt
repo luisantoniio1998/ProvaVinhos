@@ -20,13 +20,13 @@ class MainActivity : AppCompatActivity() {
 
         val username = editTextUsername.text.toString()
         if (username.isBlank()) {
-            editTextUsername.error = "@string/field_mandatory"
+            editTextUsername.error = getString(R.string.field_mandatory)
             editTextUsername.requestFocus()
             return
         }
 
         if (username != "admin") {
-            editTextUsername.error = "@string/usr_incorrect"
+            editTextUsername.error = getString(R.string.usr_incorrect)
             editTextUsername.requestFocus()
             return
         }
@@ -36,12 +36,12 @@ class MainActivity : AppCompatActivity() {
         val password = editTextPassword.text.toString()
 
         if (password.isBlank()) {
-            editTextPassword.error = "@string/field_mandatory"
+            editTextPassword.error = getString(R.string.field_mandatory)
             editTextPassword.requestFocus()
             return
         }
         if (password != "admin") {
-            editTextPassword.error = "@string/pw_incorrect"
+            editTextPassword.error = getString(R.string.pw_incorrect)
             editTextPassword.requestFocus()
             return
         }
