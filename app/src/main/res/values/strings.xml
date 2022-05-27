@@ -23,4 +23,5 @@
     <string name="client_name">Client\'s name</string>
     <string name="bottles">Number of bottles</string>
     <string name="price">Price (IVA included)</string>
+    <string name="nome_vinho">Wine\'s name</string>
 </resources>

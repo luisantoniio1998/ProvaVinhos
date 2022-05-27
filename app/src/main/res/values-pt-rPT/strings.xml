@@ -24,4 +24,5 @@
     <string name="client_name">Nome do cliente</string>
     <string name="bottles">Numero de garrafas</string>
     <string name="price">Preço (IVA incluido)</string>
+    <string name="nome_vinho">Nome do vinho</string>
 </resources>
