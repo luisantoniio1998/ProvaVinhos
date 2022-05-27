@@ -6,8 +6,8 @@ import android.provider.BaseColumns
 class TabelaBDVendas (db: SQLiteDatabase) : TabelaBD(db, NOME){
     override fun cria() {
         db.execSQL("CREATE TABLE $nome (${BaseColumns._ID} INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                "$CAMPO_NOME_VINHO TEXT NOT NULL," +
-                "$CAMPO_NOME_CLIENTE TEXT NOT NULL,"+
+                "$CAMPO_NOME_VINHO REFERENCES ${TabelaBDVinhos.CAMPO_NOME} ON DELETE RESTRICT," +
+                "$CAMPO_NOME_CLIENTE REFERENCES ${TabelaBDClientes.CAMPO_NOME} ON DELETE RESTRICT,"+
         " $CAMPO_NUMERO INTEGER NOT NULL, $CAMPO_PRECO INTEGER NOT NULL)")
     }
 
