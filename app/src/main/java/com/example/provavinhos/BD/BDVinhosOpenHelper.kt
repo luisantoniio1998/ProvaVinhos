@@ -17,7 +17,12 @@ class BDVinhosOpenHelper(
      * @param db The database.
      */
     override fun onCreate(db: SQLiteDatabase?) {
-        TODO("Not yet implemented")
+        requireNotNull(db)
+
+        TabelaBDVinhos(db).cria()
+        TabelaBDVendas(db).cria()
+        TabelaBDClientes(db).cria()
+        TabelaBDRegiao(db).cria()
     }
 
     /**
@@ -43,6 +48,10 @@ class BDVinhosOpenHelper(
      * @param newVersion The new database version.
      */
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
-        TODO("Not yet implemented")
+    }
+
+    companion object{
+        const val NOME = "vinhos.db"
+        private const val VERSAO = 1
     }
 }
