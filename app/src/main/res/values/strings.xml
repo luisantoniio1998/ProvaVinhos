@@ -11,4 +11,19 @@
     <string name="username">Username</string>
     <string name="password">Password</string>
     <string name="enter">Enter</string>
+    <string name="field_mandatory">Mandatory field</string>
+    <string name="pw_incorrect">Incorrect password</string>
+    <string name="usr_incorrect">Incorrect username</string>
+    <string name="name">Name</string>
+    <string name="region">Region</string>
+    <string name="year">Year</string>
+    <string name="stock">Stock</string>
+    <string name="search">Search</string>
+    <string name="create">Create</string>
+    <string name="mobile">Mobile Number</string>
+    <string name="postal">Postal Code</string>
+    <string name="social">Social Security Number</string>
+    <string name="client_name">Client\'s name</string>
+    <string name="bottles">Number of bottles</string>
+    <string name="price">Price (IVA included)</string>
 </resources>

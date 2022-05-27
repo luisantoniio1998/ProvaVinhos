@@ -12,7 +12,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         val buttonEntrar = findViewById<Button>(R.id.buttonEntrar)
         buttonEntrar.setOnClickListener{entrar()}
-
     }
 
     private fun entrar() {
@@ -21,13 +20,13 @@ class MainActivity : AppCompatActivity() {
 
         val username = editTextUsername.text.toString()
         if (username.isBlank()) {
-            editTextUsername.error = "Field is mandatory"
+            editTextUsername.error = "@string/field_mandatory"
             editTextUsername.requestFocus()
             return
         }
 
         if (username != "admin") {
-            editTextUsername.error = "Incorrect username"
+            editTextUsername.error = "@string/usr_incorrect"
             editTextUsername.requestFocus()
             return
         }
@@ -37,12 +36,12 @@ class MainActivity : AppCompatActivity() {
         val password = editTextPassword.text.toString()
 
         if (password.isBlank()) {
-            editTextPassword.error = "Field is mandatory"
+            editTextPassword.error = "@string/field_mandatory"
             editTextPassword.requestFocus()
             return
         }
         if (password != "admin") {
-            editTextPassword.error = "Incorrect password"
+            editTextPassword.error = "@string/pw_incorrect"
             editTextPassword.requestFocus()
             return
         }
