@@ -87,4 +87,6 @@ class BaseDadosTest {
 
         db.close()
     }
+
+    //TODO : Criar teste para vendas 
 }
