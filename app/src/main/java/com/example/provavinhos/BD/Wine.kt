@@ -3,11 +3,11 @@ package com.example.provavinhos.BD
 import android.content.ContentValues
 
 data class Wine(
-    var id: Long = -1,
     var nome: String,
     var stock: Long,
     var ano: Long,
-    var regiao: String
+    var regiao: String,
+    var id: Long = -1,
 ) {
     fun toContentValues() : ContentValues {
         val valores = ContentValues()

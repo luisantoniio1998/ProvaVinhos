@@ -3,11 +3,12 @@ package com.example.provavinhos.BD
 import android.content.ContentValues
 
 data class Sales(
-    var id: Long = -1,
+
     var nome_cliente: String,
     var nome_vinho: String,
     var numero: Long,
-    var preco: Long
+    var preco: Long,
+    var id: Long = -1,
 ) {
     fun toContentValues() : ContentValues {
         val valores = ContentValues()

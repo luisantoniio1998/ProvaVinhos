@@ -1,11 +1,10 @@
 package com.example.provavinhos
 
 import android.database.sqlite.SQLiteDatabase
+import androidx.activity.result.ActivityResultRegistryOwner
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import com.example.provavinhos.BD.BDVinhosOpenHelper
-import com.example.provavinhos.BD.TabelaBDVinhos
-import com.example.provavinhos.BD.Wine
+import com.example.provavinhos.BD.*
 
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -28,6 +27,20 @@ class BaseDadosTest {
         assertNotEquals(-1, vinho.id)
     }
 
+    private fun insereCliente(db: SQLiteDatabase, client : Clients) {
+        client.id = TabelaBDClientes(db).insert(client.toContentValues())
+        assertNotEquals(-1, client.id)
+    }
+
+    private fun insereVenda(db: SQLiteDatabase, venda : Sales) {
+        venda.id = TabelaBDVendas(db).insert(venda.toContentValues())
+        assertNotEquals(-1, venda.id)
+    }
+
+    private fun insereRegiao(db: SQLiteDatabase, regiao : Region) {
+        regiao.id = TabelaBDRegiao(db).insert(regiao.toContentValues())
+        assertNotEquals(-1, regiao.id)
+    }
 
 
 
@@ -42,6 +55,35 @@ class BaseDadosTest {
         val db = openHelper.readableDatabase
 
         assertTrue(db.isOpen)
+
+        db.close()
+    }
+
+    @Test
+
+    fun consegueInserirVinho() {
+        val db = getWritableDatabase()
+
+        insereVinho(db, Wine("Dez tostoes", 15, 2017, "Alentejo"))
+
+        db.close()
+    }
+
+    @Test
+    fun consegueInserirCliente(){
+        val db = getWritableDatabase()
+
+        insereCliente(db, Clients("Luis Barros", 917773333, 231441321, "6270-276"))
+
+        db.close()
+    }
+
+    @Test
+
+    fun consegueInserirRegiao(){
+        val db = getWritableDatabase()
+
+        insereRegiao(db, Region("Alentejo"))
 
         db.close()
     }
