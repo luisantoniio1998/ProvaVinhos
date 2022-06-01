@@ -3,7 +3,7 @@ package com.example.provavinhos.BD
 import android.content.ContentValues
 
 data class Wine(
-    var id: Long,
+    var id: Long = -1,
     var nome: String,
     var stock: Long,
     var ano: Long,

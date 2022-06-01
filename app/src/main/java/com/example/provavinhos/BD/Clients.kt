@@ -3,7 +3,7 @@ package com.example.provavinhos.BD
 import android.content.ContentValues
 
 data class Clients(
-    var id: Long,
+    var id: Long =-1,
     var nome: String,
     var contacto: Long,
     var nif: Long,

@@ -3,7 +3,7 @@ package com.example.provavinhos.BD
 import android.content.ContentValues
 
 data class Region(
-    var id: Long,
+    var id: Long = -1,
     var nome: String,
 ) {
     fun toContentValues() : ContentValues {
