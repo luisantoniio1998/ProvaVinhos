@@ -1,6 +1,7 @@
 package com.example.provavinhos
 
 import android.database.sqlite.SQLiteDatabase
+import android.provider.BaseColumns
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.example.provavinhos.BD.*
@@ -95,6 +96,30 @@ class BaseDadosTest {
         insereVenda(db, Sales("Luis Barros", "Dez tostoes", 12.8, 10, 128.0  ))
 
         db.close()
+    }
+
+    @Test
+    fun consegueAlterarVinhos() {
+
+        //TODO
+    }
+
+    @Test
+    fun consegueAlterarClientes() {
+
+        //TODO
+    }
+
+    @Test
+    fun consegueAlterarRegioes() {
+
+        //TODO
+    }
+
+    @Test
+    fun consegueAlterarVendas() {
+
+        //TODO
     }
 
 
