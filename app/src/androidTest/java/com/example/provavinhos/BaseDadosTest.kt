@@ -1,7 +1,6 @@
 package com.example.provavinhos
 
 import android.database.sqlite.SQLiteDatabase
-import androidx.activity.result.ActivityResultRegistryOwner
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.example.provavinhos.BD.*
@@ -44,7 +43,7 @@ class BaseDadosTest {
 
 
 
-    @Before
+    @Test
     fun apagaBaseDados() {
         appContext().deleteDatabase(BDVinhosOpenHelper.NOME)
     }
@@ -64,7 +63,7 @@ class BaseDadosTest {
     fun consegueInserirVinho() {
         val db = getWritableDatabase()
 
-        insereVinho(db, Wine("Dez tostoes", 15, 2017, "Alentejo"))
+        insereVinho(db, Wine("Dez tostoes", 15, 2017, 12.8, "Alentejo"))
 
         db.close()
     }
@@ -88,5 +87,16 @@ class BaseDadosTest {
         db.close()
     }
 
-    //TODO : Criar teste para vendas 
+    @Test
+
+    fun consegueInserirVenda(){
+        val db = getWritableDatabase()
+
+        insereVenda(db, Sales("Luis Barros", "Dez tostoes", 12.8, 10, 128.0  ))
+
+        db.close()
+    }
+
+
+
 }

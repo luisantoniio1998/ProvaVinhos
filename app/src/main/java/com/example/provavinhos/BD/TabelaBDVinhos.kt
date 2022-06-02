@@ -7,6 +7,7 @@ class TabelaBDVinhos (db: SQLiteDatabase) : TabelaBD(db, NOME){
     override fun cria() {
         db.execSQL("CREATE TABLE $nome (${BaseColumns._ID} INTEGER PRIMARY KEY AUTOINCREMENT, $CAMPO_NOME TEXT NOT NULL, " +
                 "$CAMPO_STOCK INTEGER NOT NULL, $CAMPO_ANO INTEGER NOT NULL," +
+                "$CAMPO_PRECO DOUBLE NOT NULL," +
               "$CAMPO_REGION REFERENCES ${TabelaBDRegiao.CAMPO_NOME} ON DELETE RESTRICT)")
     }
 
@@ -16,5 +17,6 @@ class TabelaBDVinhos (db: SQLiteDatabase) : TabelaBD(db, NOME){
         const val CAMPO_STOCK = "stock"
         const val CAMPO_REGION = "region"
         const val CAMPO_ANO = "safra"
+        const val CAMPO_PRECO = "preco"
     }
 }
