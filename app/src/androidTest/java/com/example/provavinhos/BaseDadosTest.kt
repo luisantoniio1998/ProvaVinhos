@@ -107,6 +107,10 @@ class BaseDadosTest {
         insereVinho(db, vinho)
 
         vinho.nome = "Dez tostoes"
+        vinho.stock = 10
+        vinho.ano = 2017
+        vinho.regiao = "Douro"
+        vinho.preco = 12.0
 
         val registosAlterados = TabelaBDVinhos(db).update(
             vinho.toContentValues(),
@@ -121,7 +125,7 @@ class BaseDadosTest {
     @Test
     fun consegueAlterarClientes() {
 
-        //TODO
+
     }
 
     @Test
