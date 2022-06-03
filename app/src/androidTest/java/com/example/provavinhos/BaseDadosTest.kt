@@ -64,7 +64,7 @@ class BaseDadosTest {
     fun consegueInserirVinho() {
         val db = getWritableDatabase()
 
-        insereVinho(db, Wine("Dez tostoes", 15, 2017, 12.8, "Alentejo"))
+        insereVinho(db, Wine("Dez tostoes", 15, "2017", 12.8, "Alentejo"))
 
         db.close()
     }
@@ -103,12 +103,12 @@ class BaseDadosTest {
 
        val db = getWritableDatabase()
 
-        val vinho = Wine("Casal Garcia", 12, 1998, 12.0, "Alenetejo")
+        val vinho = Wine("Casal Garcia", 12, "1998", 12.0, "Alenetejo")
         insereVinho(db, vinho)
 
         vinho.nome = "Dez tostoes"
         vinho.stock = 10
-        vinho.ano = 2017
+        vinho.ano = "2017"
         vinho.regiao = "Douro"
         vinho.preco = 12.0
 

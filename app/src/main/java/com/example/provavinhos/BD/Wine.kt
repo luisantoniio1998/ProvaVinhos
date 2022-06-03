@@ -6,7 +6,7 @@ import androidx.appcompat.app.ActionBar
 data class Wine(
     var nome: String,
     var stock: Long,
-    var ano: Long,
+    var ano: String,
     var preco : Double,
     var regiao: String,
     var id: Long = -1,
