@@ -24,4 +24,6 @@
     <string name="bottles">Number of bottles</string>
     <string name="price">Price (IVA included)</string>
     <string name="nome_vinho">Wine\'s name</string>
+    <string name="logo">Logo</string>
+    <string name="price_per_bottle">Price per bottle</string>
 </resources>

@@ -101,7 +101,21 @@ class BaseDadosTest {
     @Test
     fun consegueAlterarVinhos() {
 
-        //TODO
+       val db = getWritableDatabase()
+
+        val vinho = Wine("Casal Garcia", 12, 1998, 12.0, "Alenetejo")
+        insereVinho(db, vinho)
+
+        vinho.nome = "Dez tostoes"
+
+        val registosAlterados = TabelaBDVinhos(db).update(
+            vinho.toContentValues(),
+        "${BaseColumns._ID}= ?",
+        arrayOf("${vinho.id}"))
+
+        assertEquals(1, registosAlterados)
+
+        db.close()
     }
 
     @Test

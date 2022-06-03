@@ -25,4 +25,6 @@
     <string name="bottles">Numero de garrafas</string>
     <string name="price">Preço (IVA incluido)</string>
     <string name="nome_vinho">Nome do vinho</string>
+    <string name="logo">Logo</string>
+    <string name="price_per_bottle">Preço por garrafa</string>
 </resources>

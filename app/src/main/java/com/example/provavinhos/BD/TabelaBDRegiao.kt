@@ -6,7 +6,7 @@ import android.provider.BaseColumns
 class TabelaBDRegiao (db: SQLiteDatabase) : TabelaBD(db, NOME){
     override fun cria() {
         db.execSQL("CREATE TABLE $nome (${BaseColumns._ID} INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                "$CAMPO_NOME REFERENCES {${TabelaBDVinhos.CAMPO_REGION} ON DELETE RESTRICT)")
+                "$CAMPO_NOME REFERENCES ${TabelaBDVinhos.CAMPO_REGION} ON DELETE RESTRICT)")
     }
 
     companion object{
