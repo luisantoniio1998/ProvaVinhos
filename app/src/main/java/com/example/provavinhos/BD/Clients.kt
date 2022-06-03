@@ -4,8 +4,8 @@ import android.content.ContentValues
 
 data class Clients(
     var nome: String,
-    var contacto: Long,
-    var nif: Long,
+    var contacto: String,
+    var nif: String,
     var codigo_postal: String,
     var id: Long =-1,
 ) {
