@@ -125,13 +125,44 @@ class BaseDadosTest {
     @Test
     fun consegueAlterarClientes() {
 
+        val db = getWritableDatabase()
 
+        val cliente = Clients("Luis Barros", 936593777, 231441843, "6270-276")
+        insereCliente(db, cliente)
+
+        cliente.nome = "Joao Barros"
+        cliente.contacto = 936593776
+        cliente.nif = 231441313
+        cliente.codigo_postal = "6300-559"
+
+        val registosAlterados = TabelaBDClientes(db).update(
+            cliente.toContentValues(),
+            "${BaseColumns._ID}= ?",
+            arrayOf("${cliente.id}"))
+
+        assertEquals(1, registosAlterados)
+
+        db.close()
     }
 
     @Test
     fun consegueAlterarRegioes() {
 
-        //TODO
+        val db = getWritableDatabase()
+
+        val regiao = Region("Alentejo")
+        insereRegiao(db, regiao)
+
+        regiao.nome = "Douro"
+
+        val registosAlterados = TabelaBDRegiao(db).update(
+            regiao.toContentValues(),
+            "${BaseColumns._ID}= ?",
+            arrayOf("${regiao.id}"))
+
+        assertEquals(1, registosAlterados)
+
+        db.close()
     }
 
     @Test
