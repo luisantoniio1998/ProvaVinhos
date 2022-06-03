@@ -73,7 +73,7 @@ class BaseDadosTest {
     fun consegueInserirCliente(){
         val db = getWritableDatabase()
 
-        insereCliente(db, Clients("Luis Barros", 917773333, 231441321, "6270-276"))
+        insereCliente(db, Clients("Luis Barros", "917773333", "231441321", "6270-276"))
 
         db.close()
     }
@@ -127,12 +127,12 @@ class BaseDadosTest {
 
         val db = getWritableDatabase()
 
-        val cliente = Clients("Luis Barros", 936593777, 231441843, "6270-276")
+        val cliente = Clients("Luis Barros", "936593777", "231441843", "6270-276")
         insereCliente(db, cliente)
 
         cliente.nome = "Joao Barros"
-        cliente.contacto = 936593776
-        cliente.nif = 231441313
+        cliente.contacto = "936593776"
+        cliente.nif = "231441313"
         cliente.codigo_postal = "6300-559"
 
         val registosAlterados = TabelaBDClientes(db).update(

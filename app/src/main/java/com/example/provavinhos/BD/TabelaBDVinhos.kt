@@ -7,7 +7,7 @@ class TabelaBDVinhos (db: SQLiteDatabase) : TabelaBD(db, NOME){
     override fun cria() {
         db.execSQL("CREATE TABLE $nome (${BaseColumns._ID} INTEGER PRIMARY KEY AUTOINCREMENT, $CAMPO_NOME TEXT NOT NULL, " +
                 "$CAMPO_STOCK INTEGER NOT NULL, $CAMPO_ANO INTEGER NOT NULL," +
-                "$CAMPO_PRECO DOUBLE NOT NULL," +
+                "$CAMPO_PRECO REAL NOT NULL," +
               "$CAMPO_REGION TEXT NOT NULL)")
     }
 
