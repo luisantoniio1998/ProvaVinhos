@@ -168,9 +168,25 @@ class BaseDadosTest {
     @Test
     fun consegueAlterarVendas() {
 
-        //TODO
+
+        val db = getWritableDatabase()
+
+        val venda = Sales("Luis Barros", "Casal Garcia", 12.0, 12, 240.0)
+        insereVenda(db, venda)
+
+        venda.nome_cliente = "Joao Barros"
+        venda.nome_vinho = "Vinha de Pucaros"
+        venda.preco_garrafa = 13.0
+        venda.numero = 10
+        venda.preco = 130.0
+
+        val registosAlterados = TabelaBDVendas(db).update(
+            venda.toContentValues(),
+            "${BaseColumns._ID}= ?",
+            arrayOf("${venda.id}"))
+
+        assertEquals(1, registosAlterados)
+
+        db.close()
     }
-
-
-
 }
