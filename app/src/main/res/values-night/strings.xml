@@ -18,6 +18,7 @@
     <string name="stock">Stock</string>
     <string name="search">Search</string>
     <string name="create">Create</string>
+    <string name="mobile">Mobile Number</string>
     <string name="postal">Postal Code</string>
     <string name="social">Social Security Number</string>
     <string name="client_name">Client\'s name</string>
@@ -26,4 +27,10 @@
     <string name="nome_vinho">Wine\'s name</string>
     <string name="logo">Logo</string>
     <string name="price_per_bottle">Price per bottle</string>
+    <string name="nexistevinho">This wine doesn\'t exist, try create instead</string>
+    <string name="nexistecliente">This client doesn\'t exist, try create instead</string>
+    <string name="nexistevenda">This sale doesn\'t exist, try create instead</string>
+    <string name="list">List them all</string>
+    <string name="delete">Delete</string>
+    <string name="update">Update</string>
 </resources>

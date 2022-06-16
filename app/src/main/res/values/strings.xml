@@ -29,5 +29,7 @@
     <string name="nexistevinho">This wine doesn\'t exist, try create instead</string>
     <string name="nexistecliente">This client doesn\'t exist, try create instead</string>
     <string name="nexistevenda">This sale doesn\'t exist, try create instead</string>
-    <string name="list">List</string>
+    <string name="list">List them all</string>
+    <string name="delete">Delete</string>
+    <string name="update">Update</string>
 </resources>

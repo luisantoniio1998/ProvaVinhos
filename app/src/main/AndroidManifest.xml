@@ -14,15 +14,6 @@
         android:theme="@style/Theme.ProvaVinhos"
         tools:targetApi="31">
         <activity
-            android:name=".ListarClientes"
-            android:exported="false" />
-        <activity
-            android:name=".ListarVinhos"
-            android:exported="false" />
-        <activity
-            android:name=".ListarVendas"
-            android:exported="false" />
-        <activity
             android:name=".VendaUpdateDelete"
             android:exported="false" />
         <activity
