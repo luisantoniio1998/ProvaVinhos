@@ -27,4 +27,8 @@
     <string name="nome_vinho">Nome do vinho</string>
     <string name="logo">Logo</string>
     <string name="price_per_bottle">Preço por garrafa</string>
+    <string name="nexistevinho">Este vinho não existe, tente criar</string>
+    <string name="nexistecliente">Este cliente não existe, tente criar</string>
+    <string name="nexistevenda">Esta venda não existe, tente criar</string>
+    <string name="list">Listar</string>
 </resources>

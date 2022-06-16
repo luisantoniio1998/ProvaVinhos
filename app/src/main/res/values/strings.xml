@@ -26,4 +26,8 @@
     <string name="nome_vinho">Wine\'s name</string>
     <string name="logo">Logo</string>
     <string name="price_per_bottle">Price per bottle</string>
+    <string name="nexistevinho">This wine doesn\'t exist, try create instead</string>
+    <string name="nexistecliente">This client doesn\'t exist, try create instead</string>
+    <string name="nexistevenda">This sale doesn\'t exist, try create instead</string>
+    <string name="list">List</string>
 </resources>
