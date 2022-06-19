@@ -5,18 +5,21 @@ import android.provider.BaseColumns
 
 class TabelaBDVinhos (db: SQLiteDatabase) : TabelaBD(db, NOME){
     override fun cria() {
-        db.execSQL("CREATE TABLE $nome (${BaseColumns._ID} INTEGER PRIMARY KEY AUTOINCREMENT, $CAMPO_NOME TEXT NOT NULL, " +
-                "$CAMPO_STOCK INTEGER NOT NULL, $CAMPO_ANO TEXT NOT NULL," +
-                "$CAMPO_PRECO REAL NOT NULL," +
-              "$CAMPO_REGION TEXT NOT NULL, FOREIGN KEY ($CAMPO_REGION) REFERENCES ${TabelaBDRegiao.CAMPO_NOME} ON DELETE RESTRICT)")
+        db.execSQL("CREATE TABLE $nome (${BaseColumns._ID} INTEGER PRIMARY KEY AUTOINCREMENT, " +
+        "$CAMPO_ID_REGIAO INTEGER NOT NULL, " +
+        "FOREIGN KEY ($CAMPO_ID_REGIAO) REFERENCES ${TabelaBDRegiao.NOME}(${BaseColumns._ID}) ON DELETE RESTRICT, " +
+        "$CAMPO_NOME_VINHO TEXT NOT NULL, " +
+        "$CAMPO_PRECO_GARRAFA REAL NOT NULL, " +
+        "$CAMPO_NOME_REGIAO TEXT NOT NULL, " +
+        "$CAMPO_STOCK INTEGER NOT NULL)")
     }
 
     companion object{
         const val NOME = "vinhos"
-        const val CAMPO_NOME = "nome_vinho"
+        const val CAMPO_ID_REGIAO = "regiaoId"
+        const val CAMPO_NOME_VINHO = "nomeVinho"
+        const val CAMPO_PRECO_GARRAFA = "precoGarrafa"
+        const val CAMPO_NOME_REGIAO = "nomeRegiao"
         const val CAMPO_STOCK = "stock"
-        const val CAMPO_REGION = "region"
-        const val CAMPO_ANO = "safra"
-        const val CAMPO_PRECO = "preco"
     }
 }

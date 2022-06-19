@@ -6,21 +6,27 @@ import android.provider.BaseColumns
 class TabelaBDVendas (db: SQLiteDatabase) : TabelaBD(db, NOME){
     override fun cria() {
         db.execSQL("CREATE TABLE $nome (${BaseColumns._ID} INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                "$CAMPO_NOME_VINHO TEXT NOT NULL, FOREIGN KEY ($CAMPO_NOME_VINHO) REFERENCES ${TabelaBDVinhos.CAMPO_NOME} ON DELETE RESTRICT," +
-                "$CAMPO_NOME_CLIENTE TEXT NOT NULL, FOREIGN KEY ($CAMPO_NOME_CLIENTE) REFERENCES ${TabelaBDClientes.CAMPO_NOME} ON DELETE RESTRICT," +
-                "$CAMPO_PRECO_GARRAFA REAL NOT NULL, FOREIGN KEY ($CAMPO_PRECO_GARRAFA) REFERENCES ${TabelaBDVinhos.CAMPO_PRECO} ON DELETE RESTRICT,"+
-        "$CAMPO_QUANTIDADE  INTEGER NOT NULL, $CAMPO_PRECO DOUBLE NOT NULL)")
-    }
+        "$CAMPO_ID_CLIENTE INTEGER NOT NULL, " +
+        "FOREIGN KEY ($CAMPO_ID_CLIENTE) REFERENCES ${TabelaBDClientes.NOME}(${BaseColumns._ID}) ON DELETE RESTRICT, " +
+        "$CAMPO_ID_VINHO INTEGER NOT NULL, " +
+        "FOREIGN KEY ($CAMPO_ID_VINHO) REFERENCES ${TabelaBDVinhos.NOME}(${BaseColumns._ID}) ON DELETE RESTRICT, " +
+        "$CAMPO_NOME_CLIENTE TEXT NOT NULL, " +
+        "$CAMPO_NOME_VINHO TEXT NOT NULL, " +
+        "$CAMPO_QUANTIDADE INTEGER NOT NULL, " +
+        "$CAMPO_PRECO_GARRAFA REAL NOT NULL, "  +
+        "$CAMPO_PRECO REAL NOT NULL)")
 
-    //TODO: Tirar duvida relativa a foreign keys e se e obrigatorio ser id
+    }
 
 
     companion object{
         const val NOME = "vendas"
-        const val CAMPO_NOME_CLIENTE = "nome_cliente"
-        const val CAMPO_NOME_VINHO = "nome_vinho"
+        const val CAMPO_ID_CLIENTE = "clienteId"
+        const val CAMPO_ID_VINHO = "vinhoId"
+        const val CAMPO_NOME_CLIENTE = "nomeCliente"
+        const val CAMPO_NOME_VINHO = "vinhoCliente"
         const val CAMPO_QUANTIDADE = "quantidade"
-        const val CAMPO_PRECO_GARRAFA = "preco_garrafa"
+        const val CAMPO_PRECO_GARRAFA = "precoGarrafa"
         const val CAMPO_PRECO = "preco"
     }
 }

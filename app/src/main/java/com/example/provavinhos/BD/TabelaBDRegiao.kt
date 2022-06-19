@@ -11,6 +11,6 @@ class TabelaBDRegiao (db: SQLiteDatabase) : TabelaBD(db, NOME){
 
     companion object{
         const val NOME = "regiao"
-        const val CAMPO_NOME = "nome_regiao"
+        const val CAMPO_NOME = "nomeRegiao"
     }
 }

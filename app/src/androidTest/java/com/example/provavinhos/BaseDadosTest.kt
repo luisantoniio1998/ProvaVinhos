@@ -17,38 +17,6 @@ class BaseDadosTest {
     fun appContext() =
         InstrumentationRegistry.getInstrumentation().targetContext
 
-    private fun getWritableDatabase(): SQLiteDatabase {
-        val openHelper = BDVinhosOpenHelper(appContext())
-        return openHelper.writableDatabase
-    }
-
-    private fun insereVinho(db: SQLiteDatabase, vinho : Wine) {
-        vinho.id = TabelaBDVinhos(db).insert(vinho.toContentValues())
-        assertNotEquals(-1, vinho.id)
-    }
-
-    private fun insereCliente(db: SQLiteDatabase, client : Clients) {
-        client.id = TabelaBDClientes(db).insert(client.toContentValues())
-        assertNotEquals(-1, client.id)
-    }
-
-    private fun insereVenda(db: SQLiteDatabase, venda : Sales) {
-        venda.id = TabelaBDVendas(db).insert(venda.toContentValues())
-        assertNotEquals(-1, venda.id)
-    }
-
-    private fun insereRegiao(db: SQLiteDatabase, regiao : Region) {
-        regiao.id = TabelaBDRegiao(db).insert(regiao.toContentValues())
-        assertNotEquals(-1, regiao.id)
-    }
-
-
-
-    @Test
-    fun apagaBaseDados() {
-        appContext().deleteDatabase(BDVinhosOpenHelper.NOME)
-    }
-
     @Test
     fun  consegueAbrirBaseDados() {
         val openHelper = BDVinhosOpenHelper(appContext())
