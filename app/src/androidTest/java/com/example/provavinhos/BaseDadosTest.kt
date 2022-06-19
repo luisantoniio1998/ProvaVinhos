@@ -17,7 +17,7 @@ class BaseDadosTest {
     fun appContext() =
         InstrumentationRegistry.getInstrumentation().targetContext
 
-    @Test
+    @Before
     fun apagaBaseDados() {
         appContext().deleteDatabase(BDVinhosOpenHelper.NOME)
     }
