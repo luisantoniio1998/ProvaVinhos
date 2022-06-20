@@ -22,9 +22,14 @@ class BaseDadosTest {
         return openHelper.writableDatabase
     }
 
-    private fun insereRegiao(db:SQLiteDatabase, region: Region){
+    private fun insereRegiao(db: SQLiteDatabase, region: Region) {
         region.id = TabelaBDRegiao(db).insert(region.toContentValues())
         assertNotEquals(-1, region.id)
+    }
+
+    private fun insereVinho(db: SQLiteDatabase, wine: Wine) {
+        wine.id = TabelaBDVinhos(db).insert(wine.toContentValues())
+        assertNotEquals(-1, wine.id)
     }
 
 
@@ -34,7 +39,7 @@ class BaseDadosTest {
     }
 
     @Test
-    fun  consegueAbrirBaseDados() {
+    fun consegueAbrirBaseDados() {
         val openHelper = BDVinhosOpenHelper(appContext())
         val db = openHelper.readableDatabase
 
@@ -45,7 +50,7 @@ class BaseDadosTest {
 
     @Test
 
-    fun consegueInserirRegiao(){
+    fun consegueInserirRegiao() {
         val db = getWritableDatabase()
 
         insereRegiao(db, Region("Alentejo"))
@@ -54,7 +59,7 @@ class BaseDadosTest {
     }
 
     @Test
-    fun consegueInserirVinho(){
+    fun consegueInserirVinho() {
         val db = getWritableDatabase()
 
         val region = Region("Alentejo")
@@ -67,5 +72,20 @@ class BaseDadosTest {
 
         db.close()
     }
+
+    @Test
+
+    fun consegueInserirCliente(){
+        val db = getWritableDatabase()
+
+        val client = Clients("Luis Barros", "913131311", "133313231")
+        client.id = TabelaBDClientes(db).insert(client.toContentValues())
+
+        assertNotEquals(-1, client.id)
+
+        db.close()
+    }
+
+    
 
 }
