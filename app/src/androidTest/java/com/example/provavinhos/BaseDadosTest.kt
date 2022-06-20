@@ -235,9 +235,26 @@ class BaseDadosTest {
 
         db.close()
 
-
-
     }
+
+    @Test
+
+    fun consegueEliminarRegiao(){
+        val db = getWritableDatabase()
+
+        val regiao = Region("Alentejo")
+        insereRegiao(db, regiao)
+
+        val registosEliminados = TabelaBDRegiao(db).delete(
+            "${BaseColumns._ID}=?",
+            arrayOf("${regiao.id}"))
+
+        assertEquals(1, registosEliminados)
+
+        db.close()
+    }
+
+    
 
 
 }
