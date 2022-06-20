@@ -169,4 +169,27 @@ class BaseDadosTest {
 
     }
 
+    @Test
+
+    fun consegueAlterarCliente(){
+        val db = getWritableDatabase()
+
+        val client = Clients("Luis Barros", "936593434", "231431413")
+        insereCliente(db, client)
+
+        client.nome = "Joao Barros"
+        client.contacto = "934321123"
+        client.nif = "231413231"
+
+        val registosAlterados = TabelaBDClientes(db).update(
+           client.toContentValues(),
+           "${BaseColumns._ID}=?",
+            arrayOf("${client.id}"))
+
+        assertEquals(1, registosAlterados)
+
+        db.close()
+    }
+
+
 }
