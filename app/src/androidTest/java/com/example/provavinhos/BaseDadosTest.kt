@@ -318,6 +318,30 @@ class BaseDadosTest {
 
     }
 
+    @Test
+    fun consegueLerRegioes() {
+        val db = getWritableDatabase()
+
+        val regiao = Region("Alentejo")
+        insereRegiao(db, regiao)
+
+        val cursor = TabelaBDRegiao(db).query(
+            TabelaBDRegiao.TODAS_COLUNAS,
+            "${BaseColumns._ID}=?",
+            arrayOf("${regiao.id}"),
+            null,
+            null,
+            null
+        )
+
+        assertEquals(1, cursor.count)
+        assertTrue(cursor.moveToNext())
+
+        val regBD = Region.fromCursor(cursor)
+
+        assertEquals(regiao, regBD)
+    }
+
 
 
 }

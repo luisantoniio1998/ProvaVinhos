@@ -12,5 +12,7 @@ class TabelaBDRegiao (db: SQLiteDatabase) : TabelaBD(db, NOME){
     companion object{
         const val NOME = "regiao"
         const val CAMPO_NOME = "nomeRegiao"
+
+        val TODAS_COLUNAS = arrayOf(BaseColumns._ID, CAMPO_NOME)
     }
 }

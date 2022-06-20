@@ -25,7 +25,6 @@ data class Region(
             val nome = cursor.getString(posNome)
 
             return Region(nome, id)
-
         }
     }
 }
