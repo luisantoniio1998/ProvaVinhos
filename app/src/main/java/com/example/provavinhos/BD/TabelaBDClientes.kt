@@ -15,5 +15,7 @@ class TabelaBDClientes (db:SQLiteDatabase) : TabelaBD(db, NOME){
             const val CAMPO_NOME = "nomeCliente"
             const val CAMPO_CONTACTO = "contacto"
             const val CAMPO_NIF = "NIF"
+
+        val TODAS_COLUNAS = arrayOf(BaseColumns._ID, CAMPO_NOME, CAMPO_CONTACTO, CAMPO_NIF)
         }
     }
