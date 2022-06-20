@@ -22,6 +22,11 @@ class BaseDadosTest {
         return openHelper.writableDatabase
     }
 
+    private fun insereRegiao(db:SQLiteDatabase, region: Region){
+        region.id = TabelaBDRegiao(db).insert(region.toContentValues())
+        assertNotEquals(-1, region.id)
+    }
+
 
     @Before
     fun apagaBaseDados() {
@@ -43,9 +48,22 @@ class BaseDadosTest {
     fun consegueInserirRegiao(){
         val db = getWritableDatabase()
 
-        val regiao = Region("Alentejo")
+        insereRegiao(db, Region("Alentejo"))
 
-        TabelaBDRegiao(db).insert(regiao.toContentValues())
+        db.close()
+    }
+
+    @Test
+    fun consegueInserirVinho(){
+        val db = getWritableDatabase()
+
+        val region = Region("Alentejo")
+        insereRegiao(db, region)
+
+        val vinho = Wine("Monte da Peceguina", 13.50, region.nomeRegiao, 10, region.id)
+        vinho.id = TabelaBDVinhos(db).insert(vinho.toContentValues())
+
+        assertNotEquals(-1, vinho.id)
 
         db.close()
     }

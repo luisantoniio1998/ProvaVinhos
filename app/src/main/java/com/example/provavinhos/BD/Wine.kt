@@ -9,7 +9,7 @@ data class Wine(
     var precoGarrafa : Double,
     var nomeRegiao : String,
     var stock : Long,
-    var idRegiao : String,
+    var idRegiao : Long,
     var id: Long = -1
 ) {
     fun toContentValues() : ContentValues {
