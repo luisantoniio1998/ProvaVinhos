@@ -254,7 +254,70 @@ class BaseDadosTest {
         db.close()
     }
 
-    
+    @Test
+    fun consegueEliminarVinho() {
+        val db = getWritableDatabase()
+
+        val region = Region("Alentejo")
+        insereRegiao(db, region)
+
+        val vinho = Wine("Monte da Peceguina", 13.50, region.nomeRegiao, 10, region.id)
+        insereVinho(db, vinho)
+
+        val registosEliminados = TabelaBDVinhos(db).delete(
+            "${BaseColumns._ID}=?",
+            arrayOf("${vinho.id}"))
+
+        assertEquals(1, registosEliminados)
+
+        db.close()
+    }
+
+    @Test
+
+    fun consegueEliminarCliente(){
+        val db = getWritableDatabase()
+
+        val cliente = Clients("Luis", "936543123", "231413213")
+        insereCliente(db, cliente)
+
+        val registosEliminados = TabelaBDClientes(db).delete(
+            "${BaseColumns._ID}=?",
+            arrayOf("${cliente.id}"))
+
+        assertEquals(1, registosEliminados)
+
+        db.close()
+    }
+
+
+    @Test
+    fun consegueEliminarVenda(){
+        val db = getWritableDatabase()
+
+        val regiao= Region("Alentejo")
+        insereRegiao(db, regiao)
+
+        val cliente= Clients("Luis" , "936593777", "231481933")
+        insereCliente(db, cliente)
+
+        val vinho = Wine("Dona Maria", 8.90, regiao.nomeRegiao, 10, regiao.id)
+        insereVinho(db, vinho)
+
+        val venda = Sales(cliente.nome, vinho.nomeVinho, 10, vinho.precoGarrafa, 80.8, cliente.id, vinho.id)
+        insereVenda(db, venda)
+
+
+        val registosEliminados = TabelaBDVendas(db).delete(
+            "${BaseColumns._ID}=?",
+            arrayOf("${venda.id}"))
+
+        assertEquals(1, registosEliminados)
+
+        db.close()
+
+    }
+
 
 
 }
