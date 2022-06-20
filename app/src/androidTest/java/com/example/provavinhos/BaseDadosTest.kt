@@ -139,4 +139,34 @@ class BaseDadosTest {
         db.close()
     }
 
+    @Test
+    fun consegueAlterarVinho(){
+        val db = getWritableDatabase()
+
+        val regiaoAlentejo = Region("Aletenjo")
+        insereRegiao(db, regiaoAlentejo)
+
+        val regiaoDouro = Region("Douro")
+        insereRegiao(db, regiaoDouro)
+
+        val vinho = Wine("Encosta do Guadiana", 21.0, regiaoAlentejo.nomeRegiao, 5, regiaoAlentejo.id)
+        insereVinho(db, vinho)
+
+        vinho.nomeVinho = "Ervideira"
+        vinho.precoGarrafa = 12.27
+        vinho.nomeRegiao = regiaoDouro.nomeRegiao
+        vinho.stock = 4
+        vinho.idRegiao = regiaoDouro.id
+
+        val registosAlterados = TabelaBDVinhos(db).update(
+            vinho.toContentValues(),
+            "${BaseColumns._ID}=?",
+            arrayOf("${vinho.id}"))
+
+        assertEquals(1, registosAlterados)
+
+        db.close()
+
+    }
+
 }
