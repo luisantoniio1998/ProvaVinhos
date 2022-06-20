@@ -17,6 +17,12 @@ class BaseDadosTest {
     fun appContext() =
         InstrumentationRegistry.getInstrumentation().targetContext
 
+    private fun getWritableDatabase(): SQLiteDatabase {
+        val openHelper = BDVinhosOpenHelper(appContext())
+        return openHelper.writableDatabase
+    }
+
+
     @Before
     fun apagaBaseDados() {
         appContext().deleteDatabase(BDVinhosOpenHelper.NOME)
@@ -28,6 +34,18 @@ class BaseDadosTest {
         val db = openHelper.readableDatabase
 
         assertTrue(db.isOpen)
+
+        db.close()
+    }
+
+    @Test
+
+    fun consegueInserirRegiao(){
+        val db = getWritableDatabase()
+
+        val regiao = Region("Alentejo")
+
+        TabelaBDRegiao(db).insert(regiao.toContentValues())
 
         db.close()
     }
