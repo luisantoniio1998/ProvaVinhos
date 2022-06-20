@@ -192,4 +192,52 @@ class BaseDadosTest {
     }
 
 
+    @Test
+
+    fun consegueAlterarVenda(){
+        val db = getWritableDatabase()
+
+        val regiaoAlentejo = Region("Alentejo")
+        insereRegiao(db, regiaoAlentejo)
+
+        val regiaoDouro = Region("Douro")
+        insereRegiao(db, regiaoDouro)
+
+        val clienteLuis = Clients("Luis" , "936593777", "231481933")
+        insereCliente(db, clienteLuis)
+
+        val clienteJoao = Clients("Joao", "933455676", "231411311")
+        insereCliente(db, clienteJoao)
+
+        val vinhoAlentejo = Wine("Dona Maria", 8.90, regiaoAlentejo.nomeRegiao, 10, regiaoAlentejo.id)
+        insereVinho(db, vinhoAlentejo)
+
+        val vinhoDouro = Wine("Arca Nova", 8.08, regiaoDouro.nomeRegiao, 5, regiaoDouro.id)
+        insereVinho(db, vinhoDouro)
+
+        val venda = Sales(clienteJoao.nome, vinhoDouro.nomeVinho, 10, vinhoDouro.precoGarrafa, 80.8, clienteJoao.id, vinhoDouro.id)
+        insereVenda(db, venda)
+
+        venda.nomeCliente = clienteLuis.nome
+        venda.nomeVinho = vinhoAlentejo.nomeVinho
+        venda.quantidade = 5
+        venda.precoGarrafa = vinhoAlentejo.precoGarrafa
+        venda.preco = (5 * vinhoAlentejo.precoGarrafa)
+        venda.idCliente = clienteLuis.id
+        venda.idVinho = vinhoAlentejo.id
+
+        val registosAlterados = TabelaBDVendas(db).update(
+            venda.toContentValues(),
+            "${BaseColumns._ID}=?",
+            arrayOf("${venda.id}"))
+
+        assertEquals(1, registosAlterados)
+
+        db.close()
+
+
+
+    }
+
+
 }
