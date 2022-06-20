@@ -32,6 +32,11 @@ class BaseDadosTest {
         assertNotEquals(-1, wine.id)
     }
 
+    private fun insereCliente(db: SQLiteDatabase, clients: Clients){
+        clients.id = TabelaBDClientes(db).insert(clients.toContentValues())
+        assertNotEquals(-1, clients.id)
+    }
+
 
     @Before
     fun apagaBaseDados() {
@@ -86,6 +91,27 @@ class BaseDadosTest {
         db.close()
     }
 
-    
+    @Test
+
+    fun consegueInserirVenda(){
+        val db = getWritableDatabase()
+
+        val client = Clients("Luis Barros", "931123123", "123321132")
+        insereCliente(db, client)
+
+        val regiao = Region("Alentejo")
+        insereRegiao(db, regiao)
+
+        val vinho = Wine("Monte da Peceguina", 13.50, regiao.nomeRegiao, 10, regiao.id)
+        insereVinho(db, vinho)
+
+        val venda = Sales(client.nome, vinho.nomeVinho, 10, vinho.precoGarrafa, 135.0, client.id, vinho.id)
+        venda.id = TabelaBDVendas(db).insert(venda.toContentValues())
+
+        assertNotEquals(-1, venda.id)
+
+        db.close()
+
+    }
 
 }
