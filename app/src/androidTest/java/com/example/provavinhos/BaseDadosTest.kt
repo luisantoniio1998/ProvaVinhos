@@ -37,6 +37,11 @@ class BaseDadosTest {
         assertNotEquals(-1, clients.id)
     }
 
+    private fun insereVenda(db:SQLiteDatabase, sales: Sales){
+        sales.id = TabelaBDVendas(db).insert(sales.toContentValues())
+        assertNotEquals(-1, sales.id)
+    }
+
 
     @Before
     fun apagaBaseDados() {
@@ -112,6 +117,26 @@ class BaseDadosTest {
 
         db.close()
 
+    }
+
+    @Test
+
+    fun consegueAlterarRegiao(){
+        val db = getWritableDatabase()
+
+        val regiao = Region("Alentejo")
+        insereRegiao(db, regiao)
+
+        regiao.nomeRegiao= "Douro"
+
+        val registosAlterados = TabelaBDRegiao(db).update(
+            regiao.toContentValues(),
+            "${BaseColumns._ID}=?",
+            arrayOf("${regiao.id}"))
+
+        assertEquals(1, registosAlterados)
+
+        db.close()
     }
 
 }
