@@ -37,7 +37,7 @@
         </activity>
         <provider
             android:authorities="com.example.provavinhos"
-            android:name=".BD.ContentProviderRegioes"
+            android:name=".BD.ContentProviderClientes"
             android:exported="false" />
     </application>
 

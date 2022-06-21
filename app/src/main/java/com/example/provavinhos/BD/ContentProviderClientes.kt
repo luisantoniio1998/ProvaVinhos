@@ -7,7 +7,7 @@ import android.database.Cursor
 import android.net.Uri
 import android.provider.BaseColumns
 
-class ContentProviderRegioes : ContentProvider() {
+class ContentProviderClientes : ContentProvider() {
     var dbOpenHelper : BDVinhosOpenHelper? = null
     override fun onCreate(): Boolean {
         dbOpenHelper = BDVinhosOpenHelper(context)
@@ -32,8 +32,8 @@ class ContentProviderRegioes : ContentProvider() {
         val id = uri.lastPathSegment
 
         val cursor = when (getUriMatcher().match(uri)) {
-            URI_REGIOES -> TabelaBDRegiao(db).query(colunas, selection, argsSeleccao, null, null, sortOrder)
-            URI_REGIAO_ESPECIFICA -> TabelaBDRegiao(db).query(colunas, "${BaseColumns._ID}=?", arrayOf("${id}"), null, null, null)
+            URI_CLIENTES -> TabelaBDClientes(db).query(colunas, selection, argsSeleccao, null, null, sortOrder)
+            URI_CLIENTE_ESPECIFICO -> TabelaBDClientes(db).query(colunas, "${BaseColumns._ID}=?", arrayOf("${id}"), null, null, null)
             else -> null
         }
 
@@ -44,8 +44,8 @@ class ContentProviderRegioes : ContentProvider() {
 
     override fun getType(uri: Uri): String? =
         when (getUriMatcher().match(uri)) {
-            URI_REGIOES -> "$MULTIPLOS_REGISTOS/${TabelaBDRegiao.NOME}"
-            URI_REGIAO_ESPECIFICA -> "$UNICO_REGISTO/${TabelaBDRegiao.NOME}"
+            URI_CLIENTES -> "$MULTIPLOS_REGISTOS/${TabelaBDClientes.NOME}"
+            URI_CLIENTE_ESPECIFICO -> "$UNICO_REGISTO/${TabelaBDClientes.NOME}"
             else -> null
         }
 
@@ -56,7 +56,7 @@ class ContentProviderRegioes : ContentProvider() {
         requireNotNull(values)
 
         val id = when (getUriMatcher().match(uri)) {
-            URI_REGIOES -> TabelaBDRegiao(db).insert(values)
+            URI_CLIENTES -> TabelaBDClientes(db).insert(values)
             else -> -1
         }
 
@@ -73,7 +73,7 @@ class ContentProviderRegioes : ContentProvider() {
         val id = uri.lastPathSegment
 
         val registosApagados = when (getUriMatcher().match(uri)) {
-            URI_REGIAO_ESPECIFICA -> TabelaBDRegiao(db).delete("${BaseColumns._ID}=?", arrayOf("${id}"))
+            URI_CLIENTE_ESPECIFICO -> TabelaBDClientes(db).delete("${BaseColumns._ID}=?", arrayOf("${id}"))
             else -> 0
         }
 
@@ -95,7 +95,7 @@ class ContentProviderRegioes : ContentProvider() {
         val id = uri.lastPathSegment
 
         val registosAlterados = when (getUriMatcher().match(uri)) {
-            URI_REGIAO_ESPECIFICA -> TabelaBDRegiao(db).update(values, "${BaseColumns._ID}=?", arrayOf("${id}"))
+            URI_CLIENTE_ESPECIFICO -> TabelaBDClientes(db).update(values, "${BaseColumns._ID}=?", arrayOf("${id}"))
 
             else -> 0
         }
@@ -108,8 +108,8 @@ class ContentProviderRegioes : ContentProvider() {
     companion object{
         const val AUTHORITY = "com.example.provavinhos"
 
-        const val URI_REGIOES = 100
-        const val URI_REGIAO_ESPECIFICA = 101
+        const val URI_CLIENTES = 100
+        const val URI_CLIENTE_ESPECIFICO = 101
 
         const val UNICO_REGISTO = "vnd.android.cursor.item"
         const val MULTIPLOS_REGISTOS = "vnd.android.cursor.dir"
@@ -117,8 +117,8 @@ class ContentProviderRegioes : ContentProvider() {
         fun getUriMatcher(): UriMatcher{
             var uriMatcher = UriMatcher(UriMatcher.NO_MATCH)
 
-            uriMatcher.addURI(AUTHORITY, TabelaBDRegiao.NOME, URI_REGIOES)
-            uriMatcher.addURI(AUTHORITY, "${TabelaBDRegiao.NOME}/#", URI_REGIAO_ESPECIFICA)
+            uriMatcher.addURI(AUTHORITY, TabelaBDClientes.NOME, URI_CLIENTES)
+            uriMatcher.addURI(AUTHORITY, "${TabelaBDClientes.NOME}/#", URI_CLIENTE_ESPECIFICO)
 
 
             return uriMatcher
