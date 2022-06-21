@@ -68,7 +68,18 @@ class ContentProviderRegioes : ContentProvider() {
     }
 
     override fun delete(uri: Uri, selection: String?, selectionArgs: Array<out String>?): Int {
-        TODO("Not yet implemented")
+        val db = dbOpenHelper!!.writableDatabase
+
+        val id = uri.lastPathSegment
+
+        val registosApagados = when (getUriMatcher().match(uri)) {
+            URI_REGIAO_ESPECIFICA -> TabelaBDRegiao(db).delete("${BaseColumns._ID}=?", arrayOf("${id}"))
+            else -> 0
+        }
+
+        db.close()
+
+        return registosApagados
     }
 
     override fun update(
@@ -77,7 +88,21 @@ class ContentProviderRegioes : ContentProvider() {
         selection: String?,
         selectionArgs: Array<out String>?
     ): Int {
-        TODO("Not yet implemented")
+        requireNotNull(values)
+
+        val db = dbOpenHelper!!.writableDatabase
+
+        val id = uri.lastPathSegment
+
+        val registosAlterados = when (getUriMatcher().match(uri)) {
+            URI_REGIAO_ESPECIFICA -> TabelaBDRegiao(db).update(values, "${BaseColumns._ID}=?", arrayOf("${id}"))
+
+            else -> 0
+        }
+
+        db.close()
+
+        return registosAlterados
     }
 
     companion object{
