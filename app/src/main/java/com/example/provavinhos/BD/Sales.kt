@@ -1,6 +1,8 @@
 package com.example.provavinhos.BD
 
 import android.content.ContentValues
+import android.database.Cursor
+import android.provider.BaseColumns
 
 
 data class Sales(
@@ -27,5 +29,33 @@ data class Sales(
         valores.put(TabelaBDVendas.CAMPO_ID_VINHO, idVinho)
 
         return valores
+    }
+
+    companion object{
+        fun fromCursor(cursor: Cursor): Sales {
+            val posId = cursor.getColumnIndex(BaseColumns._ID)
+            val posNomCliente = cursor.getColumnIndex(TabelaBDVendas.CAMPO_NOME_CLIENTE)
+            val posNomVinho = cursor.getColumnIndex(TabelaBDVendas.CAMPO_NOME_VINHO)
+            val posQtd = cursor.getColumnIndex(TabelaBDVendas.CAMPO_QUANTIDADE)
+            val posPrecGarrafa = cursor.getColumnIndex(TabelaBDVendas.CAMPO_PRECO_GARRAFA)
+            val posPreco = cursor.getColumnIndex(TabelaBDVendas.CAMPO_PRECO)
+            val posIdClient = cursor.getColumnIndex(TabelaBDVendas.CAMPO_ID_CLIENTE)
+            val posIdVinho = cursor.getColumnIndex(TabelaBDVendas.CAMPO_ID_VINHO)
+
+
+            val id = cursor.getLong(posId)
+            val nomecliente = cursor.getString(posNomCliente)
+            val nomeVinho = cursor.getString(posNomVinho)
+            val quantidade = cursor.getLong(posQtd)
+            val precoGarrafa = cursor.getDouble(posPrecGarrafa)
+            val preco = cursor.getDouble(posPreco)
+            val idCliente = cursor.getLong(posIdClient)
+            val idVinho = cursor.getLong(posIdVinho)
+
+            return Sales(nomecliente, nomeVinho, quantidade, precoGarrafa, preco, idCliente, idVinho, id)
+
+        }
+
+
     }
 }
