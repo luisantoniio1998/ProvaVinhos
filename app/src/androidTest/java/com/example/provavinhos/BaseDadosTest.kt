@@ -32,12 +32,12 @@ class BaseDadosTest {
         assertNotEquals(-1, wine.id)
     }
 
-    private fun insereCliente(db: SQLiteDatabase, clients: Clients){
+    private fun insereCliente(db: SQLiteDatabase, clients: Clients) {
         clients.id = TabelaBDClientes(db).insert(clients.toContentValues())
         assertNotEquals(-1, clients.id)
     }
 
-    private fun insereVenda(db:SQLiteDatabase, sales: Sales){
+    private fun insereVenda(db: SQLiteDatabase, sales: Sales) {
         sales.id = TabelaBDVendas(db).insert(sales.toContentValues())
         assertNotEquals(-1, sales.id)
     }
@@ -85,7 +85,7 @@ class BaseDadosTest {
 
     @Test
 
-    fun consegueInserirCliente(){
+    fun consegueInserirCliente() {
         val db = getWritableDatabase()
 
         val client = Clients("Luis Barros", "913131311", "133313231")
@@ -98,7 +98,7 @@ class BaseDadosTest {
 
     @Test
 
-    fun consegueInserirVenda(){
+    fun consegueInserirVenda() {
         val db = getWritableDatabase()
 
         val client = Clients("Luis Barros", "931123123", "123321132")
@@ -110,7 +110,8 @@ class BaseDadosTest {
         val vinho = Wine("Monte da Peceguina", 13.50, regiao.nomeRegiao, 10, regiao.id)
         insereVinho(db, vinho)
 
-        val venda = Sales(client.nome, vinho.nomeVinho, 10, vinho.precoGarrafa, 135.0, client.id, vinho.id)
+        val venda =
+            Sales(client.nome, vinho.nomeVinho, 10, vinho.precoGarrafa, 135.0, client.id, vinho.id)
         venda.id = TabelaBDVendas(db).insert(venda.toContentValues())
 
         assertNotEquals(-1, venda.id)
@@ -121,18 +122,19 @@ class BaseDadosTest {
 
     @Test
 
-    fun consegueAlterarRegiao(){
+    fun consegueAlterarRegiao() {
         val db = getWritableDatabase()
 
         val regiao = Region("Alentejo")
         insereRegiao(db, regiao)
 
-        regiao.nomeRegiao= "Douro"
+        regiao.nomeRegiao = "Douro"
 
         val registosAlterados = TabelaBDRegiao(db).update(
             regiao.toContentValues(),
             "${BaseColumns._ID}=?",
-            arrayOf("${regiao.id}"))
+            arrayOf("${regiao.id}")
+        )
 
         assertEquals(1, registosAlterados)
 
@@ -140,7 +142,7 @@ class BaseDadosTest {
     }
 
     @Test
-    fun consegueAlterarVinho(){
+    fun consegueAlterarVinho() {
         val db = getWritableDatabase()
 
         val regiaoAlentejo = Region("Aletenjo")
@@ -149,7 +151,8 @@ class BaseDadosTest {
         val regiaoDouro = Region("Douro")
         insereRegiao(db, regiaoDouro)
 
-        val vinho = Wine("Encosta do Guadiana", 21.0, regiaoAlentejo.nomeRegiao, 5, regiaoAlentejo.id)
+        val vinho =
+            Wine("Encosta do Guadiana", 21.0, regiaoAlentejo.nomeRegiao, 5, regiaoAlentejo.id)
         insereVinho(db, vinho)
 
         vinho.nomeVinho = "Ervideira"
@@ -161,7 +164,8 @@ class BaseDadosTest {
         val registosAlterados = TabelaBDVinhos(db).update(
             vinho.toContentValues(),
             "${BaseColumns._ID}=?",
-            arrayOf("${vinho.id}"))
+            arrayOf("${vinho.id}")
+        )
 
         assertEquals(1, registosAlterados)
 
@@ -171,7 +175,7 @@ class BaseDadosTest {
 
     @Test
 
-    fun consegueAlterarCliente(){
+    fun consegueAlterarCliente() {
         val db = getWritableDatabase()
 
         val client = Clients("Luis Barros", "936593434", "231431413")
@@ -182,9 +186,10 @@ class BaseDadosTest {
         client.nif = "231413231"
 
         val registosAlterados = TabelaBDClientes(db).update(
-           client.toContentValues(),
-           "${BaseColumns._ID}=?",
-            arrayOf("${client.id}"))
+            client.toContentValues(),
+            "${BaseColumns._ID}=?",
+            arrayOf("${client.id}")
+        )
 
         assertEquals(1, registosAlterados)
 
@@ -194,7 +199,7 @@ class BaseDadosTest {
 
     @Test
 
-    fun consegueAlterarVenda(){
+    fun consegueAlterarVenda() {
         val db = getWritableDatabase()
 
         val regiaoAlentejo = Region("Alentejo")
@@ -203,19 +208,28 @@ class BaseDadosTest {
         val regiaoDouro = Region("Douro")
         insereRegiao(db, regiaoDouro)
 
-        val clienteLuis = Clients("Luis" , "936593777", "231481933")
+        val clienteLuis = Clients("Luis", "936593777", "231481933")
         insereCliente(db, clienteLuis)
 
         val clienteJoao = Clients("Joao", "933455676", "231411311")
         insereCliente(db, clienteJoao)
 
-        val vinhoAlentejo = Wine("Dona Maria", 8.90, regiaoAlentejo.nomeRegiao, 10, regiaoAlentejo.id)
+        val vinhoAlentejo =
+            Wine("Dona Maria", 8.90, regiaoAlentejo.nomeRegiao, 10, regiaoAlentejo.id)
         insereVinho(db, vinhoAlentejo)
 
         val vinhoDouro = Wine("Arca Nova", 8.08, regiaoDouro.nomeRegiao, 5, regiaoDouro.id)
         insereVinho(db, vinhoDouro)
 
-        val venda = Sales(clienteJoao.nome, vinhoDouro.nomeVinho, 10, vinhoDouro.precoGarrafa, 80.8, clienteJoao.id, vinhoDouro.id)
+        val venda = Sales(
+            clienteJoao.nome,
+            vinhoDouro.nomeVinho,
+            10,
+            vinhoDouro.precoGarrafa,
+            80.8,
+            clienteJoao.id,
+            vinhoDouro.id
+        )
         insereVenda(db, venda)
 
         venda.nomeCliente = clienteLuis.nome
@@ -229,7 +243,8 @@ class BaseDadosTest {
         val registosAlterados = TabelaBDVendas(db).update(
             venda.toContentValues(),
             "${BaseColumns._ID}=?",
-            arrayOf("${venda.id}"))
+            arrayOf("${venda.id}")
+        )
 
         assertEquals(1, registosAlterados)
 
@@ -239,7 +254,7 @@ class BaseDadosTest {
 
     @Test
 
-    fun consegueEliminarRegiao(){
+    fun consegueEliminarRegiao() {
         val db = getWritableDatabase()
 
         val regiao = Region("Alentejo")
@@ -247,7 +262,8 @@ class BaseDadosTest {
 
         val registosEliminados = TabelaBDRegiao(db).delete(
             "${BaseColumns._ID}=?",
-            arrayOf("${regiao.id}"))
+            arrayOf("${regiao.id}")
+        )
 
         assertEquals(1, registosEliminados)
 
@@ -266,7 +282,8 @@ class BaseDadosTest {
 
         val registosEliminados = TabelaBDVinhos(db).delete(
             "${BaseColumns._ID}=?",
-            arrayOf("${vinho.id}"))
+            arrayOf("${vinho.id}")
+        )
 
         assertEquals(1, registosEliminados)
 
@@ -275,7 +292,7 @@ class BaseDadosTest {
 
     @Test
 
-    fun consegueEliminarCliente(){
+    fun consegueEliminarCliente() {
         val db = getWritableDatabase()
 
         val cliente = Clients("Luis", "936543123", "231413213")
@@ -283,7 +300,8 @@ class BaseDadosTest {
 
         val registosEliminados = TabelaBDClientes(db).delete(
             "${BaseColumns._ID}=?",
-            arrayOf("${cliente.id}"))
+            arrayOf("${cliente.id}")
+        )
 
         assertEquals(1, registosEliminados)
 
@@ -292,25 +310,27 @@ class BaseDadosTest {
 
 
     @Test
-    fun consegueEliminarVenda(){
+    fun consegueEliminarVenda() {
         val db = getWritableDatabase()
 
-        val regiao= Region("Alentejo")
+        val regiao = Region("Alentejo")
         insereRegiao(db, regiao)
 
-        val cliente= Clients("Luis" , "936593777", "231481933")
+        val cliente = Clients("Luis", "936593777", "231481933")
         insereCliente(db, cliente)
 
         val vinho = Wine("Dona Maria", 8.90, regiao.nomeRegiao, 10, regiao.id)
         insereVinho(db, vinho)
 
-        val venda = Sales(cliente.nome, vinho.nomeVinho, 10, vinho.precoGarrafa, 80.8, cliente.id, vinho.id)
+        val venda =
+            Sales(cliente.nome, vinho.nomeVinho, 10, vinho.precoGarrafa, 80.8, cliente.id, vinho.id)
         insereVenda(db, venda)
 
 
         val registosEliminados = TabelaBDVendas(db).delete(
             "${BaseColumns._ID}=?",
-            arrayOf("${venda.id}"))
+            arrayOf("${venda.id}")
+        )
 
         assertEquals(1, registosEliminados)
 
@@ -365,6 +385,34 @@ class BaseDadosTest {
 
         assertEquals(cliente, clientBD)
     }
+
+    @Test
+    fun consegueLerVinhos() {
+        val db = getWritableDatabase()
+
+        val regiao = Region("Alentejo")
+        insereRegiao(db, regiao)
+
+        val vinho = Wine("Alucinado", 10.3, regiao.nomeRegiao, 10, regiao.id)
+        insereVinho(db, vinho)
+
+        val cursor = TabelaBDVinhos(db).query(
+            TabelaBDVinhos.TODAS_COLUNAS,
+            "${BaseColumns._ID}=?",
+            arrayOf("${vinho.id}"),
+            null,
+            null,
+            null
+        )
+
+        assertEquals(1, cursor.count)
+        assertTrue(cursor.moveToNext())
+
+        val vinhoBD = Wine.fromCursor(cursor)
+
+        assertEquals(vinho, vinhoBD)
+    }
+
 
 
 
