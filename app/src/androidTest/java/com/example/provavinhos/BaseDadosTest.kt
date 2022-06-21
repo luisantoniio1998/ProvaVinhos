@@ -413,6 +413,38 @@ class BaseDadosTest {
         assertEquals(vinho, vinhoBD)
     }
 
+    @Test
+    fun consegueLerVendas() {
+        val db = getWritableDatabase()
+
+        val regiao = Region("Alentejo")
+        insereRegiao(db, regiao)
+
+        val vinho = Wine("Alucinado", 10.3, regiao.nomeRegiao, 10, regiao.id)
+        insereVinho(db, vinho)
+
+        val cliente = Clients("Luis", "936593777", "231481933")
+        insereCliente(db, cliente)
+
+        val venda = Sales(cliente.nome, vinho.nomeVinho, 10, vinho.precoGarrafa, 80.8, cliente.id, vinho.id)
+        insereVenda(db, venda)
+
+        val cursor = TabelaBDVendas(db).query(
+            TabelaBDVendas.TODAS_COLUNAS,
+            "${BaseColumns._ID}=?",
+            arrayOf("${venda.id}"),
+            null,
+            null,
+            null
+        )
+
+        assertEquals(1, cursor.count)
+        assertTrue(cursor.moveToNext())
+
+        val vendaBD = Sales.fromCursor(cursor)
+
+        assertEquals(venda, vendaBD)
+    }
 
 
 
