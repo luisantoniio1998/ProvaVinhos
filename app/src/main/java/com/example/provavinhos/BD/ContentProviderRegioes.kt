@@ -6,8 +6,12 @@ import android.database.Cursor
 import android.net.Uri
 
 class ContentProviderRegioes : ContentProvider() {
+
+    var db : BDVinhosOpenHelper? = null
     override fun onCreate(): Boolean {
-        TODO("Not yet implemented")
+        db = BDVinhosOpenHelper(context)
+
+        return true
     }
 
     override fun query(
