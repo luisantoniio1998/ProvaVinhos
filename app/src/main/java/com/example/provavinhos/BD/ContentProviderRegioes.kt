@@ -2,6 +2,7 @@ package com.example.provavinhos.BD
 
 import android.content.ContentProvider
 import android.content.ContentValues
+import android.content.UriMatcher
 import android.database.Cursor
 import android.net.Uri
 
@@ -43,5 +44,23 @@ class ContentProviderRegioes : ContentProvider() {
         selectionArgs: Array<out String>?
     ): Int {
         TODO("Not yet implemented")
+    }
+
+    companion object{
+        const val AUTHORITY = "com.example.provavinhos"
+
+        const val URI_REGIOES = 100
+        const val URI_REGIAO_ESPECIFICA = 101
+
+        fun getUriMatcher(): UriMatcher{
+            var uriMatcher = UriMatcher(UriMatcher.NO_MATCH)
+
+            uriMatcher.addURI(AUTHORITY, TabelaBDRegiao.NOME, URI_REGIOES)
+            uriMatcher.addURI(AUTHORITY, "${TabelaBDRegiao.NOME}/#", URI_REGIAO_ESPECIFICA)
+
+
+            return uriMatcher
+        }
+
     }
 }
