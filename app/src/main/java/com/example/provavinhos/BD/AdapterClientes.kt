@@ -3,8 +3,10 @@ import android.database.Cursor
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.provavinhos.FragmentListaClientes
+import com.example.provavinhos.R
 
-class AdapterClientes: RecyclerView.Adapter<AdapterClientes.ViewHolderLivro>() {
+class AdapterClientes(val fragment: FragmentListaClientes): RecyclerView.Adapter<AdapterClientes.ViewHolderLivro>() {
     var cursor: Cursor? = null
         get() = field
         set(value) {
@@ -44,7 +46,9 @@ class AdapterClientes: RecyclerView.Adapter<AdapterClientes.ViewHolderLivro>() {
      * @see .onBindViewHolder
      */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderLivro {
-        TODO("Not yet implemented")
+        val itemCliente = fragment.layoutInflater.inflate(R.layout.activity_client_update_delete, parent, false)
+        return ViewHolderLivro(itemCliente)
+
     }
 
     /**
