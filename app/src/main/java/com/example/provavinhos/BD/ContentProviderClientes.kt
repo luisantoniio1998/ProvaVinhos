@@ -37,8 +37,6 @@ class ContentProviderClientes : ContentProvider() {
             else -> null
         }
 
-        db.close()
-
         return cursor
     }
 
