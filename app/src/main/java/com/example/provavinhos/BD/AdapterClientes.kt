@@ -2,9 +2,11 @@ package com.example.provavinhos.BD
 import android.database.Cursor
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.provavinhos.FragmentListaClientes
 import com.example.provavinhos.R
+import org.w3c.dom.Text
 
 class AdapterClientes(val fragment: FragmentListaClientes): RecyclerView.Adapter<AdapterClientes.ViewHolderLivro>() {
     var cursor: Cursor? = null
@@ -18,8 +20,20 @@ class AdapterClientes(val fragment: FragmentListaClientes): RecyclerView.Adapter
 
 
 
-    class ViewHolderLivro(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class ViewHolderLivro(itemCliente: View) : RecyclerView.ViewHolder(itemCliente) {
+        val textViewNome  = itemCliente.findViewById<TextView>(R.id.textViewCliente)
+        val textViewTelemovel = itemCliente.findViewById<TextView>(R.id.textViewTelemovel)
+        val textViewNif = itemCliente.findViewById<TextView>(R.id.textViewNif)
 
+        var cliente : Clients? = null
+            get() = field
+        set(value: Clients?) {
+            field = value
+
+            textViewNome.text = cliente?.nome ?: ""
+            textViewTelemovel.text = cliente?.contacto ?: ""
+            textViewNif.text = cliente?.nif ?: ""
+        }
     }
 
     /**
@@ -73,7 +87,8 @@ class AdapterClientes(val fragment: FragmentListaClientes): RecyclerView.Adapter
      * @param position The position of the item within the adapter's data set.
      */
     override fun onBindViewHolder(holder: ViewHolderLivro, position: Int) {
-        TODO("Not yet implemented")
+        cursor!!.moveToPosition(position)
+        holder.cliente=Clients.fromCursor(cursor!!)
     }
 
     /**

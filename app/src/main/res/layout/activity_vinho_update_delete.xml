@@ -32,8 +32,8 @@
             android:layout_marginTop="16dp"
             android:text="@string/region"
             android:textColor="#c84058"
-            app:layout_constraintStart_toStartOf="@+id/textView16"
-            app:layout_constraintTop_toBottomOf="@+id/textView16" />
+            app:layout_constraintStart_toStartOf="@+id/textViewNif"
+            app:layout_constraintTop_toBottomOf="@+id/textViewNif" />
 
         <Button
             android:id="@+id/button11"
@@ -72,7 +72,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
         <TextView
-            android:id="@+id/textView9"
+            android:id="@+id/textViewCliente"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
@@ -88,11 +88,11 @@
             android:layout_marginTop="16dp"
             android:text="@string/stock"
             android:textColor="#c84058"
-            app:layout_constraintStart_toStartOf="@+id/textView9"
-            app:layout_constraintTop_toBottomOf="@+id/textView9" />
+            app:layout_constraintStart_toStartOf="@+id/textViewCliente"
+            app:layout_constraintTop_toBottomOf="@+id/textViewCliente" />
 
         <TextView
-            android:id="@+id/textView12"
+            android:id="@+id/textViewTelemovel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
@@ -108,11 +108,11 @@
             android:layout_marginTop="16dp"
             android:text="@string/year"
             android:textColor="#c84058"
-            app:layout_constraintStart_toStartOf="@+id/textView12"
-            app:layout_constraintTop_toBottomOf="@+id/textView12" />
+            app:layout_constraintStart_toStartOf="@+id/textViewTelemovel"
+            app:layout_constraintTop_toBottomOf="@+id/textViewTelemovel" />
 
         <TextView
-            android:id="@+id/textView14"
+            android:id="@+id/textViewCodPostal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
@@ -128,11 +128,11 @@
             android:layout_marginTop="16dp"
             android:text="@string/price_per_bottle"
             android:textColor="#c84058"
-            app:layout_constraintStart_toStartOf="@+id/textView14"
-            app:layout_constraintTop_toBottomOf="@+id/textView14" />
+            app:layout_constraintStart_toStartOf="@+id/textViewCodPostal"
+            app:layout_constraintTop_toBottomOf="@+id/textViewCodPostal" />
 
         <TextView
-            android:id="@+id/textView16"
+            android:id="@+id/textViewNif"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
