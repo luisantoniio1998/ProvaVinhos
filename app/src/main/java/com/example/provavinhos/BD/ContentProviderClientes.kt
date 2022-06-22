@@ -106,13 +106,16 @@ class ContentProviderClientes : ContentProvider() {
     }
 
     companion object{
-        const val AUTHORITY = "com.example.provavinhos"
+        private const val AUTHORITY = "com.example.provavinhos"
 
-        const val URI_CLIENTES = 100
-        const val URI_CLIENTE_ESPECIFICO = 101
+        private const val URI_CLIENTES = 100
+        private const val URI_CLIENTE_ESPECIFICO = 101
 
-        const val UNICO_REGISTO = "vnd.android.cursor.item"
-        const val MULTIPLOS_REGISTOS = "vnd.android.cursor.dir"
+        private const val UNICO_REGISTO = "vnd.android.cursor.item"
+        private const val MULTIPLOS_REGISTOS = "vnd.android.cursor.dir"
+
+        private val ENDERECO_BASE = Uri.parse("content://$AUTHORITY")
+        val ENDERECO_CLIENTES = Uri.withAppendedPath(ENDERECO_BASE, TabelaBDClientes.NOME)
 
         fun getUriMatcher(): UriMatcher{
             var uriMatcher = UriMatcher(UriMatcher.NO_MATCH)
