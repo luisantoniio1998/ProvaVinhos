@@ -30,7 +30,12 @@
     <string name="nexistevinho">Este vinho não existe, tente criar</string>
     <string name="nexistecliente">Este cliente não existe, tente criar</string>
     <string name="nexistevenda">Esta venda não existe, tente criar</string>
+    <string name="title_activity_main">Barros Wine House</string>
     <string name="list">Listar todos</string>
+    <string name="first_fragment_label">Primeiro fragmento</string>
+    <string name="second_fragment_label">Segundo fragmento</string>
     <string name="delete">Apagar</string>
     <string name="update">Atualizar</string>
+    <string name="next">Next</string>
+    <string name="previous">Anterior</string>
 </resources>
