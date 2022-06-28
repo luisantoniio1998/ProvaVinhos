@@ -10,16 +10,18 @@ import androidx.loader.app.LoaderManager
 import androidx.loader.content.CursorLoader
 import androidx.loader.content.Loader
 import androidx.navigation.fragment.findNavController
+import com.example.provavinhos.BD.AdapterClientes
 import com.example.provavinhos.BD.ContentProviderClientes
 import com.example.provavinhos.BD.TabelaBDClientes
 import com.example.provavinhos.databinding.FragmentSecondBinding
-
+import androidx.recyclerview.widget.LinearLayoutManager
 /**
  * A simple [Fragment] subclass as the second destination in the navigation.
  */
 class SecondFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>{
 
     private var _binding: FragmentSecondBinding? = null
+    private var adapterClientes: AdapterClientes? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -39,6 +41,10 @@ class SecondFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>{
         super.onViewCreated(view, savedInstanceState)
 
         LoaderManager.getInstance(this).initLoader(ID_LOADER_CLIENTES, null, this)
+
+        adapterClientes = AdapterClientes(this)
+        binding.recyclerViewClientes.adapter = adapterClientes
+        binding.recyclerViewClientes.layoutManager = LinearLayoutManager(requireContext())
 
 
         val activity = requireActivity() as MainActivity

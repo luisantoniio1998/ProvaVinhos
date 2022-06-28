@@ -8,7 +8,7 @@ import com.example.provavinhos.SecondFragment
 import com.example.provavinhos.R
 import org.w3c.dom.Text
 
-abstract class AdapterClientes(val fragment: SecondFragment): RecyclerView.Adapter<AdapterClientes.ViewHolderLivro>() {
+class AdapterClientes(val fragment: SecondFragment): RecyclerView.Adapter<AdapterClientes.ViewHolderCliente>() {
     var cursor: Cursor? = null
         get() = field
         set(value) {
@@ -20,7 +20,7 @@ abstract class AdapterClientes(val fragment: SecondFragment): RecyclerView.Adapt
 
 
 
-    class ViewHolderLivro(itemCliente: View) : RecyclerView.ViewHolder(itemCliente) {
+    class ViewHolderCliente(itemCliente: View) : RecyclerView.ViewHolder(itemCliente) {
        // val textViewNome  = itemCliente.findViewById<TextView>(R.id.textViewCliente)
        // val textViewTelemovel = itemCliente.findViewById<TextView>(R.id.textViewTelemovel)
        // val textViewNif = itemCliente.findViewById<TextView>(R.id.textViewNif)
@@ -86,7 +86,7 @@ abstract class AdapterClientes(val fragment: SecondFragment): RecyclerView.Adapt
      * item at the given position in the data set.
      * @param position The position of the item within the adapter's data set.
      */
-    override fun onBindViewHolder(holder: ViewHolderLivro, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolderCliente, position: Int) {
         cursor!!.moveToPosition(position)
         holder.cliente=Clients.fromCursor(cursor!!)
     }
@@ -100,5 +100,9 @@ abstract class AdapterClientes(val fragment: SecondFragment): RecyclerView.Adapt
         if(cursor == null) return 0
 
         return cursor!!.count
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderCliente {
+        TODO("Not yet implemented")
     }
 }
