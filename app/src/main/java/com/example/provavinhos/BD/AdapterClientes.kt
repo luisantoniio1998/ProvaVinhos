@@ -4,6 +4,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.provavinhos.ListaClientesFragment
+import com.example.provavinhos.R
 
 class AdapterClientes(val fragment: ListaClientesFragment): RecyclerView.Adapter<AdapterClientes.ViewHolderCliente>() {
     var cursor: Cursor? = null
@@ -100,6 +101,7 @@ class AdapterClientes(val fragment: ListaClientesFragment): RecyclerView.Adapter
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderCliente {
-        TODO("Not yet implemented")
+       val itemClientes = fragment.layoutInflater.inflate(R.layout.item_cliente, parent, false)
+        return ViewHolderCliente(itemClientes)
     }
 }
