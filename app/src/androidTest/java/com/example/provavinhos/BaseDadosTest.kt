@@ -65,6 +65,7 @@ class BaseDadosTest {
 
         insereRegiao(db, Region("Alentejo"))
 
+
         db.close()
     }
 
