@@ -11,7 +11,8 @@ class TabelaBDVinhos (db: SQLiteDatabase) : TabelaBD(db, NOME){
         "$CAMPO_NOME_REGIAO TEXT NOT NULL, " +
         "$CAMPO_STOCK INTEGER NOT NULL, " +
         "$CAMPO_ID_REGIAO INTEGER NOT NULL, " +
-        "FOREIGN KEY ($CAMPO_ID_REGIAO) REFERENCES ${TabelaBDRegiao.NOME}(${BaseColumns._ID}) ON DELETE RESTRICT)")
+        "FOREIGN KEY ($CAMPO_ID_REGIAO) REFERENCES ${TabelaBDRegiao.NOME}(${BaseColumns._ID}) ON DELETE RESTRICT," +
+        "FOREIGN KEY ($CAMPO_NOME_REGIAO) REFERENCES ${TabelaBDRegiao.CAMPO_NOME} ON DELETE RESTRICT)")
     }
 
     companion object{

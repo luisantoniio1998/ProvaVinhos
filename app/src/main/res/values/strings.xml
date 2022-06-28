@@ -39,4 +39,7 @@
     <string name="previous">Previous</string>
     <string name="save">Save</string>
     <string name="cancel">Cancel</string>
+    <string name="delete_client">Delete Client</string>
+    <string name="delete_wine">Delete Wine</string>
+    <string name="delete_sale">Delete Sale</string>
 </resources>

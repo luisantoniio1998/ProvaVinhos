@@ -40,4 +40,7 @@
     <string name="previous">Anterior</string>
     <string name="save">Guardar</string>
     <string name="cancel">Cancelar</string>
+    <string name="delete_client">Apagar Cliente</string>
+    <string name="delete_wine">Apagar Vinho</string>
+    <string name="delete_sale">Apagar Venda</string>
 </resources>
