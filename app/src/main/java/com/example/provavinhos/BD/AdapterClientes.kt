@@ -2,13 +2,10 @@ package com.example.provavinhos.BD
 import android.database.Cursor
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.provavinhos.SecondFragment
-import com.example.provavinhos.R
-import org.w3c.dom.Text
+import com.example.provavinhos.ListaClientesFragment
 
-class AdapterClientes(val fragment: SecondFragment): RecyclerView.Adapter<AdapterClientes.ViewHolderCliente>() {
+class AdapterClientes(val fragment: ListaClientesFragment): RecyclerView.Adapter<AdapterClientes.ViewHolderCliente>() {
     var cursor: Cursor? = null
         get() = field
         set(value) {
