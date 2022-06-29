@@ -350,7 +350,7 @@ class BaseDadosTest {
 
         val cursor = TabelaBDRegiao(db).query(
             TabelaBDRegiao.TODAS_COLUNAS,
-            "${BaseColumns._ID}=?",
+            "${TabelaBDRegiao.CAMPO_ID}=?",
             arrayOf("${regiao.id}"),
             null,
             null,
@@ -374,7 +374,7 @@ class BaseDadosTest {
 
         val cursor = TabelaBDClientes(db).query(
             TabelaBDClientes.TODAS_COLUNAS,
-            "${BaseColumns._ID}=?",
+            "${TabelaBDClientes.CAMPO_ID}=?",
             arrayOf("${cliente.id}"),
             null,
             null,
@@ -401,7 +401,7 @@ class BaseDadosTest {
 
         val cursor = TabelaBDVinhos(db).query(
             TabelaBDVinhos.TODAS_COLUNAS,
-            "${BaseColumns._ID}=?",
+            "${TabelaBDVinhos.CAMPO_ID}=?",
             arrayOf("${vinho.id}"),
             null,
             null,
@@ -434,7 +434,7 @@ class BaseDadosTest {
 
         val cursor = TabelaBDVendas(db).query(
             TabelaBDVendas.TODAS_COLUNAS,
-            "${BaseColumns._ID}=?",
+            "${TabelaBDVendas.CAMPO_ID}=?",
             arrayOf("${venda.id}"),
             null,
             null,

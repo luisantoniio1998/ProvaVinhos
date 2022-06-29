@@ -1,6 +1,8 @@
 package com.example.provavinhos.BD
 
+import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
+import android.database.sqlite.SQLiteQueryBuilder
 import android.provider.BaseColumns
 
 class TabelaBDVinhos (db: SQLiteDatabase) : TabelaBD(db, NOME){
@@ -17,12 +19,13 @@ class TabelaBDVinhos (db: SQLiteDatabase) : TabelaBD(db, NOME){
 
     companion object{
         const val NOME = "vinhos"
+        const val CAMPO_ID = "$NOME.${BaseColumns._ID}"
         const val CAMPO_ID_REGIAO = "regiaoId"
         const val CAMPO_NOME_VINHO = "nomeVinho"
         const val CAMPO_PRECO_GARRAFA = "precoGarrafa"
         const val CAMPO_NOME_REGIAO = "nomeRegiao"
         const val CAMPO_STOCK = "stock"
 
-        val TODAS_COLUNAS = arrayOf(BaseColumns._ID, CAMPO_ID_REGIAO, CAMPO_NOME_VINHO, CAMPO_PRECO_GARRAFA, CAMPO_NOME_REGIAO, CAMPO_NOME_REGIAO, CAMPO_STOCK )
+        val TODAS_COLUNAS = arrayOf(CAMPO_ID, CAMPO_ID_REGIAO, CAMPO_NOME_VINHO, CAMPO_PRECO_GARRAFA, CAMPO_NOME_REGIAO, CAMPO_NOME_REGIAO, CAMPO_STOCK )
     }
 }
