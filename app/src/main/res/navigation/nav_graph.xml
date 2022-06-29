@@ -45,6 +45,11 @@
         <action
             android:id="@+id/action_editarClienteFragment_to_SecondFragment"
             app:destination="@id/SecondFragment" />
+        <argument
+            android:name="cliente"
+            app:argType="com.example.provavinhos.BD.Clients"
+            app:nullable="true"
+            android:defaultValue="@null" />
     </fragment>
     <fragment
         android:id="@+id/eliminarClienteFragment"

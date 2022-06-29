@@ -7,9 +7,9 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.provavinhos.ListarVinhosFragment
 import com.example.provavinhos.R
-import com.example.provavinhos.SecondFragment
 
-class AdapterVinhos(val fragment: ListarVinhosFragment): RecyclerView.Adapter<AdapterVinhos.ViewHolderVinho>() {
+
+class AdapterVinhos(val fragment: ListarVinhosFragment) : RecyclerView.Adapter<AdapterVinhos.ViewHolderVinho>() {
     var cursor: Cursor? = null
         get() = field
         set(value) {
@@ -19,13 +19,11 @@ class AdapterVinhos(val fragment: ListarVinhosFragment): RecyclerView.Adapter<Ad
             }
         }
 
-    var viewHolderSelecionado: ViewHolderVinho? = null
+    var viewHolderSelecionado : ViewHolderVinho? = null
 
-
-    inner class ViewHolderVinho(itemVinho: View) : RecyclerView.ViewHolder(itemVinho),
-        View.OnClickListener {
-        val textViewNomeVinho = itemVinho.findViewById<TextView>(R.id.textViewNomeVinho)
-        val textViewVinhoPrecoGarrafa = itemVinho.findViewById<TextView>(R.id.textViewVinhoPrecoGarrafa)
+    inner class ViewHolderVinho(itemVinho: View) : RecyclerView.ViewHolder(itemVinho), View.OnClickListener {
+        val textViewNomeVinho = itemVinho.findViewById<TextView>(R.id.textViewVinhoNome)
+        val textViewPrecoGarrafa = itemVinho.findViewById<TextView>(R.id.textViewPrecoGarrafa)
         val textViewNomeRegiao = itemVinho.findViewById<TextView>(R.id.textViewNomeRegiao)
         val textViewStock = itemVinho.findViewById<TextView>(R.id.textViewStock)
 
@@ -33,30 +31,35 @@ class AdapterVinhos(val fragment: ListarVinhosFragment): RecyclerView.Adapter<Ad
             itemVinho.setOnClickListener(this)
         }
 
-        var vinho: Wine? = null
+        var vinho : Wine? = null
             get() = field
             set(value: Wine?) {
                 field = value
 
                 textViewNomeVinho.text = vinho?.nomeVinho ?: ""
-                textViewVinhoPrecoGarrafa.text = (vinho?.precoGarrafa ?: "").toString()
-                textViewNomeRegiao.text = vinho?.nomeRegiao ?: ""
+                textViewPrecoGarrafa.text = (vinho?.precoGarrafa ?: "").toString()
+                textViewNomeRegiao.text = (vinho?.nomeRegiao ?: "").toString()
                 textViewStock.text = (vinho?.stock ?: "").toString()
             }
 
+        /**
+         * Called when a view has been clicked.
+         *
+         * @param v The view that was clicked.
+         */
         override fun onClick(v: View?) {
             viewHolderSelecionado?.desseleciona()
             seleciona()
         }
 
         private fun seleciona() {
-            itemView.setBackgroundResource(android.R.color.holo_orange_light)
+            itemView.setBackgroundResource(androidx.appcompat.R.color.highlighted_text_material_light)
             viewHolderSelecionado = this
-            fragment.vinhoSelecionado = vinho
+            fragment.vinhoSeleccionado = vinho
         }
 
         private fun desseleciona() {
-            itemView.setBackgroundResource(android.R.color.white)
+            itemView.setBackgroundResource(R.color.white)
         }
     }
 
@@ -83,11 +86,10 @@ class AdapterVinhos(val fragment: ListarVinhosFragment): RecyclerView.Adapter<Ad
      * @see .getItemViewType
      * @see .onBindViewHolder
      */
-    //override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderLivro {
-    // val itemCliente = fragment.layoutInflater.inflate(R.layout.activity_client_update_delete, parent, false)
-    //return ViewHolderLivro(itemCliente)
-
-    //}
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderVinho {
+        val itemVinho= fragment.layoutInflater.inflate(R.layout.item_vinho, parent, false)
+        return ViewHolderVinho(itemVinho)
+    }
 
     /**
      * Called by RecyclerView to display the data at the specified position. This method should
@@ -110,24 +112,23 @@ class AdapterVinhos(val fragment: ListarVinhosFragment): RecyclerView.Adapter<Ad
      * item at the given position in the data set.
      * @param position The position of the item within the adapter's data set.
      */
-    override fun onBindViewHolder(holder: ViewHolderVinho, position: Int) {
-        cursor!!.moveToPosition(position)
-        holder.vinho = Wine.fromCursor(cursor!!)
-    }
 
     /**
      * Returns the total number of items in the data set held by the adapter.
      *
      * @return The total number of items in this adapter.
      */
+    override fun onBindViewHolder(holder: ViewHolderVinho, position: Int) {
+        cursor!!.moveToPosition(position)
+        holder.vinho = Wine.fromCursor(cursor!!)
+    }
+
+
     override fun getItemCount(): Int {
         if (cursor == null) return 0
 
         return cursor!!.count
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderVinho {
-        val itemVinhos = fragment.layoutInflater.inflate(R.layout.item_cliente, parent, false)
-        return ViewHolderVinho(itemVinhos)
-    }
+
 }

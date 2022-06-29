@@ -7,13 +7,12 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.provavinhos.ListaVendasFragment
 import com.example.provavinhos.R
-import com.example.provavinhos.SecondFragment
 
-class AdapterVendas (val fragment: ListaVendasFragment): RecyclerView.Adapter<AdapterVendas.ViewHolderVenda>() {
+class AdapterVendas(val fragment: ListaVendasFragment) : RecyclerView.Adapter<AdapterVendas.ViewHolderVenda>() {
     var cursor: Cursor? = null
         get() = field
         set(value) {
-            if(field != value){
+            if (field != value) {
                 field = value
                 notifyDataSetChanged()
             }
@@ -21,13 +20,12 @@ class AdapterVendas (val fragment: ListaVendasFragment): RecyclerView.Adapter<Ad
 
     var viewHolderSelecionado : ViewHolderVenda? = null
 
-
-     inner class ViewHolderVenda(itemVenda: View) : RecyclerView.ViewHolder(itemVenda), View.OnClickListener {
-        val textViewNomeCliente  = itemVenda.findViewById<TextView>(R.id.textViewNomeCliente)
-        val textViewNomeVinho= itemVenda.findViewById<TextView>(R.id.textViewNomeVinho)
+    inner class ViewHolderVenda(itemVenda: View) : RecyclerView.ViewHolder(itemVenda), View.OnClickListener {
+        val textViewNomeCliente = itemVenda.findViewById<TextView>(R.id.textViewNomeCliente)
+        val textViewNomeVinho = itemVenda.findViewById<TextView>(R.id.textViewNomeVinho)
         val textViewQuantidade = itemVenda.findViewById<TextView>(R.id.textViewQuantidade)
-         val textViewPrecoGarrafa = itemVenda.findViewById<TextView>(R.id.textViewPrecoGarrafa)
-         val textViewPreco = itemVenda.findViewById<TextView>(R.id.textViewPreco)
+        val textViewPrecoGarrafa = itemVenda.findViewById<TextView>(R.id.textViewPrecoGarrafa)
+        val textViewPreco = itemVenda.findViewById<TextView>(R.id.textViewPreco)
 
         init {
             itemVenda.setOnClickListener(this)
@@ -41,10 +39,16 @@ class AdapterVendas (val fragment: ListaVendasFragment): RecyclerView.Adapter<Ad
                 textViewNomeCliente.text = venda?.nomeCliente ?: ""
                 textViewNomeVinho.text = venda?.nomeVinho ?: ""
                 textViewQuantidade.text = (venda?.quantidade ?: "").toString()
-                textViewPrecoGarrafa.text = (venda?.precoGarrafa?:"").toString()
-                textViewPreco.text = (venda?.preco?:"").toString()
+                textViewPrecoGarrafa.text = (venda?.precoGarrafa ?: "").toString()
+                textViewPreco.text = (venda?.preco ?: "").toString()
+
             }
 
+        /**
+         * Called when a view has been clicked.
+         *
+         * @param v The view that was clicked.
+         */
         override fun onClick(v: View?) {
             viewHolderSelecionado?.desseleciona()
             seleciona()
@@ -53,7 +57,7 @@ class AdapterVendas (val fragment: ListaVendasFragment): RecyclerView.Adapter<Ad
         private fun seleciona() {
             itemView.setBackgroundResource(android.R.color.holo_orange_light)
             viewHolderSelecionado = this
-            fragment.vendaSelecionada = venda
+            fragment.vendaSeleccionada = venda
         }
 
         private fun desseleciona() {
@@ -84,11 +88,10 @@ class AdapterVendas (val fragment: ListaVendasFragment): RecyclerView.Adapter<Ad
      * @see .getItemViewType
      * @see .onBindViewHolder
      */
-    //override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderLivro {
-    // val itemCliente = fragment.layoutInflater.inflate(R.layout.activity_client_update_delete, parent, false)
-    //return ViewHolderLivro(itemCliente)
-
-    //}
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderVenda {
+        val itemVendas = fragment.layoutInflater.inflate(R.layout.item_venda, parent, false)
+        return ViewHolderVenda(itemVendas)
+    }
 
     /**
      * Called by RecyclerView to display the data at the specified position. This method should
@@ -111,30 +114,19 @@ class AdapterVendas (val fragment: ListaVendasFragment): RecyclerView.Adapter<Ad
      * item at the given position in the data set.
      * @param position The position of the item within the adapter's data set.
      */
+    override fun onBindViewHolder(holder: ViewHolderVenda, position: Int) {
+        cursor!!.moveToPosition(position)
+        holder.venda = Sales.fromCursor(cursor!!)
+    }
 
     /**
      * Returns the total number of items in the data set held by the adapter.
      *
      * @return The total number of items in this adapter.
      */
-
     override fun getItemCount(): Int {
-        if(cursor == null) return 0
+        if (cursor == null) return 0
 
         return cursor!!.count
     }
-
-
-
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderVenda {
-        val itemVendas = fragment.layoutInflater.inflate(R.layout.item_venda, parent, false)
-        return ViewHolderVenda(itemVendas)
-    }
-
-    override fun onBindViewHolder(holder: ViewHolderVenda, position: Int) {
-        cursor!!.moveToPosition(position)
-        holder.venda= Sales.fromCursor(cursor!!)
-    }
-
 }

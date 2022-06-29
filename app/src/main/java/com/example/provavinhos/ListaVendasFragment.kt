@@ -13,13 +13,14 @@ import androidx.loader.content.Loader
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.provavinhos.BD.AdapterVendas
-import com.example.provavinhos.BD.Sales
 import com.example.provavinhos.BD.ContentProviderVendas
+import com.example.provavinhos.BD.Sales
 import com.example.provavinhos.BD.TabelaBDVendas
 import com.example.provavinhos.databinding.FragmentListaVendasBinding
 
 class ListaVendasFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
-    var vendaSelecionada :Sales? = null
+
+    var vendaSeleccionada: Sales? = null
         get() = field
         set(value) {
             field = value
@@ -145,22 +146,27 @@ class ListaVendasFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
         adapterVendas!!.cursor = null
     }
 
-    fun processaOpcaoMenu(item: MenuItem) : Boolean =
-        when(item.itemId) {
+    //fun processaOpcaoMenu(item: MenuItem): Boolean =
+    /* when(item.itemId) {
             R.id.action_inserir -> {
-                findNavController().navigate(R.id.action_listaVendasFragment_to_editarVendaFragment)
+                val acao = ListaVendasFragmentDirections.actionListaVendasFragmentToEditarVendaFragment()
+                findNavController().navigate(acao)
+                (activity as MainActivity).atualizaTitulo(R.string.inserir_sale_label)
                 true
             }
             R.id.action_alterar -> {
-                findNavController().navigate(R.id.action_listaVendasFragment_to_editarVendaFragment)
+                val acao = ListaVendasFragmentDirections.actionListaVendasFragmentToEditarVendaFragment(vendaSeleccionada)
+                findNavController().navigate(acao)
+                (activity as MainActivity).atualizaTitulo(R.string.alterar_livro_label)
                 true
             }
             R.id.action_eliminar -> {
-                findNavController().navigate(R.id.action_listaVendasFragment_to_eliminarVendaFragment)
+                val acao = ListaLivrosFragmentDirections.actionListaLivrosFragmentToEliminarLivroFragment(livroSeleccionado!!)
+                findNavController().navigate(acao)
                 true
             }
             else -> false
-        }
+        }*/
 
     companion object {
         const val ID_LOADER_VENDAS = 0

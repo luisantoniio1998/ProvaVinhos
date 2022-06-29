@@ -18,8 +18,9 @@ import com.example.provavinhos.databinding.FragmentListarVinhosBinding
 /**
  * A simple [Fragment] subclass as the second destination in the navigation.
  */
-class ListarVinhosFragment: Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
-    var vinhoSelecionado: Wine? = null
+
+class ListarVinhosFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
+    var vinhoSeleccionado : Wine? = null
         get() = field
         set(value) {
             field = value
@@ -28,7 +29,7 @@ class ListarVinhosFragment: Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
 
 
     private var _binding: FragmentListarVinhosBinding? = null
-    private var adapterVinhos: AdapterVinhos? = null
+    private var adapterVinhos : AdapterVinhos? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -47,7 +48,7 @@ class ListarVinhosFragment: Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        LoaderManager.getInstance(this).initLoader(ID_LOADER_VINHOS, null, this)
+        LoaderManager.getInstance(this).initLoader(ID_LOADER_LIVROS, null, this)
 
         adapterVinhos = AdapterVinhos(this)
         binding.recyclerViewVinhos.adapter = adapterVinhos
@@ -145,24 +146,29 @@ class ListarVinhosFragment: Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
         adapterVinhos!!.cursor = null
     }
 
-    fun processaOpcaoMenu(item: MenuItem): Boolean =
-        when (item.itemId) {
+   /* fun processaOpcaoMenu(item: MenuItem) : Boolean =
+        when(item.itemId) {
             R.id.action_inserir -> {
-                findNavController().navigate(R.id.action_listarVinhosFragment_to_editarVinhosFragment)
+                val acao = ListaLivrosFragmentDirections.actionListaLivrosToEditarLivro()
+                findNavController().navigate(acao)
+                (activity as MainActivity).atualizaTitulo(R.string.inserir_livro_label)
                 true
             }
             R.id.action_alterar -> {
-                findNavController().navigate(R.id.action_listarVinhosFragment_to_editarVinhosFragment)
+                val acao = ListaLivrosFragmentDirections.actionListaLivrosToEditarLivro(livroSeleccionado)
+                findNavController().navigate(acao)
+                (activity as MainActivity).atualizaTitulo(R.string.alterar_livro_label)
                 true
             }
             R.id.action_eliminar -> {
-                findNavController().navigate(R.id.action_listaVendasFragment_to_eliminarVendaFragment)
+                val acao = ListaLivrosFragmentDirections.actionListaLivrosFragmentToEliminarLivroFragment(livroSeleccionado!!)
+                findNavController().navigate(acao)
                 true
             }
             else -> false
-        }
+        }*/
 
     companion object {
-        const val ID_LOADER_VINHOS = 0
+        const val ID_LOADER_LIVROS = 0
     }
 }

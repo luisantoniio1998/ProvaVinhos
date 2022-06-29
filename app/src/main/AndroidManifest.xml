@@ -29,6 +29,12 @@
             android:name=".BD.ContentProviderClientes"
             android:authorities="com.example.provavinhos"
             android:exported="false" />
+
+        <provider
+            android:name=".BD.ContentProviderVendas"
+            android:authorities="com.example.provavinhos"
+            android:exported="false" />
+
     </application>
 
 </manifest>

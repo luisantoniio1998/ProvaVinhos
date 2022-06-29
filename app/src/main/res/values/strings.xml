@@ -45,4 +45,9 @@
     <string name="inserir_client_label">Insert Client</string>
     <string name="inserir_wine_label">Insert Wine</string>
     <string name="inserir_sale_label">Insert Sale</string>
+    <string name="campo_obrigatorio">Mandatory Field</string>
+    <string name="done">Done</string>
+    <string name="erro">Error</string>
+    <string name="insere_cliente">Insert Client</string>
+    <string name="edit_client">Edit Client</string>
 </resources>

@@ -154,17 +154,23 @@ class SecondFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
     fun processaOpcaoMenu(item: MenuItem) : Boolean =
         when(item.itemId) {
             R.id.action_inserir -> {
-              findNavController().navigate(R.id.action_SecondFragment_to_editarClienteFragment)
+              val acao = SecondFragmentDirections.actionSecondFragmentToEditarClienteFragment()
+                findNavController().navigate(acao)
+                (activity as MainActivity).atualizaTitulo(R.string.insere_cliente)
                 true
             }
             R.id.action_alterar -> {
-                findNavController().navigate(R.id.action_SecondFragment_to_editarClienteFragment)
+                val acao = SecondFragmentDirections.actionSecondFragmentToEditarClienteFragment(clienteSelecionado)
+                findNavController().navigate(acao)
+                (activity as MainActivity).atualizaTitulo(R.string.edit_client)
                 true
             }
-            R.id.action_eliminar -> {
-                findNavController().navigate(R.id.action_SecondFragment_to_eliminarClienteFragment)
+           /* R.id.action_eliminar -> {
+                val acao = SecondFragmentDirections.actionSecondFragmentToEliminarClienteFragment(clienteSelecionado!!)
+                findNavController().navigate(acao)
+                (activity as MainActivity).atualizaTitulo(R.string.delete_client)
                 true
-            }
+            }*/
             else -> false
         }
 
