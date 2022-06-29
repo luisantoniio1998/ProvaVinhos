@@ -27,7 +27,7 @@
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_list.xml" value="0.30354852501068835" />
         <entry key="app/src/main/res/layout/fragment_lista_clientes.xml" value="0.2569474134245404" />
-        <entry key="app/src/main/res/layout/fragment_lista_vendas.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/fragment_lista_vendas.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_listar_vinhos.xml" value="0.23557075673364686" />
         <entry key="app/src/main/res/layout/fragment_notifications.xml" value="0.22" />
         <entry key="app/src/main/res/layout/fragment_second.xml" value="0.30354852501068835" />

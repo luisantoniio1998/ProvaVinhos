@@ -90,10 +90,12 @@ class BaseDadosTest {
         val db = getWritableDatabase()
 
         val client = Clients("Luis Barros", "913131311", "133313231")
+        val client2 = Clients("Joao Antonio", "93413413", "231413131")
         client.id = TabelaBDClientes(db).insert(client.toContentValues())
+        client2.id = TabelaBDClientes(db).insert(client2.toContentValues())
 
         assertNotEquals(-1, client.id)
-
+        assertNotEquals(-1, client2.id)
         db.close()
     }
 
@@ -179,12 +181,12 @@ class BaseDadosTest {
     fun consegueAlterarCliente() {
         val db = getWritableDatabase()
 
-        val client = Clients("Luis Barros", "936593434", "231431413")
+        val client = Clients("Rui ", "936593434", "231431413")
         insereCliente(db, client)
 
         client.nome = "Joao Barros"
-        client.contacto = "934321123"
-        client.nif = "231413231"
+        client.contacto = "93432113"
+        client.nif = "23143131"
 
         val registosAlterados = TabelaBDClientes(db).update(
             client.toContentValues(),
@@ -367,7 +369,7 @@ class BaseDadosTest {
     fun consegueLerClientes() {
         val db = getWritableDatabase()
 
-        val cliente = Clients("Luis", "936593766", "231481934")
+        val cliente = Clients("Vasco", "936593766", "231481934")
         insereCliente(db, cliente)
 
         val cursor = TabelaBDClientes(db).query(
