@@ -11,7 +11,7 @@ import com.example.provavinhos.databinding.FragmentFirstBinding
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
  */
-class MenuPrincipalFragment : Fragment() {
+class FirstFragment : Fragment() {
 
     private var _binding: FragmentFirstBinding? = null
 

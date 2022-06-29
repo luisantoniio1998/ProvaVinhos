@@ -18,7 +18,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 /**
  * A simple [Fragment] subclass as the second destination in the navigation.
  */
-class ListaClientesFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>{
+class SecondFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>{
 
     private var _binding: FragmentSecondBinding? = null
     private var adapterClientes: AdapterClientes? = null

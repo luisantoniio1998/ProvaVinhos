@@ -3,10 +3,10 @@ import android.database.Cursor
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.provavinhos.ListaClientesFragment
+import com.example.provavinhos.SecondFragment
 import com.example.provavinhos.R
 
-class AdapterClientes(val fragment: ListaClientesFragment): RecyclerView.Adapter<AdapterClientes.ViewHolderCliente>() {
+class AdapterClientes(val fragment: SecondFragment): RecyclerView.Adapter<AdapterClientes.ViewHolderCliente>() {
     var cursor: Cursor? = null
         get() = field
         set(value) {
@@ -19,9 +19,9 @@ class AdapterClientes(val fragment: ListaClientesFragment): RecyclerView.Adapter
 
 
     class ViewHolderCliente(itemCliente: View) : RecyclerView.ViewHolder(itemCliente) {
-       // val textViewNome  = itemCliente.findViewById<TextView>(R.id.textViewCliente)
-       // val textViewTelemovel = itemCliente.findViewById<TextView>(R.id.textViewTelemovel)
-       // val textViewNif = itemCliente.findViewById<TextView>(R.id.textViewNif)
+       //val textViewNome  = itemCliente.findViewById<TextView>(R.id.textViewCliente)
+       //val textViewTelemovel = itemCliente.findViewById<TextView>(R.id.textViewTelemovel)
+       //val textViewNif = itemCliente.findViewById<TextView>(R.id.textViewNif)
 
         var cliente : Clients? = null
             get() = field
