@@ -51,9 +51,15 @@ class ContentProviderVinhos : ContentProvider(){
         TODO("Not yet implemented")
     }
 
-    override fun getType(uri: Uri): String? {
-        TODO("Not yet implemented")
-    }
+    override fun getType(uri: Uri): String? =
+        when(getUriMatcher().match(uri)){
+            URI_VINHOS -> "$MULTIPLOS_REGISTOS/${TabelaBDVinhos.NOME}"
+            URI_REGIOES -> "$MULTIPLOS_REGISTOS/${TabelaBDRegiao.NOME}"
+            URI_VINHO_ESPECIFICO -> "$UNICO_REGISTO/${TabelaBDVinhos.NOME}"
+            URI_REGIAO_ESPECIFICA -> "$UNICO_REGISTO/${TabelaBDRegiao.NOME}"
+            else -> null
+        }
+
 
     override fun insert(uri: Uri, values: ContentValues?): Uri? {
         TODO("Not yet implemented")
@@ -79,6 +85,9 @@ class ContentProviderVinhos : ContentProvider(){
         const val URI_REGIAO_ESPECIFICA = 101
         const val URI_VINHOS = 200
         const val URI_VINHO_ESPECIFICO = 201
+
+        const val UNICO_REGISTO = "vnd.android.cursor.item"
+        const val MULTIPLOS_REGISTOS = "vnd.android.cursor.dir"
 
         fun getUriMatcher() : UriMatcher{
 
