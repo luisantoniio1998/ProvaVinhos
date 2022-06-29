@@ -5,44 +5,43 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.provavinhos.ListaVendasFragment
+import com.example.provavinhos.ListarVinhosFragment
 import com.example.provavinhos.R
 import com.example.provavinhos.SecondFragment
 
-class AdapterVendas (val fragment: ListaVendasFragment): RecyclerView.Adapter<AdapterVendas.ViewHolderVenda>() {
+class AdapterVinhos(val fragment: ListarVinhosFragment): RecyclerView.Adapter<AdapterVinhos.ViewHolderVinho>() {
     var cursor: Cursor? = null
         get() = field
         set(value) {
-            if(field != value){
+            if (field != value) {
                 field = value
                 notifyDataSetChanged()
             }
         }
 
-    var viewHolderSelecionado : ViewHolderVenda? = null
+    var viewHolderSelecionado: ViewHolderVinho? = null
 
 
-     inner class ViewHolderVenda(itemVenda: View) : RecyclerView.ViewHolder(itemVenda), View.OnClickListener {
-        val textViewNomeCliente  = itemVenda.findViewById<TextView>(R.id.textViewNomeCliente)
-        val textViewNomeVinho= itemVenda.findViewById<TextView>(R.id.textViewNomeVinho)
-        val textViewQuantidade = itemVenda.findViewById<TextView>(R.id.textViewQuantidade)
-         val textViewPrecoGarrafa = itemVenda.findViewById<TextView>(R.id.textViewPrecoGarrafa)
-         val textViewPreco = itemVenda.findViewById<TextView>(R.id.textViewPreco)
+    inner class ViewHolderVinho(itemVinho: View) : RecyclerView.ViewHolder(itemVinho),
+        View.OnClickListener {
+        val textViewNomeVinho = itemVinho.findViewById<TextView>(R.id.textViewNomeVinho)
+        val textViewVinhoPrecoGarrafa = itemVinho.findViewById<TextView>(R.id.textViewVinhoPrecoGarrafa)
+        val textViewNomeRegiao = itemVinho.findViewById<TextView>(R.id.textViewNomeRegiao)
+        val textViewStock = itemVinho.findViewById<TextView>(R.id.textViewStock)
 
         init {
-            itemVenda.setOnClickListener(this)
+            itemVinho.setOnClickListener(this)
         }
 
-        var venda : Sales? = null
+        var vinho: Wine? = null
             get() = field
-            set(value: Sales?) {
+            set(value: Wine?) {
                 field = value
 
-                textViewNomeCliente.text = venda?.nomeCliente ?: ""
-                textViewNomeVinho.text = venda?.nomeVinho ?: ""
-                textViewQuantidade.text = (venda?.quantidade ?: "").toString()
-                textViewPrecoGarrafa.text = (venda?.precoGarrafa?:"").toString()
-                textViewPreco.text = (venda?.preco?:"").toString()
+                textViewNomeVinho.text = vinho?.nomeVinho ?: ""
+                textViewVinhoPrecoGarrafa.text = (vinho?.precoGarrafa ?: "").toString()
+                textViewNomeRegiao.text = vinho?.nomeRegiao ?: ""
+                textViewStock.text = (vinho?.stock ?: "").toString()
             }
 
         override fun onClick(v: View?) {
@@ -53,7 +52,7 @@ class AdapterVendas (val fragment: ListaVendasFragment): RecyclerView.Adapter<Ad
         private fun seleciona() {
             itemView.setBackgroundResource(android.R.color.holo_orange_light)
             viewHolderSelecionado = this
-            fragment.vendaSelecionada = venda
+            fragment.vinhoSelecionado = vinho
         }
 
         private fun desseleciona() {
@@ -111,30 +110,24 @@ class AdapterVendas (val fragment: ListaVendasFragment): RecyclerView.Adapter<Ad
      * item at the given position in the data set.
      * @param position The position of the item within the adapter's data set.
      */
+    override fun onBindViewHolder(holder: ViewHolderVinho, position: Int) {
+        cursor!!.moveToPosition(position)
+        holder.vinho = Wine.fromCursor(cursor!!)
+    }
 
     /**
      * Returns the total number of items in the data set held by the adapter.
      *
      * @return The total number of items in this adapter.
      */
-
     override fun getItemCount(): Int {
-        if(cursor == null) return 0
+        if (cursor == null) return 0
 
         return cursor!!.count
     }
 
-
-
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderVenda {
-        val itemVendas = fragment.layoutInflater.inflate(R.layout.item_venda, parent, false)
-        return ViewHolderVenda(itemVendas)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderVinho {
+        val itemVinhos = fragment.layoutInflater.inflate(R.layout.item_cliente, parent, false)
+        return ViewHolderVinho(itemVinhos)
     }
-
-    override fun onBindViewHolder(holder: ViewHolderVenda, position: Int) {
-        cursor!!.moveToPosition(position)
-        holder.venda= Sales.fromCursor(cursor!!)
-    }
-
 }
