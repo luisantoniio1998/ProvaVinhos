@@ -56,4 +56,14 @@ class MainActivity : AppCompatActivity() {
         return navController.navigateUp(appBarConfiguration)
                 || super.onSupportNavigateUp()
     }
+
+
+    fun mostraOpcoesAlterarEliminar(mostra: Boolean) {
+        menu!!.findItem(R.id.action_alterar).setVisible(mostra)
+        menu!!.findItem(R.id.action_eliminar).setVisible(mostra)
+    }
+
+    fun atualizaTitulo(id_string_titulo: Int) {
+        binding.toolbar.setTitle(id_string_titulo)
+    }
 }
