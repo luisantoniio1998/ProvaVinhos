@@ -2,6 +2,7 @@ package com.example.provavinhos.BD
 import android.database.Cursor
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.provavinhos.SecondFragment
 import com.example.provavinhos.R
@@ -16,22 +17,42 @@ class AdapterClientes(val fragment: SecondFragment): RecyclerView.Adapter<Adapte
             }
         }
 
+    var viewHolderSelecionado : ViewHolderCliente? = null
 
 
-    class ViewHolderCliente(itemCliente: View) : RecyclerView.ViewHolder(itemCliente) {
-       //val textViewNome  = itemCliente.findViewById<TextView>(R.id.textViewCliente)
-       //val textViewTelemovel = itemCliente.findViewById<TextView>(R.id.textViewTelemovel)
-       //val textViewNif = itemCliente.findViewById<TextView>(R.id.textViewNif)
+   inner class ViewHolderCliente(itemCliente: View) : RecyclerView.ViewHolder(itemCliente), View.OnClickListener {
+       val textViewNome  = itemCliente.findViewById<TextView>(R.id.textViewCliente)
+       val textViewTelemovel = itemCliente.findViewById<TextView>(R.id.textViewTelemovel)
+       val textViewNif = itemCliente.findViewById<TextView>(R.id.textViewNif)
+
+        init {
+            itemCliente.setOnClickListener(this)
+        }
 
         var cliente : Clients? = null
             get() = field
         set(value: Clients?) {
             field = value
 
-           // textViewNome.text = cliente?.nome ?: ""
-            //textViewTelemovel.text = cliente?.contacto ?: ""
-            //textViewNif.text = cliente?.nif ?: ""
+           textViewNome.text = cliente?.nome ?: ""
+            textViewTelemovel.text = cliente?.contacto ?: ""
+            textViewNif.text = cliente?.nif ?: ""
         }
+
+        override fun onClick(v: View?) {
+            viewHolderSelecionado?.desseleciona()
+            seleciona()
+        }
+
+       private fun seleciona() {
+           itemView.setBackgroundResource(android.R.color.holo_orange_light)
+           viewHolderSelecionado = this
+           fragment.clienteSelecionado = cliente
+       }
+
+       private fun desseleciona() {
+           itemView.setBackgroundResource(android.R.color.white)
+       }
     }
 
     /**
