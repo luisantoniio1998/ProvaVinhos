@@ -168,6 +168,6 @@ class ListaVendasFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
         }
 
     companion object {
-        const val ID_LOADER_VENDAS = 0
+        const val ID_LOADER_VENDAS = 2
     }
 }

@@ -99,7 +99,7 @@
     <fragment
         android:id="@+id/listarVinhosFragment"
         android:name="com.example.provavinhos.ListarVinhosFragment"
-        android:label="fragment_listar_vinhos"
+        android:label="@string/wine"
         tools:layout="@layout/fragment_listar_vinhos" >
         <action
             android:id="@+id/action_listarVinhosFragment_to_FirstFragment"

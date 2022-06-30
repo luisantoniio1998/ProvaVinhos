@@ -82,7 +82,19 @@ class ListarVinhosFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>{
         adapterVinhos!!.cursor = null
     }
 
+    fun processaOpcaoMenu(item: MenuItem) : Boolean =
+        when(item.itemId) {
+            R.id.action_inserir -> {
+                val acao = ListarVinhosFragmentDirections.actionListarVinhosFragmentToEditarVinhosFragment()
+                findNavController().navigate(acao)
+                (activity as MainActivity).atualizaTitulo(R.string.inserir_wine_label)
+                true
+            }
+
+            else -> false
+        }
+
     companion object{
-        const val ID_LOADER_VINHOS = 0
+        const val ID_LOADER_VINHOS = 1
     }
 }
