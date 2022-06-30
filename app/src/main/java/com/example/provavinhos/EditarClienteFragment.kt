@@ -153,9 +153,16 @@ class EditarClienteFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> 
         findNavController().navigate(R.id.action_editarClienteFragment_to_SecondFragment)
     }
 
-    override fun onCreateLoader(id: Int, args: Bundle?): Loader<Cursor> {
-        TODO("Not yet implemented")
-    }
+    override fun onCreateLoader(id: Int, args: Bundle?): Loader<Cursor> =
+        CursorLoader(
+            requireContext(),
+            ContentProviderClientes.ENDERECO_CLIENTES,
+            TabelaBDClientes.TODAS_COLUNAS,
+            null,
+            null,
+            "${TabelaBDClientes.CAMPO_NOME}"
+        )
+
 
     override fun onLoadFinished(loader: Loader<Cursor>, data: Cursor?) {
         TODO("Not yet implemented")
@@ -164,4 +171,5 @@ class EditarClienteFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> 
     override fun onLoaderReset(loader: Loader<Cursor>) {
         TODO("Not yet implemented")
     }
+
 }
