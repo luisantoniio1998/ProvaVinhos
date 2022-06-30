@@ -20,15 +20,14 @@ class TabelaBDVinhos (db: SQLiteDatabase) : TabelaBD(db, NOME){
         selection: String?,
         selectionArgs: Array<String>?,
         groupBy: String?,
-        having : String?,
-        orderBy:String?
+        having: String?,
+        orderBy: String?
     ): Cursor {
         val queryBuilder = SQLiteQueryBuilder()
         queryBuilder.tables = "$NOME INNER JOIN ${TabelaBDRegiao.NOME} ON ${TabelaBDRegiao.CAMPO_ID} = $CAMPO_ID_REGIAO"
 
         return queryBuilder.query(db, columns, selection, selectionArgs, groupBy, having, orderBy)
     }
-
     companion object{
         const val NOME = "vinhos"
         const val CAMPO_ID = "$NOME.${BaseColumns._ID}"
@@ -37,6 +36,6 @@ class TabelaBDVinhos (db: SQLiteDatabase) : TabelaBD(db, NOME){
         const val CAMPO_PRECO_GARRAFA = "precoGarrafa"
         const val CAMPO_STOCK = "stock"
 
-        val TODAS_COLUNAS = arrayOf(CAMPO_ID, CAMPO_ID_REGIAO, CAMPO_NOME_VINHO, CAMPO_PRECO_GARRAFA, CAMPO_STOCK, TabelaBDRegiao.CAMPO_NOME)
+        val TODAS_COLUNAS = arrayOf(CAMPO_ID, CAMPO_NOME_VINHO, CAMPO_PRECO_GARRAFA, CAMPO_STOCK, CAMPO_ID_REGIAO, TabelaBDRegiao.CAMPO_NOME)
     }
 }

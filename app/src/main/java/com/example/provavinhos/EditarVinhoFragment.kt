@@ -17,6 +17,7 @@ import androidx.loader.content.CursorLoader
 import androidx.loader.content.Loader
 import androidx.navigation.fragment.findNavController
 import com.example.provavinhos.BD.ContentProviderClientes
+import com.example.provavinhos.BD.Region
 import com.example.provavinhos.BD.TabelaBDRegiao
 import com.example.provavinhos.BD.Wine
 import com.example.provavinhos.databinding.FragmentEditarVinhoBinding
@@ -149,13 +150,13 @@ class EditarVinhoFragment: Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
 
     private fun atualizaRegiaoSelecionada() {
         if (vinho == null) return
-        val idCategoria = vinho!!.categoria.id
+        val idRegiao = vinho!!.regiao.id
 
-        val ultimaCategoria = binding.spinnerCategorias.count - 1
+        val ultimaRegion = binding.spinnerRegiao.count - 1
 
-        for (i in 0..ultimaCategoria) {
-            if (binding.spinnerCategorias.getItemIdAtPosition(i) == idCategoria) {
-                binding.spinnerCategorias.setSelection(i)
+        for (i in 0..ultimaRegion) {
+            if (binding.spinnerRegiao.getItemIdAtPosition(i) == idRegiao) {
+                binding.spinnerRegiao.setSelection(i)
                 return
             }
         }
@@ -173,7 +174,7 @@ class EditarVinhoFragment: Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
      */
     override fun onLoaderReset(loader: Loader<Cursor>) {
         if (_binding == null) return
-        binding.spinnerCategorias.adapter = null
+        binding.spinnerRegiao.adapter = null
     }
 
     fun processaOpcaoMenu(item: MenuItem) : Boolean =
@@ -183,70 +184,78 @@ class EditarVinhoFragment: Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
                 true
             }
             R.id.action_cancelar -> {
-                voltaListaLivros()
+                voltaListaVinhos()
                 true
             }
             else -> false
         }
 
     private fun guardar() {
-        val titulo = binding.editTextTitulo.text.toString()
-        if (titulo.isBlank()) {
-            binding.editTextTitulo.error = getString(R.string.titulo_obrigatorio)
-            binding.editTextTitulo.requestFocus()
+        val nomeVinho = binding.editTextNomeVinho.text.toString()
+        if (nomeVinho.isBlank()) {
+            binding.editTextNomeVinho.error = getString(R.string.field_mandatory)
+            binding.editTextNomeVinho.requestFocus()
             return
         }
 
-        val autor = binding.editTextAutor.text.toString()
-        if (autor.isBlank()) {
-            binding.editTextAutor.error = getString(R.string.autor_obrigatorio)
-            binding.editTextAutor.requestFocus()
+        val stock = binding.editTextStock.text.toString()
+        if (stock.isBlank()) {
+            binding.editTextStock.error = getString(R.string.field_mandatory)
+            binding.editTextStock.requestFocus()
             return
         }
 
-        val idCategoria = binding.spinnerCategorias.selectedItemId
-        if (idCategoria == Spinner.INVALID_ROW_ID) {
-            binding.textViewCategoria.error = getString(R.string.categoria_obrigatoria)
-            binding.spinnerCategorias.requestFocus()
+        val idRegiao = binding.spinnerRegiao.selectedItemId
+        if (idRegiao == Spinner.INVALID_ROW_ID) {
+            binding.textViewRegiao.error = getString(R.string.field_mandatory)
+            binding.spinnerRegiao.requestFocus()
             return
         }
 
-        val livroGuardado =
-            if (livro == null) {
-                insereLivro(titulo, autor, idCategoria)
+        val precoGarrafa = binding.editTextPrecoGarrafa.text.toString()
+        if (precoGarrafa.isBlank()) {
+            binding.editTextPrecoGarrafa.error = getString(R.string.field_mandatory)
+            binding.editTextPrecoGarrafa.requestFocus()
+            return
+        }
+
+
+        val vinhoGuardado =
+            if (vinho == null) {
+                insereVinho(nomeVinho, precoGarrafa.toDouble(), stock.toLong(), idRegiao)
             } else {
-                alteraLivro(titulo, autor, idCategoria)
+                alteraVinho(nomeVinho, precoGarrafa.toDouble(), stock.toLong(), idRegiao)
             }
 
-        if (livroGuardado) {
-            Toast.makeText(requireContext(), R.string.livro_guardado_sucesso, Toast.LENGTH_LONG)
+        if (vinhoGuardado) {
+            Toast.makeText(requireContext(), R.string.done, Toast.LENGTH_LONG)
                 .show()
-            voltaListaLivros()
+            voltaListaVinhos()
         } else {
-            Snackbar.make(binding.editTextTitulo, R.string.erro_guardar_livro, Snackbar.LENGTH_INDEFINITE).show()
+            Snackbar.make(binding.editTextNomeVinho, R.string.erro, Snackbar.LENGTH_INDEFINITE).show()
             return
         }
     }
 
-    private fun alteraLivro(titulo: String, autor: String, idCategoria: Long) : Boolean {
-        val livro = Livro(titulo, autor, Categoria(id = idCategoria))
+    private fun alteraVinho(nomeVinho: String, precoGarrafa : Double, stock : Long, idRegiao : Long) : Boolean {
+        val vinho = Wine(nomeVinho, precoGarrafa, stock, Region(id = idRegiao))
 
-        val enderecoLivro = Uri.withAppendedPath(ContentProviderLivros.ENDERECO_LIVROS, "${this.livro!!.id}")
+        val enderecoVinho = Uri.withAppendedPath(ContentProviderClientes.ENDERECO_VINHOS, "${this.vinho!!.id}")
 
-        val registosAlterados = requireActivity().contentResolver.update(enderecoLivro, livro.toContentValues(), null, null)
+        val registosAlterados = requireActivity().contentResolver.update(enderecoVinho, vinho.toContentValues(), null, null)
 
         return registosAlterados == 1
     }
 
-    private fun insereLivro(titulo: String, autor: String, idCategoria: Long): Boolean {
-        val livro = Livro(titulo, autor, Categoria(id = idCategoria))
+    private fun insereVinho(nomeVinho: String, precoGarrafa: Double, stock: Long, idRegiao: Long): Boolean {
+        val vinho = Wine(nomeVinho, precoGarrafa, stock, Region(id =  idRegiao))
 
-        val enderecoLivroInserido = requireActivity().contentResolver.insert(ContentProviderLivros.ENDERECO_LIVROS, livro.toContentValues())
+        val enderecoVinhoInserido = requireActivity().contentResolver.insert(ContentProviderClientes.ENDERECO_VINHOS, vinho.toContentValues())
 
-        return enderecoLivroInserido != null
+        return enderecoVinhoInserido != null
     }
 
-    private fun voltaListaLivros() {
-        findNavController().navigate(R.id.action_editar_livro_to_lista_livros)
+    private fun voltaListaVinhos() {
+        findNavController().navigate(R.id.action_editarVinhoFragment_to_listarVinhosFragment)
     }
 }

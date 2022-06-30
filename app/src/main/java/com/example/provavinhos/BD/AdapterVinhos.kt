@@ -23,6 +23,7 @@ class AdapterVinhos(val fragment: ListarVinhosFragment) : RecyclerView.Adapter<A
         val textViewNomeVinho = itemVinho.findViewById<TextView>(R.id.textViewNomeVinho)
         val textViewPrecoGarrafa = itemVinho.findViewById<TextView>(R.id.textViewPrecoGarrafa)
         val textViewStock = itemVinho.findViewById<TextView>(R.id.textViewStock)
+        val textViewReg = itemVinho.findViewById<TextView>(R.id.textViewReg)
 
         init {
             itemVinho.setOnClickListener(this)
@@ -36,6 +37,8 @@ class AdapterVinhos(val fragment: ListarVinhosFragment) : RecyclerView.Adapter<A
                 textViewNomeVinho.text = vinho?.nomeVinho ?: ""
                 textViewPrecoGarrafa.text = (vinho?.precoGarrafa ?: "").toString()
                 textViewStock.text = (vinho?.stock ?: "").toString()
+                textViewReg.text = vinho?.regiao?.nomeRegiao ?: ""
+
             }
 
         /**
