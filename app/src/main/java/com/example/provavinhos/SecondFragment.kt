@@ -165,12 +165,12 @@ class SecondFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
                 (activity as MainActivity).atualizaTitulo(R.string.edit_client)
                 true
             }
-           /* R.id.action_eliminar -> {
+           R.id.action_eliminar -> {
                 val acao = SecondFragmentDirections.actionSecondFragmentToEliminarClienteFragment(clienteSelecionado!!)
                 findNavController().navigate(acao)
                 (activity as MainActivity).atualizaTitulo(R.string.delete_client)
                 true
-            }*/
+            }
             else -> false
         }
 

@@ -50,7 +50,7 @@ class ListaVendasFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        LoaderManager.getInstance(this).initLoader(ID_LOADER_LIVROS, null, this)
+        LoaderManager.getInstance(this).initLoader(ID_LOADER_VENDAS, null, this)
 
         adapterVendas  = AdapterVendas(this)
         binding.recyclerViewVendas.adapter = adapterVendas
@@ -171,6 +171,6 @@ class ListaVendasFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
         }
 
     companion object {
-        const val ID_LOADER_LIVROS = 0
+        const val ID_LOADER_VENDAS = 0
     }
 }

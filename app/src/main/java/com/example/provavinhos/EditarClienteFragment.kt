@@ -1,6 +1,5 @@
 package com.example.provavinhos
 
-import android.database.Cursor
 import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,16 +7,10 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import android.widget.SimpleCursorAdapter
-import android.widget.Spinner
 import android.widget.Toast
-import androidx.loader.app.LoaderManager
-import androidx.loader.content.CursorLoader
-import androidx.loader.content.Loader
 import androidx.navigation.fragment.findNavController
 import com.example.provavinhos.BD.Clients
 import com.example.provavinhos.BD.ContentProviderClientes
-import com.example.provavinhos.BD.TabelaBDClientes
 import com.example.provavinhos.databinding.FragmentEditarClienteBinding
 import com.google.android.material.snackbar.Snackbar
 
@@ -79,7 +72,7 @@ class EditarClienteFragment : Fragment(){
 
     fun processaOpcaoMenu(item: MenuItem) : Boolean =
         when(item.itemId) {
-            R.id.action_guardar -> {
+            R.id.action_eliminar -> {
                 guardar()
                 true
             }

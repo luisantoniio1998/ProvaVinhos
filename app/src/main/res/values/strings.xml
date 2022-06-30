@@ -50,4 +50,5 @@
     <string name="erro">Error</string>
     <string name="insere_cliente">Insert Client</string>
     <string name="edit_client">Edit Client</string>
+    <string name="sure">"Are you sure you want to delete ? "</string>
 </resources>

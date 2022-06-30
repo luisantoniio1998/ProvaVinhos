@@ -3,19 +3,18 @@ package com.example.provavinhos
 import android.content.DialogInterface
 import android.net.Uri
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.provavinhos.BD.Clients
 import com.example.provavinhos.BD.ContentProviderClientes
 import com.example.provavinhos.databinding.FragmentEliminarClienteBinding
 import com.google.android.material.snackbar.Snackbar
-
 
 class EliminarClienteFragment : Fragment() {
     private var _binding: FragmentEliminarClienteBinding? = null
@@ -60,7 +59,7 @@ class EliminarClienteFragment : Fragment() {
                 true
             }
             R.id.action_cancelar -> {
-                voltaListaClientes()
+                voltaListaLivros()
                 true
             }
             else -> false
@@ -71,9 +70,9 @@ class EliminarClienteFragment : Fragment() {
 
         alertDialog.apply {
             setTitle(R.string.delete_client)
-            setMessage(R.string.done)
+            setMessage(R.string.sure)
             setNegativeButton(android.R.string.cancel, DialogInterface.OnClickListener { dialogInterface, i ->  })
-            setPositiveButton(R.string.delete_client, DialogInterface.OnClickListener { dialogInterface, i -> confirmaEliminarCliente() })
+            setPositiveButton(R.string.delete, DialogInterface.OnClickListener { dialogInterface, i -> confirmaEliminarCliente() })
             show()
         }
     }
@@ -92,10 +91,10 @@ class EliminarClienteFragment : Fragment() {
         }
 
         Toast.makeText(requireContext(), R.string.done, Toast.LENGTH_LONG).show()
-        voltaListaClientes()
+        voltaListaLivros()
     }
 
-    private fun voltaListaClientes() {
+    private fun voltaListaLivros() {
         val acao = EliminarClienteFragmentDirections.actionEliminarClienteFragmentToSecondFragment()
         findNavController().navigate(acao)
     }

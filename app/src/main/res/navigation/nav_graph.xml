@@ -24,7 +24,7 @@
     <fragment
         android:id="@+id/SecondFragment"
         android:name="com.example.provavinhos.SecondFragment"
-        android:label="@string/second_fragment_label"
+        android:label="@string/clients"
         tools:layout="@layout/fragment_second">
 
         <action
