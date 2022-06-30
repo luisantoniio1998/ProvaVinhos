@@ -30,16 +30,6 @@
             android:authorities="com.example.provavinhos"
             android:exported="false" />
 
-        <provider
-            android:authorities="com.example.provavinhos"
-            android:name=".BD.ContentProviderVinhos"
-            android:exported="false" />
-
-        <provider
-            android:authorities="com.example.provavinhos"
-            android:name=".BD.ContentProviderVendas"
-            android:exported="false" />
-
     </application>
 
 </manifest>

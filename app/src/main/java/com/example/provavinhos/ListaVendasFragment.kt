@@ -12,10 +12,7 @@ import androidx.loader.content.CursorLoader
 import androidx.loader.content.Loader
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.provavinhos.BD.AdapterVendas
-import com.example.provavinhos.BD.ContentProviderVendas
-import com.example.provavinhos.BD.Sales
-import com.example.provavinhos.BD.TabelaBDVendas
+import com.example.provavinhos.BD.*
 import com.example.provavinhos.databinding.FragmentListaVendasBinding
 
 /**
@@ -79,7 +76,7 @@ class ListaVendasFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
     override fun onCreateLoader(id: Int, args: Bundle?): Loader<Cursor> =
         CursorLoader(
             requireContext(),
-            ContentProviderVendas.ENDERECO_VENDAS,
+            ContentProviderClientes.ENDERECO_VENDAS,
             TabelaBDVendas.TODAS_COLUNAS,
             null,
             null,

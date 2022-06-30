@@ -34,6 +34,12 @@ class ContentProviderClientes : ContentProvider() {
         val cursor = when (getUriMatcher().match(uri)) {
             URI_CLIENTES -> TabelaBDClientes(db).query(colunas, selection, argsSeleccao, null, null, sortOrder)
             URI_CLIENTE_ESPECIFICO -> TabelaBDClientes(db).query(colunas, "${BaseColumns._ID}=?", arrayOf("${id}"), null, null, null)
+            URI_REGIOES -> TabelaBDRegiao(db).query(colunas, selection, argsSeleccao, null, null, sortOrder)
+            URI_REGIAO_ESPECIFICA -> TabelaBDRegiao(db).query(colunas, "${BaseColumns._ID}=?", arrayOf("${id}"), null, null, null)
+            URI_VINHOS -> TabelaBDVinhos(db).query(colunas, selection, argsSeleccao, null, null, sortOrder)
+            URI_VINHO_ESPECIFICO -> TabelaBDVinhos(db).query(colunas, "${BaseColumns._ID}=?", arrayOf("${id}"), null, null, null)
+            URI_VENDAS -> TabelaBDVendas(db).query(colunas, selection, argsSeleccao, null, null, sortOrder)
+            URI_VENDA_ESPECIFICA -> TabelaBDVendas(db).query(colunas, "${BaseColumns._ID}=?", arrayOf("${id}"), null, null, null)
             else -> null
         }
 
@@ -44,6 +50,12 @@ class ContentProviderClientes : ContentProvider() {
         when (getUriMatcher().match(uri)) {
             URI_CLIENTES -> "$MULTIPLOS_REGISTOS/${TabelaBDClientes.NOME}"
             URI_CLIENTE_ESPECIFICO -> "$UNICO_REGISTO/${TabelaBDClientes.NOME}"
+            URI_REGIOES -> "$MULTIPLOS_REGISTOS/${TabelaBDRegiao.NOME}"
+            URI_REGIAO_ESPECIFICA-> "$UNICO_REGISTO/${TabelaBDRegiao.NOME}"
+            URI_VINHOS -> "$MULTIPLOS_REGISTOS/${TabelaBDVinhos.NOME}"
+            URI_VINHO_ESPECIFICO-> "$UNICO_REGISTO/${TabelaBDVinhos.NOME}"
+            URI_VENDAS -> "$MULTIPLOS_REGISTOS/${TabelaBDVendas.NOME}"
+            URI_VENDA_ESPECIFICA -> "$UNICO_REGISTO/${TabelaBDVendas.NOME}"
             else -> null
         }
 
@@ -55,6 +67,9 @@ class ContentProviderClientes : ContentProvider() {
 
         val id = when (getUriMatcher().match(uri)) {
             URI_CLIENTES -> TabelaBDClientes(db).insert(values)
+            URI_REGIOES -> TabelaBDRegiao(db).insert(values)
+            URI_VINHOS -> TabelaBDVinhos(db).insert(values)
+            URI_VENDAS -> TabelaBDVendas(db).insert(values)
             else -> -1
         }
 
@@ -72,6 +87,9 @@ class ContentProviderClientes : ContentProvider() {
 
         val registosApagados = when (getUriMatcher().match(uri)) {
             URI_CLIENTE_ESPECIFICO -> TabelaBDClientes(db).delete("${BaseColumns._ID}=?", arrayOf("${id}"))
+            URI_REGIAO_ESPECIFICA -> TabelaBDRegiao(db).delete("${BaseColumns._ID}=?", arrayOf("${id}"))
+            URI_VINHO_ESPECIFICO -> TabelaBDVinhos(db).delete("${BaseColumns._ID}=?", arrayOf("${id}"))
+            URI_VENDA_ESPECIFICA -> TabelaBDVendas(db).delete("${BaseColumns._ID}=?", arrayOf("${id}"))
             else -> 0
         }
 
@@ -94,7 +112,9 @@ class ContentProviderClientes : ContentProvider() {
 
         val registosAlterados = when (getUriMatcher().match(uri)) {
             URI_CLIENTE_ESPECIFICO -> TabelaBDClientes(db).update(values, "${BaseColumns._ID}=?", arrayOf("${id}"))
-
+            URI_REGIAO_ESPECIFICA -> TabelaBDRegiao(db).update(values, "${BaseColumns._ID}=?", arrayOf("${id}"))
+            URI_VINHO_ESPECIFICO -> TabelaBDVinhos(db).update(values, "${BaseColumns._ID}=?", arrayOf("${id}"))
+            URI_VENDA_ESPECIFICA -> TabelaBDVendas(db).update(values, "${BaseColumns._ID}=?", arrayOf("${id}"))
             else -> 0
         }
 
@@ -108,18 +128,33 @@ class ContentProviderClientes : ContentProvider() {
 
         private const val URI_CLIENTES = 100
         private const val URI_CLIENTE_ESPECIFICO = 101
+        private const val URI_VENDAS = 200
+        private const val URI_VENDA_ESPECIFICA = 201
+        private const val URI_VINHOS = 300
+        private const val URI_VINHO_ESPECIFICO = 301
+        private const val URI_REGIOES = 400
+        private const val URI_REGIAO_ESPECIFICA = 401
 
         private const val UNICO_REGISTO = "vnd.android.cursor.item"
         private const val MULTIPLOS_REGISTOS = "vnd.android.cursor.dir"
 
         private val ENDERECO_BASE = Uri.parse("content://$AUTHORITY")
         val ENDERECO_CLIENTES = Uri.withAppendedPath(ENDERECO_BASE, TabelaBDClientes.NOME)
+        val ENDERECO_REGIOES = Uri.withAppendedPath(ENDERECO_BASE, TabelaBDRegiao.NOME)
+        val ENDERECO_VINHOS = Uri.withAppendedPath(ENDERECO_BASE, TabelaBDVinhos.NOME)
+        val ENDERECO_VENDAS = Uri.withAppendedPath(ENDERECO_BASE, TabelaBDVendas.NOME)
 
         fun getUriMatcher(): UriMatcher{
             var uriMatcher = UriMatcher(UriMatcher.NO_MATCH)
 
             uriMatcher.addURI(AUTHORITY, TabelaBDClientes.NOME, URI_CLIENTES)
             uriMatcher.addURI(AUTHORITY, "${TabelaBDClientes.NOME}/#", URI_CLIENTE_ESPECIFICO)
+            uriMatcher.addURI(AUTHORITY, TabelaBDRegiao.NOME, URI_REGIOES)
+            uriMatcher.addURI(AUTHORITY, "${TabelaBDRegiao.NOME}/#", URI_REGIAO_ESPECIFICA)
+            uriMatcher.addURI(AUTHORITY, TabelaBDVinhos.NOME, URI_VINHOS)
+            uriMatcher.addURI(AUTHORITY, "${TabelaBDVinhos.NOME}/#", URI_VINHO_ESPECIFICO)
+            uriMatcher.addURI(AUTHORITY, TabelaBDVendas.NOME, URI_VENDAS)
+            uriMatcher.addURI(AUTHORITY, "${TabelaBDVendas.NOME}/#", URI_VENDA_ESPECIFICA)
 
 
             return uriMatcher

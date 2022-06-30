@@ -27,8 +27,7 @@ class AdapterVendas(val fragment: ListaVendasFragment) : RecyclerView.Adapter<Ad
         val textViewNomeCliente = itemVenda.findViewById<TextView>(R.id.textViewNomeCliente)
         val textViewNomeVinho = itemVenda.findViewById<TextView>(R.id.textViewNomeVinho)
         val textViewQuantidade = itemVenda.findViewById<TextView>(R.id.textViewQuantidade)
-        val textViewVendaPrecoGarrafa =
-            itemVenda.findViewById<TextView>(R.id.textViewVendaPrecoGarrafa)
+        val textViewVendaPrecoGarrafa = itemVenda.findViewById<TextView>(R.id.textViewVendaPrecoGarrafa)
         val textViewPreco = itemVenda.findViewById<TextView>(R.id.textViewVendaPreco)
 
         init {

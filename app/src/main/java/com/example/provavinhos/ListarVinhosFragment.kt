@@ -66,7 +66,7 @@ class ListarVinhosFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>{
     override fun onCreateLoader(id: Int, args: Bundle?): Loader<Cursor> =
         CursorLoader(
             requireContext(),
-            ContentProviderVinhos.ENDERECO_VINHOS,
+            ContentProviderClientes.ENDERECO_VINHOS,
             TabelaBDVinhos.TODAS_COLUNAS,
             null,
             null,
