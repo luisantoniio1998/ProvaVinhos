@@ -58,8 +58,7 @@ class FirstFragment : Fragment() {
 
     fun processaOpcaoMenu(item: MenuItem) : Boolean =
         when(item.itemId){
-            //TODO: asd
-            //R.id.action_settings -> true
+             R.id. action_settings -> true
             else -> false
         }
 }
