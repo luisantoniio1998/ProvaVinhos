@@ -7,7 +7,7 @@
 
     <TextView
         android:id="@+id/textViewStock"
-        android:layout_width="395dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
@@ -20,7 +20,7 @@
 
     <TextView
         android:id="@+id/textViewNomeRegiao"
-        android:layout_width="395dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
@@ -33,7 +33,7 @@
 
     <TextView
         android:id="@+id/textViewVinhoPrecoGarrafa"
-        android:layout_width="395dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"

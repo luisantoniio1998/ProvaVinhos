@@ -6,9 +6,10 @@ import android.content.UriMatcher
 import android.database.Cursor
 import android.net.Uri
 import android.database.sqlite.SQLiteOpenHelper
+import android.provider.BaseColumns
 
 class ContentProviderVinhos : ContentProvider(){
-    var db : BDVinhosOpenHelper? = null
+    var dbOpenHelper : BDVinhosOpenHelper? = null
     /**
      * Implement this to initialize your content provider on startup.
      * This method is called for all registered content providers on the
@@ -37,7 +38,7 @@ class ContentProviderVinhos : ContentProvider(){
      * @return true if the provider was successfully loaded, false otherwise
      */
     override fun onCreate(): Boolean {
-        db = BDVinhosOpenHelper(context)
+        dbOpenHelper = BDVinhosOpenHelper(context)
         return true
     }
 
@@ -48,7 +49,26 @@ class ContentProviderVinhos : ContentProvider(){
         selectionArgs: Array<out String>?,
         sortOrder: String?
     ): Cursor? {
-        TODO("Not yet implemented")
+         val db = dbOpenHelper!!.readableDatabase
+
+        requireNotNull(projection)
+        val colunas = projection as Array<String>
+
+        val argsSeleccao = selectionArgs as Array<String>?
+
+        val id = uri.lastPathSegment
+
+        val cursor = when (getUriMatcher().match(uri)){
+            URI_VINHOS -> TabelaBDVinhos(db).query(colunas, selection, argsSeleccao, null, null, sortOrder)
+            URI_REGIOES -> TabelaBDRegiao(db).query(colunas, selection, argsSeleccao, null, null, sortOrder)
+            URI_VINHO_ESPECIFICO -> TabelaBDVinhos(db).query(colunas, "${BaseColumns._ID}=?", arrayOf("${id}"), null, null, null)
+            URI_REGIAO_ESPECIFICA -> TabelaBDRegiao(db).query(colunas, "${BaseColumns._ID}=?", arrayOf("${id}"), null, null, null)
+
+
+            else -> null
+        }
+
+        return cursor
     }
 
     override fun getType(uri: Uri): String? =
@@ -62,11 +82,37 @@ class ContentProviderVinhos : ContentProvider(){
 
 
     override fun insert(uri: Uri, values: ContentValues?): Uri? {
-        TODO("Not yet implemented")
+        val db = dbOpenHelper!!.writableDatabase
+
+        requireNotNull(values)
+
+        val id = when (getUriMatcher().match(uri)) {
+            URI_VINHOS-> TabelaBDVinhos(db).insert(values)
+            URI_REGIOES -> TabelaBDRegiao(db).insert(values)
+            else -> -1
+        }
+
+        db.close()
+
+        if (id == -1L) return null
+
+        return Uri.withAppendedPath(uri, "$id")
     }
 
     override fun delete(uri: Uri, selection: String?, selectionArgs: Array<out String>?): Int {
-        TODO("Not yet implemented")
+        val db = dbOpenHelper!!.writableDatabase
+
+        val id = uri.lastPathSegment
+
+        val registosApagados = when (getUriMatcher().match(uri)) {
+            URI_VINHO_ESPECIFICO -> TabelaBDVinhos(db).delete("${BaseColumns._ID}=?", arrayOf("${id}"))
+            URI_REGIAO_ESPECIFICA -> TabelaBDRegiao(db).delete("${BaseColumns._ID}=?", arrayOf("${id}"))
+            else -> 0
+        }
+
+        db.close()
+
+        return registosApagados
     }
 
     override fun update(
@@ -75,19 +121,37 @@ class ContentProviderVinhos : ContentProvider(){
         selection: String?,
         selectionArgs: Array<out String>?
     ): Int {
-        TODO("Not yet implemented")
+        requireNotNull(values)
+
+        val db = dbOpenHelper!!.writableDatabase
+
+        val id = uri.lastPathSegment
+
+        val registosAlterados = when (getUriMatcher().match(uri)) {
+            URI_VINHO_ESPECIFICO -> TabelaBDVinhos(db).update(values, "${BaseColumns._ID}=?", arrayOf("${id}"))
+            URI_REGIAO_ESPECIFICA -> TabelaBDRegiao(db).update(values,"${BaseColumns._ID}=?", arrayOf("${id}"))
+            else -> 0
+        }
+
+        db.close()
+
+        return registosAlterados
     }
 
     companion object{
-        const val AUTHORITY = "com.example.provavinhos"
+        private const val AUTHORITY = "com.example.provavinhos"
 
-        const val URI_REGIOES = 100
-        const val URI_REGIAO_ESPECIFICA = 101
-        const val URI_VINHOS = 200
-        const val URI_VINHO_ESPECIFICO = 201
+      private  const val URI_REGIOES = 100
+      private  const val URI_REGIAO_ESPECIFICA = 101
+       private const val URI_VINHOS = 200
+      private  const val URI_VINHO_ESPECIFICO = 201
 
-        const val UNICO_REGISTO = "vnd.android.cursor.item"
-        const val MULTIPLOS_REGISTOS = "vnd.android.cursor.dir"
+       private const val UNICO_REGISTO = "vnd.android.cursor.item"
+       private const val MULTIPLOS_REGISTOS = "vnd.android.cursor.dir"
+
+        private val ENDERECO_BASE = Uri.parse("content://$AUTHORITY")
+        val ENDERECO_VINHOS = Uri.withAppendedPath(ENDERECO_BASE, TabelaBDVinhos.NOME)
+        //val ENDERECO_CATEGORIAS = Uri.withAppendedPath(ENDERECO_BASE, TabelaBDRegiao.NOME)
 
         fun getUriMatcher() : UriMatcher{
 

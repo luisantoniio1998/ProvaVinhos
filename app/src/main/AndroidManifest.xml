@@ -31,8 +31,8 @@
             android:exported="false" />
 
         <provider
-            android:name=".BD.ContentProviderVendas"
             android:authorities="com.example.provavinhos"
+            android:name=".BD.ContentProviderVinhos"
             android:exported="false" />
 
     </application>

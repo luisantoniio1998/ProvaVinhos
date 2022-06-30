@@ -79,7 +79,10 @@ class BaseDadosTest {
         val vinho = Wine("Monte da Peceguina", 13.50, region.nomeRegiao, 10, region.id)
         vinho.id = TabelaBDVinhos(db).insert(vinho.toContentValues())
 
+        val vinho2 = Wine("Papa Figos", 12.5, "Alentejo", 100, region.id)
+        vinho2.id = TabelaBDVinhos(db).insert(vinho2.toContentValues())
         assertNotEquals(-1, vinho.id)
+        assertNotEquals(-1, vinho2.id)
 
         db.close()
     }
