@@ -37,13 +37,10 @@ class FirstFragment : Fragment() {
             findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
         }
 
-        binding.buttonSales.setOnClickListener{
-            findNavController().navigate(R.id.action_FirstFragment_to_listaVendasFragment2)
-        }
-
         binding.buttonWine.setOnClickListener{
             findNavController().navigate(R.id.action_FirstFragment_to_listarVinhosFragment)
         }
+
 
         val activity = activity as MainActivity
         activity.fragment = this

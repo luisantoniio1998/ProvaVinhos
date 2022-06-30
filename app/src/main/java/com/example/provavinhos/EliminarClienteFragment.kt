@@ -54,7 +54,7 @@ class EliminarClienteFragment : Fragment() {
 
     fun processaOpcaoMenu(item: MenuItem) : Boolean =
         when(item.itemId) {
-            R.id.action_eliminar -> {
+            R.id.action_guardar -> {
                 eliminaCliente()
                 true
             }

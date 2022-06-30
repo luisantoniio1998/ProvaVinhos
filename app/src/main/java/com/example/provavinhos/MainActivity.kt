@@ -3,7 +3,6 @@ package com.example.provavinhos
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
@@ -67,8 +66,6 @@ class MainActivity : AppCompatActivity() {
             opcaoProcessada = (fragment as EditarClienteFragment).processaOpcaoMenu(item)
         } else if (fragment is EliminarClienteFragment) {
             opcaoProcessada = (fragment as EliminarClienteFragment).processaOpcaoMenu(item)
-        } else if(fragment is ListarVinhosFragment){
-            opcaoProcessada = (fragment as ListarVinhosFragment).processaOpcaoMenu(item)
         }
         else {
             opcaoProcessada = false
@@ -87,7 +84,7 @@ class MainActivity : AppCompatActivity() {
 
     fun mostraOpcoesAlterarEliminar(mostra: Boolean) {
         menu!!.findItem(R.id.action_alterar).setVisible(mostra)
-        menu!!.findItem(R.id.action_eliminar).setVisible(mostra)
+        menu!!.findItem(R.id.action_guardar).setVisible(mostra)
     }
 
     fun atualizaTitulo(id_string_titulo: Int) {

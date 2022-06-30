@@ -15,9 +15,6 @@
             android:id="@+id/action_FirstFragment_to_SecondFragment"
             app:destination="@id/SecondFragment" />
         <action
-            android:id="@+id/action_FirstFragment_to_listaVendasFragment2"
-            app:destination="@id/listaVendasFragment" />
-        <action
             android:id="@+id/action_FirstFragment_to_listarVinhosFragment"
             app:destination="@id/listarVinhosFragment" />
     </fragment>
@@ -64,39 +61,6 @@
             app:argType="com.example.provavinhos.BD.Clients" />
     </fragment>
     <fragment
-        android:id="@+id/listaVendasFragment"
-        android:name="com.example.provavinhos.ListaVendasFragment"
-        android:label="fragment_lista_vendas"
-        tools:layout="@layout/fragment_lista_vendas" >
-        <action
-            android:id="@+id/action_listaVendasFragment_to_FirstFragment"
-            app:destination="@id/FirstFragment" />
-        <action
-            android:id="@+id/action_listaVendasFragment_to_editarVendaFragment"
-            app:destination="@id/editarVendaFragment" />
-        <action
-            android:id="@+id/action_listaVendasFragment_to_eliminarVendaFragment"
-            app:destination="@id/eliminarVendaFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/editarVendaFragment"
-        android:name="com.example.provavinhos.EditarVendaFragment"
-        android:label="fragment_editar_venda"
-        tools:layout="@layout/fragment_editar_venda" >
-        <action
-            android:id="@+id/action_editarVendaFragment_to_listaVendasFragment"
-            app:destination="@id/listaVendasFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/eliminarVendaFragment"
-        android:name="com.example.provavinhos.EliminarVendaFragment"
-        android:label="fragment_eliminar_venda"
-        tools:layout="@layout/fragment_eliminar_venda" >
-        <action
-            android:id="@+id/action_eliminarVendaFragment_to_listaVendasFragment"
-            app:destination="@id/listaVendasFragment" />
-    </fragment>
-    <fragment
         android:id="@+id/listarVinhosFragment"
         android:name="com.example.provavinhos.ListarVinhosFragment"
         android:label="@string/wine"
@@ -104,29 +68,5 @@
         <action
             android:id="@+id/action_listarVinhosFragment_to_FirstFragment"
             app:destination="@id/FirstFragment" />
-        <action
-            android:id="@+id/action_listarVinhosFragment_to_editarVinhosFragment"
-            app:destination="@id/editarVinhosFragment" />
-        <action
-            android:id="@+id/action_listarVinhosFragment_to_eliminarVinhosFragment"
-            app:destination="@id/eliminarVinhosFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/editarVinhosFragment"
-        android:name="com.example.provavinhos.EditarVinhosFragment"
-        android:label="fragment_editar_vinhos"
-        tools:layout="@layout/fragment_editar_vinhos" >
-        <action
-            android:id="@+id/action_editarVinhosFragment_to_listarVinhosFragment"
-            app:destination="@id/listarVinhosFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/eliminarVinhosFragment"
-        android:name="com.example.provavinhos.EliminarVinhosFragment"
-        android:label="fragment_eliminar_vinhos"
-        tools:layout="@layout/fragment_eliminar_vinhos" >
-        <action
-            android:id="@+id/action_eliminarVinhosFragment_to_listarVinhosFragment"
-            app:destination="@id/listarVinhosFragment" />
     </fragment>
 </navigation>

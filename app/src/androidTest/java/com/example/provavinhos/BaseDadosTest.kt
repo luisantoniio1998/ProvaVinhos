@@ -76,10 +76,10 @@ class BaseDadosTest {
         val region = Region("Alentejo")
         insereRegiao(db, region)
 
-        val vinho = Wine("Monte da Peceguina", 13.50, region.nomeRegiao, 10, region.id)
+        val vinho = Wine("Monte da Peceguina", 13.50,10, region.id)
         vinho.id = TabelaBDVinhos(db).insert(vinho.toContentValues())
 
-        val vinho2 = Wine("Papa Figos", 12.5, "Alentejo", 100, 1)
+        val vinho2 = Wine("Papa Figos", 12.5,  100, region.id)
         vinho2.id = TabelaBDVinhos(db).insert(vinho2.toContentValues())
         assertNotEquals(-1, vinho.id)
         assertNotEquals(-1, vinho2.id)
@@ -113,7 +113,7 @@ class BaseDadosTest {
         val regiao = Region("Alentejo")
         insereRegiao(db, regiao)
 
-        val vinho = Wine("Monte da Peceguina", 13.50, regiao.nomeRegiao, 10, regiao.id)
+        val vinho = Wine("Monte da Peceguina", 13.50, 10, regiao.id)
         insereVinho(db, vinho)
 
         val venda =
@@ -158,12 +158,11 @@ class BaseDadosTest {
         insereRegiao(db, regiaoDouro)
 
         val vinho =
-            Wine("Encosta do Guadiana", 21.0, regiaoAlentejo.nomeRegiao, 5, regiaoAlentejo.id)
+            Wine("Encosta do Guadiana", 21.0, 5, regiaoAlentejo.id)
         insereVinho(db, vinho)
 
         vinho.nomeVinho = "Ervideira"
         vinho.precoGarrafa = 12.27
-        vinho.nomeRegiao = regiaoDouro.nomeRegiao
         vinho.stock = 4
         vinho.idRegiao = regiaoDouro.id
 
@@ -221,10 +220,10 @@ class BaseDadosTest {
         insereCliente(db, clienteJoao)
 
         val vinhoAlentejo =
-            Wine("Dona Maria", 8.90, regiaoAlentejo.nomeRegiao, 10, regiaoAlentejo.id)
+            Wine("Dona Maria", 8.90,  10, regiaoAlentejo.id)
         insereVinho(db, vinhoAlentejo)
 
-        val vinhoDouro = Wine("Arca Nova", 8.08, regiaoDouro.nomeRegiao, 5, regiaoDouro.id)
+        val vinhoDouro = Wine("Arca Nova", 8.08,  5, regiaoDouro.id)
         insereVinho(db, vinhoDouro)
 
         val venda = Sales(
@@ -283,7 +282,7 @@ class BaseDadosTest {
         val region = Region("Alentejo")
         insereRegiao(db, region)
 
-        val vinho = Wine("Monte da Peceguina", 13.50, region.nomeRegiao, 10, region.id)
+        val vinho = Wine("Monte da Peceguina", 13.50, 10, region.id)
         insereVinho(db, vinho)
 
         val registosEliminados = TabelaBDVinhos(db).delete(
@@ -325,7 +324,7 @@ class BaseDadosTest {
         val cliente = Clients("Luis", "936593777", "231481933")
         insereCliente(db, cliente)
 
-        val vinho = Wine("Dona Maria", 8.90, regiao.nomeRegiao, 10, regiao.id)
+        val vinho = Wine("Dona Maria", 8.90,  10, regiao.id)
         insereVinho(db, vinho)
 
         val venda =
@@ -399,7 +398,7 @@ class BaseDadosTest {
         val regiao = Region("Alentejo")
         insereRegiao(db, regiao)
 
-        val vinho = Wine("Alucinado", 10.3, regiao.nomeRegiao, 10, regiao.id)
+        val vinho = Wine("Alucinado", 10.3,  10, regiao.id)
         insereVinho(db, vinho)
 
         val cursor = TabelaBDVinhos(db).query(
@@ -426,7 +425,7 @@ class BaseDadosTest {
         val regiao = Region("Alentejo")
         insereRegiao(db, regiao)
 
-        val vinho = Wine("Alucinado", 10.3, regiao.nomeRegiao, 10, regiao.id)
+        val vinho = Wine("Alucinado", 10.3, 10, regiao.id)
         insereVinho(db, vinho)
 
         val cliente = Clients("Luis", "936593777", "231481933")
