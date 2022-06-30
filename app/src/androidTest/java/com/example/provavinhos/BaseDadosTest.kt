@@ -76,13 +76,25 @@ class BaseDadosTest {
         val region = Region("Alentejo")
         insereRegiao(db, region)
 
+        val region1 = Region("Douro")
+        insereRegiao(db, region1)
+
+        val region2 = Region("Minho")
+        insereRegiao(db, region2)
+
         val vinho = Wine("Monte da Peceguina", 13.50,10, region.id)
         vinho.id = TabelaBDVinhos(db).insert(vinho.toContentValues())
 
-        val vinho2 = Wine("Papa Figos", 12.5,  100, region.id)
+        val vinho2 = Wine("Papa Figos", 12.5,  100, region1.id)
         vinho2.id = TabelaBDVinhos(db).insert(vinho2.toContentValues())
+
+        val vinho3 = Wine("Vinho Verde", 15.5,  10, region2.id)
+        vinho3.id = TabelaBDVinhos(db).insert(vinho3.toContentValues())
+
+
         assertNotEquals(-1, vinho.id)
         assertNotEquals(-1, vinho2.id)
+        assertNotEquals(-1, vinho3.id)
 
         db.close()
     }

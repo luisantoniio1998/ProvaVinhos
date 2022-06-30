@@ -22,7 +22,6 @@ class AdapterVinhos(val fragment: ListarVinhosFragment) : RecyclerView.Adapter<A
     inner class ViewHolderVinho(itemVinho: View) : RecyclerView.ViewHolder(itemVinho), View.OnClickListener {
         val textViewNomeVinho = itemVinho.findViewById<TextView>(R.id.textViewNomeVinho)
         val textViewPrecoGarrafa = itemVinho.findViewById<TextView>(R.id.textViewPrecoGarrafa)
-        val textViewNomeRegiao = itemVinho.findViewById<TextView>(R.id.textViewNomeRegiao)
         val textViewStock = itemVinho.findViewById<TextView>(R.id.textViewStock)
 
         init {
@@ -36,7 +35,6 @@ class AdapterVinhos(val fragment: ListarVinhosFragment) : RecyclerView.Adapter<A
 
                 textViewNomeVinho.text = vinho?.nomeVinho ?: ""
                 textViewPrecoGarrafa.text = (vinho?.precoGarrafa ?: "").toString()
-                //textViewNomeRegiao.text = vinho?.nomeRegiao ?: ""
                 textViewStock.text = (vinho?.stock ?: "").toString()
             }
 
