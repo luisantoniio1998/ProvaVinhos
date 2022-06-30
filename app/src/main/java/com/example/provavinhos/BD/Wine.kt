@@ -11,7 +11,7 @@ data class Wine(
     var nomeVinho : String,
     var precoGarrafa : Double,
     var stock : Long,
-    var idRegiao : Long,
+    var regiao : Region,
     var id: Long = -1
 ): Serializable{
     fun toContentValues(): ContentValues {
@@ -20,7 +20,7 @@ data class Wine(
         valores.put(TabelaBDVinhos.CAMPO_NOME_VINHO, nomeVinho)
         valores.put(TabelaBDVinhos.CAMPO_PRECO_GARRAFA, precoGarrafa)
         valores.put(TabelaBDVinhos.CAMPO_STOCK, stock)
-        valores.put(TabelaBDVinhos.CAMPO_ID_REGIAO, idRegiao)
+        valores.put(TabelaBDVinhos.CAMPO_ID_REGIAO, regiao.id)
         return valores
     }
 
@@ -31,16 +31,21 @@ data class Wine(
             val posPrecoGarrafa = cursor.getColumnIndex(TabelaBDVinhos.CAMPO_PRECO_GARRAFA)
             val posStock = cursor.getColumnIndex(TabelaBDVinhos.CAMPO_STOCK)
             val posIDReg = cursor.getColumnIndex(TabelaBDVinhos.CAMPO_ID_REGIAO)
+            val posNomRegiao = cursor.getColumnIndex(TabelaBDRegiao.CAMPO_NOME)
 
             val id = cursor.getLong(posId)
             val nomeVinho = cursor.getString(posNome)
             val precoGarrafa = cursor.getDouble(posPrecoGarrafa)
             val stock = cursor.getLong(posStock)
             val idRegiao = cursor.getLong(posIDReg)
+            val nomeRegiao = cursor.getString(posNomRegiao)
+
+
+            val regiao = Region( nomeRegiao, idRegiao)
 
 
 
-            return Wine(nomeVinho, precoGarrafa, stock, idRegiao, id)
+            return Wine(nomeVinho, precoGarrafa, stock, regiao, id)
         }
     }
 }
