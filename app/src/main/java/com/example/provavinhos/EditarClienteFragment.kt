@@ -21,7 +21,7 @@ import com.example.provavinhos.BD.TabelaBDClientes
 import com.example.provavinhos.databinding.FragmentEditarClienteBinding
 import com.google.android.material.snackbar.Snackbar
 
-class EditarClienteFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
+class EditarClienteFragment : Fragment(){
     private var _binding: FragmentEditarClienteBinding? = null
 
     // This property is only valid between onCreateView and
@@ -60,7 +60,6 @@ class EditarClienteFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> 
             }
         }
 
-        LoaderManager.getInstance(this).initLoader(ID_LOADER_CLIENTES, null, this)
     }
 
     companion object {
@@ -153,23 +152,5 @@ class EditarClienteFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> 
         findNavController().navigate(R.id.action_editarClienteFragment_to_SecondFragment)
     }
 
-    override fun onCreateLoader(id: Int, args: Bundle?): Loader<Cursor> =
-        CursorLoader(
-            requireContext(),
-            ContentProviderClientes.ENDERECO_CLIENTES,
-            TabelaBDClientes.TODAS_COLUNAS,
-            null,
-            null,
-            "${TabelaBDClientes.CAMPO_NOME}"
-        )
-
-
-    override fun onLoadFinished(loader: Loader<Cursor>, data: Cursor?) {
-        TODO("Not yet implemented")
-    }
-
-    override fun onLoaderReset(loader: Loader<Cursor>) {
-        TODO("Not yet implemented")
-    }
 
 }

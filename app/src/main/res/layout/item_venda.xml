@@ -6,7 +6,7 @@
     android:layout_height="wrap_content">
 
     <TextView
-        android:id="@+id/textViewPreco"
+        android:id="@+id/textViewVendaPreco"
         android:layout_width="395dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -16,10 +16,10 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewPrecoGarrafa" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewVendaPrecoGarrafa" />
 
     <TextView
-        android:id="@+id/textViewPrecoGarrafa"
+        android:id="@+id/textViewVendaPrecoGarrafa"
         android:layout_width="395dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"

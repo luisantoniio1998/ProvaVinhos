@@ -22,7 +22,7 @@ class AdapterVinhos (val fragment: ListarVinhosFragment) : RecyclerView.Adapter<
 
     inner class ViewHolderVinho(itemVinho: View) : RecyclerView.ViewHolder(itemVinho), View.OnClickListener {
         val textViewNomeVinho = itemVinho.findViewById<TextView>(R.id.textViewVinhoNome)
-        val textViewPrecoGarrafa= itemVinho.findViewById<TextView>(R.id.textViewPrecoGarrafa)
+        val textViewPrecoGarrafa= itemVinho.findViewById<TextView>(R.id.textViewVendaPrecoGarrafa)
         val textViewNomeRegiao = itemVinho.findViewById<TextView>(R.id.textViewNomeRegiao)
         val textViewStock = itemVinho.findViewById<TextView>(R.id.textViewStock)
 
