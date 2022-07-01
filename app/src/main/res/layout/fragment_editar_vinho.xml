@@ -16,7 +16,7 @@
             android:id="@+id/editTextNomeVinho"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/wine"
+            android:hint="@string/name_wine"
             android:textColorHint="#757575"
             tools:ignore="TextContrastCheck" />
 

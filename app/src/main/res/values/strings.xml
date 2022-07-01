@@ -54,4 +54,5 @@
     <string name="edit_wine">Edit Wine</string>
     <string name="insert_wine">Insert Wine</string>
     <string name="menu_principal">"Main Menu "</string>
+    <string name="name_wine">Wine\'s name</string>
 </resources>
