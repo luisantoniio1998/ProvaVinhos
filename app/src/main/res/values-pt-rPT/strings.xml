@@ -46,7 +46,7 @@
     <string name="inserir_client_label">Inserir Cliente</string>
     <string name="inserir_wine_label">Inserir Vinho</string>
     <string name="inserir_sale_label">Inserir Venda </string>
-    <string name="campo_obrigatorio">Mandatory Field</string>
+    <string name="campo_obrigatorio">Campo Obrigatorio</string>
     <string name="done">Feito !</string>
     <string name="erro">Erro</string>
     <string name="insere_cliente">Inserir Cliente</string>
@@ -54,4 +54,5 @@
     <string name="sure">"Tem a certeza que quer apagar ?  "</string>
     <string name="edit_wine">Editar Vinho</string>
     <string name="insert_wine">Inserir Vinho</string>
+    <string name="menu_principal">"Menu Principal"</string>
 </resources>

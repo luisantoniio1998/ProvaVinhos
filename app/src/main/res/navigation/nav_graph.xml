@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/FirstFragment"
         android:name="com.example.provavinhos.FirstFragment"
-        android:label="@string/first_fragment_label"
+        android:label="@string/menu_principal"
         tools:layout="@layout/fragment_first">
 
         <action
@@ -71,6 +71,9 @@
         <action
             android:id="@+id/action_listarVinhosFragment_to_editarVinhoFragment"
             app:destination="@id/editarVinhoFragment" />
+        <action
+            android:id="@+id/action_listarVinhosFragment_to_eliminarVinhoFragment"
+            app:destination="@id/eliminarVinhoFragment" />
     </fragment>
     <fragment
         android:id="@+id/editarVinhoFragment"
@@ -85,5 +88,17 @@
             app:argType="com.example.provavinhos.BD.Wine"
             app:nullable="true"
             android:defaultValue="@null" />
+    </fragment>
+    <fragment
+        android:id="@+id/eliminarVinhoFragment"
+        android:name="com.example.provavinhos.EliminarVinhoFragment"
+        android:label="fragment_eliminar_vinho"
+        tools:layout="@layout/fragment_eliminar_vinho" >
+        <action
+            android:id="@+id/action_eliminarVinhoFragment_to_listarVinhosFragment"
+            app:destination="@id/listarVinhosFragment" />
+        <argument
+            android:name="vinho"
+            app:argType="com.example.provavinhos.BD.Wine" />
     </fragment>
 </navigation>

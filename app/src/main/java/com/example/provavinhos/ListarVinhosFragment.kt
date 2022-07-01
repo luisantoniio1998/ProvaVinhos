@@ -151,7 +151,6 @@ class ListarVinhosFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
 
     fun processaOpcaoMenu(item: MenuItem) : Boolean =
         when(item.itemId) {
-            //TODO : implementar
             R.id.action_inserir -> {
                 val acao = ListarVinhosFragmentDirections.actionListarVinhosFragmentToEditarVinhoFragment()
                 findNavController().navigate(acao)
@@ -163,12 +162,12 @@ class ListarVinhosFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
                 findNavController().navigate(acao)
                 (activity as MainActivity).atualizaTitulo(R.string.edit_wine)
                 true
-            }/*
-            R.id.action_eliminar -> {
-                val acao = ListaLivrosFragmentDirections.actionListaLivrosFragmentToEliminarLivroFragment(livroSeleccionado!!)
+            }
+            R.id.action_guardar -> {
+                val acao = ListarVinhosFragmentDirections.actionListarVinhosFragmentToEliminarVinhoFragment(vinhoSeleccionado!!)
                 findNavController().navigate(acao)
                 true
-            }*/
+            }
             else -> false
         }
 

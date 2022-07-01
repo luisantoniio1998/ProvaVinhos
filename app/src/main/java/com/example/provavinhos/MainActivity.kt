@@ -70,6 +70,8 @@ class MainActivity : AppCompatActivity() {
             opcaoProcessada = (fragment as ListarVinhosFragment).processaOpcaoMenu(item)
         } else if (fragment is EditarVinhoFragment) {
             opcaoProcessada = (fragment as EditarVinhoFragment).processaOpcaoMenu(item)
+        }else if (fragment is EliminarVinhoFragment) {
+            opcaoProcessada = (fragment as EliminarVinhoFragment).processaOpcaoMenu(item)
         }
         else {
             opcaoProcessada = false
