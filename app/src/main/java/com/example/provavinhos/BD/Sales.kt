@@ -67,7 +67,7 @@ data class Sales(
             val quantidade = cursor.getLong(posQuantidade)
             val preco = cursor.getDouble(posPreco)
 
-            return Sales(quantidade, preco, cliente, vinho ,  id)
+            return Sales(quantidade, preco, cliente, vinho , id)
 
         }
     }
