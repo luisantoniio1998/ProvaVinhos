@@ -130,7 +130,7 @@ class BaseDadosTest {
         insereVinho(db, vinho)
 
         val venda =
-            Sales(client, vinho,  10, (vinho.precoGarrafa * 10))
+            Sales(  10, (vinho.precoGarrafa * 10), client, vinho)
         venda.id = TabelaBDVendas(db).insert(venda.toContentValues())
 
         assertNotEquals(-1, venda.id)
@@ -240,10 +240,10 @@ class BaseDadosTest {
         insereVinho(db, vinhoDouro)
 
         val venda = Sales(
-            clienteJoao,
-            vinhoDouro,
             10,
-            vinhoDouro.precoGarrafa * 10
+            vinhoDouro.precoGarrafa * 10,
+            clienteJoao,
+            vinhoDouro
         )
         insereVenda(db, venda)
 
@@ -335,7 +335,7 @@ class BaseDadosTest {
         insereVinho(db, vinho)
 
         val venda =
-            Sales(cliente, vinho, 10, vinho.precoGarrafa * 10 )
+            Sales( 10, vinho.precoGarrafa * 10, cliente, vinho)
         insereVenda(db, venda)
 
 
@@ -438,7 +438,7 @@ class BaseDadosTest {
         val cliente = Clients("Luis", "936593777", "231481933")
         insereCliente(db, cliente)
 
-        val venda = Sales(cliente, vinho, 10, 103.0 )
+        val venda = Sales( 10, 103.0,cliente, vinho )
         insereVenda(db, venda)
 
         val cursor = TabelaBDVendas(db).query(

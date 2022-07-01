@@ -3,11 +3,9 @@ package com.example.provavinhos.BD
 import android.content.ContentValues
 import android.database.Cursor
 import android.provider.BaseColumns
-import androidx.appcompat.app.ActionBar
 import java.io.Serializable
 
 data class Wine(
-
     var nomeVinho : String,
     var precoGarrafa : Double,
     var stock : Long,
@@ -39,7 +37,6 @@ data class Wine(
             val nomeVinho = cursor.getString(posNome)
             val precoGarrafa = cursor.getDouble(posPrecoGarrafa)
             val stock = cursor.getLong(posStock)
-
 
 
             val idRegiao = cursor.getLong(posIDReg)

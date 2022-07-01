@@ -31,7 +31,7 @@ class TabelaBDVinhos (db: SQLiteDatabase) : TabelaBD(db, NOME){
     companion object{
         const val NOME = "vinhos"
         const val CAMPO_ID = "$NOME.${BaseColumns._ID}"
-        const val CAMPO_ID_REGIAO = "regiaoId"
+        const val CAMPO_ID_REGIAO = "Idregiao"
         const val CAMPO_NOME_VINHO = "nomeVinho"
         const val CAMPO_PRECO_GARRAFA = "precoGarrafa"
         const val CAMPO_STOCK = "stock"

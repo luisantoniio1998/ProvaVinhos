@@ -26,8 +26,8 @@ class TabelaBDVendas (db: SQLiteDatabase) : TabelaBD(db, NOME){
         orderBy: String?
     ): Cursor {
         val queryBuilder = SQLiteQueryBuilder()
-        queryBuilder.tables = "$NOME INNER JOIN ${TabelaBDClientes.NOME} ON ${TabelaBDClientes.CAMPO_ID} = $CAMPO_ID_CLIENTE INNER JOIN ${TabelaBDVinhos.NOME} ON ${TabelaBDVinhos.CAMPO_ID} = $CAMPO_ID_VINHO"
-
+        queryBuilder.tables = "$NOME INNER JOIN ${TabelaBDClientes.NOME} ON ${TabelaBDClientes.CAMPO_ID} = $CAMPO_ID_CLIENTE" +
+                " INNER JOIN ${TabelaBDVinhos.NOME} ON ${TabelaBDVinhos.CAMPO_ID} = $CAMPO_ID_VINHO"
 
         return queryBuilder.query(db, columns, selection, selectionArgs, groupBy, having, orderBy)
     }
@@ -43,7 +43,8 @@ class TabelaBDVendas (db: SQLiteDatabase) : TabelaBD(db, NOME){
         const val CAMPO_QUANTIDADE = "quantidade"
         const val CAMPO_PRECO = "preco"
 
-        val TODAS_COLUNAS = arrayOf(CAMPO_ID, CAMPO_ID_CLIENTE, TabelaBDClientes.CAMPO_NOME, TabelaBDClientes.CAMPO_CONTACTO, TabelaBDClientes.CAMPO_NIF, CAMPO_ID_VINHO, TabelaBDVinhos.CAMPO_NOME_VINHO,
-        TabelaBDVinhos.CAMPO_ID_REGIAO, TabelaBDVinhos.CAMPO_STOCK, TabelaBDVinhos.CAMPO_PRECO_GARRAFA, CAMPO_QUANTIDADE, CAMPO_PRECO)
+        val TODAS_COLUNAS = arrayOf(CAMPO_ID,CAMPO_QUANTIDADE, CAMPO_PRECO,  CAMPO_ID_CLIENTE, CAMPO_ID_VINHO, TabelaBDClientes.CAMPO_NOME,
+            TabelaBDClientes.CAMPO_CONTACTO, TabelaBDClientes.CAMPO_NIF,  TabelaBDVinhos.CAMPO_NOME_VINHO,
+        TabelaBDVinhos.CAMPO_ID_REGIAO, TabelaBDVinhos.CAMPO_STOCK, TabelaBDVinhos.CAMPO_PRECO_GARRAFA)
     }
 }
