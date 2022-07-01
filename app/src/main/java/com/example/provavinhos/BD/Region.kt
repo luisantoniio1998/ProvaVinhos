@@ -6,7 +6,7 @@ import android.provider.BaseColumns
 import java.io.Serializable
 
 data class Region(
-    var nomeRegiao: String,
+    var nomeRegiao: String = "",
     var id: Long = -1
 ):Serializable {
 

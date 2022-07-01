@@ -52,4 +52,6 @@
     <string name="insere_cliente">Inserir Cliente</string>
     <string name="edit_client">Editar Cliente</string>
     <string name="sure">"Tem a certeza que quer apagar ?  "</string>
+    <string name="edit_wine">Editar Vinho</string>
+    <string name="insert_wine">Inserir Vinho</string>
 </resources>

@@ -51,6 +51,6 @@
     <string name="insere_cliente">Insert Client</string>
     <string name="edit_client">Edit Client</string>
     <string name="sure">"Are you sure you want to delete ? "</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="edit_wine">Edit Wine</string>
+    <string name="insert_wine">Insert Wine</string>
 </resources>

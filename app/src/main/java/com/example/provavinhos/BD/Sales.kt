@@ -49,7 +49,7 @@ data class Sales(
 
             val nomeRegion = cursor.getString(posnomeRegion)
             val idRegiao = cursor.getLong(posidRegion)
-            var regiao = Region(nomeRegion, idRegiao)
+            val regiao = Region(nomeRegion, idRegiao)
 
 
             val nomeVinho = cursor.getString(posnomeVinho)
@@ -69,9 +69,6 @@ data class Sales(
 
             return Sales(quantidade, preco, cliente, vinho ,  id)
 
-
         }
-
-
     }
 }

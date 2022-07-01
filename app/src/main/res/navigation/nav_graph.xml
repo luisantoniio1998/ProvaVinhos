@@ -68,5 +68,22 @@
         <action
             android:id="@+id/action_listarVinhosFragment_to_FirstFragment"
             app:destination="@id/FirstFragment" />
+        <action
+            android:id="@+id/action_listarVinhosFragment_to_editarVinhoFragment"
+            app:destination="@id/editarVinhoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editarVinhoFragment"
+        android:name="com.example.provavinhos.EditarVinhoFragment"
+        android:label="fragment_editar_vinho"
+        tools:layout="@layout/fragment_editar_vinho" >
+        <action
+            android:id="@+id/action_editarVinhoFragment_to_listarVinhosFragment"
+            app:destination="@id/listarVinhosFragment" />
+        <argument
+            android:name="vinho"
+            app:argType="com.example.provavinhos.BD.Wine"
+            app:nullable="true"
+            android:defaultValue="@null" />
     </fragment>
 </navigation>
