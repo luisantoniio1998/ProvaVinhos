@@ -55,10 +55,6 @@ class EditarClienteFragment : Fragment(){
 
     }
 
-    companion object {
-        const val ID_LOADER_CLIENTES = 0
-    }
-
     /**
      * Instantiate and return a new Loader for the given ID.
      *

@@ -166,6 +166,7 @@ class ListarVinhosFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
             R.id.action_guardar -> {
                 val acao = ListarVinhosFragmentDirections.actionListarVinhosFragmentToEliminarVinhoFragment(vinhoSeleccionado!!)
                 findNavController().navigate(acao)
+                (activity as MainActivity).atualizaTitulo(R.string.delete_wine)
                 true
             }
             else -> false
