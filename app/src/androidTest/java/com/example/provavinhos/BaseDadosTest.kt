@@ -438,7 +438,7 @@ class BaseDadosTest {
         val cliente = Clients("Luis", "936593777", "231481933")
         insereCliente(db, cliente)
 
-        val venda = Sales( 10, 103.0,cliente, vinho )
+        val venda = Sales( 10, 103.0,cliente, vinho)
         insereVenda(db, venda)
 
         val cursor = TabelaBDVendas(db).query(

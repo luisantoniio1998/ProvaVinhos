@@ -15,7 +15,7 @@
         <entry key="app/src/main/res/layout/activity_main3.xml" value="0.30354852501068835" />
         <entry key="app/src/main/res/layout/activity_venda_update_delete.xml" value="0.30354852501068835" />
         <entry key="app/src/main/res/layout/activity_vinho_update_delete.xml" value="0.30354852501068835" />
-        <entry key="app/src/main/res/layout/content_main.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/content_main.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_dashboard.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_editar_cliente.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_editar_venda.xml" value="0.23557075673364686" />

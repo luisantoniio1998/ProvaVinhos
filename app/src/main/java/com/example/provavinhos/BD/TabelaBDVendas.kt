@@ -29,6 +29,7 @@ class TabelaBDVendas (db: SQLiteDatabase) : TabelaBD(db, NOME){
         queryBuilder.tables = "$NOME INNER JOIN ${TabelaBDClientes.NOME} ON ${TabelaBDClientes.CAMPO_ID} = $CAMPO_ID_CLIENTE" +
                 " INNER JOIN ${TabelaBDVinhos.NOME} ON ${TabelaBDVinhos.CAMPO_ID} = $CAMPO_ID_VINHO"
 
+
         return queryBuilder.query(db, columns, selection, selectionArgs, groupBy, having, orderBy)
     }
 
