@@ -41,7 +41,7 @@ data class Sales(
             val cliente = Clients(nomeCliente, contactoCliente, nifCliente, idCliente)
 
             val posnomeRegion = cursor.getColumnIndex(TabelaBDRegiao.CAMPO_NOME)
-            val posidRegion = cursor.getColumnIndex(TabelaBDRegiao.CAMPO_ID)
+            val posidRegion = cursor.getColumnIndex(TabelaBDVinhos.CAMPO_ID_REGIAO)
 
             val nomeRegiao = cursor.getString(posnomeRegion)
             val idRegiao = cursor.getLong(posidRegion)

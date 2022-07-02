@@ -59,7 +59,7 @@ class EliminarClienteFragment : Fragment() {
                 true
             }
             R.id.action_cancelar -> {
-                voltaListaLivros()
+                voltaListaClientes()
                 true
             }
             else -> false
@@ -91,10 +91,10 @@ class EliminarClienteFragment : Fragment() {
         }
 
         Toast.makeText(requireContext(), R.string.done, Toast.LENGTH_LONG).show()
-        voltaListaLivros()
+        voltaListaClientes()
     }
 
-    private fun voltaListaLivros() {
+    private fun voltaListaClientes() {
         val acao = EliminarClienteFragmentDirections.actionEliminarClienteFragmentToSecondFragment()
         findNavController().navigate(acao)
     }

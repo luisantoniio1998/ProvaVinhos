@@ -243,7 +243,7 @@ class BaseDadosTest {
             10,
             vinhoDouro.precoGarrafa * 10,
             clienteJoao,
-            vinhoDouro
+            vinhoDouro,
         )
         insereVenda(db, venda)
 
