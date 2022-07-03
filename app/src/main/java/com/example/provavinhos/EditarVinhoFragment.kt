@@ -190,8 +190,6 @@ class EditarVinhoFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
 
     private fun guardar() {
 
-        //TODO: Implementar limitacao para apenas poder colocar preco e stock em numero
-        //senao app crasha
         val nomeVinho = binding.editTextNomeVinho.text.toString()
         if (nomeVinho.isBlank()) {
             binding.editTextNomeVinho.error = getString(R.string.field_mandatory)

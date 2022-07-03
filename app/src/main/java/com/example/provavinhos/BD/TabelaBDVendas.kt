@@ -4,6 +4,7 @@ import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteQueryBuilder
 import android.provider.BaseColumns
+import com.example.provavinhos.BD.TabelaBDRegiao.Companion
 
 class TabelaBDVendas (db: SQLiteDatabase) : TabelaBD(db, NOME){
     override fun cria() {
@@ -26,8 +27,8 @@ class TabelaBDVendas (db: SQLiteDatabase) : TabelaBD(db, NOME){
         orderBy: String?
     ): Cursor {
         val queryBuilder = SQLiteQueryBuilder()
-        queryBuilder.tables = "$NOME INNER JOIN ${TabelaBDClientes.NOME} ON ${TabelaBDClientes.CAMPO_ID} = $CAMPO_ID_CLIENTE" +
-                " INNER JOIN ${TabelaBDVinhos.NOME} ON ${TabelaBDVinhos.CAMPO_ID} = $CAMPO_ID_VINHO" +
+        queryBuilder.tables = "$NOME INNER JOIN ${TabelaBDClientes.NOME} ON ${TabelaBDClientes.CAMPO_ID} = $CAMPO_ID_CLIENTE," +
+                " ${TabelaBDVinhos.NOME} ON ${TabelaBDVinhos.CAMPO_ID} = $CAMPO_ID_VINHO"
 
 
         return queryBuilder.query(db, columns, selection, selectionArgs, groupBy, having, orderBy)
@@ -44,6 +45,6 @@ class TabelaBDVendas (db: SQLiteDatabase) : TabelaBD(db, NOME){
 
         val TODAS_COLUNAS = arrayOf(CAMPO_ID,CAMPO_QUANTIDADE, CAMPO_PRECO,  CAMPO_ID_CLIENTE, CAMPO_ID_VINHO, TabelaBDClientes.CAMPO_NOME,
             TabelaBDClientes.CAMPO_CONTACTO, TabelaBDClientes.CAMPO_NIF,  TabelaBDVinhos.CAMPO_NOME_VINHO,
-        TabelaBDVinhos.CAMPO_ID_REGIAO, TabelaBDVinhos.CAMPO_STOCK, TabelaBDRegiao.CAMPO_NOME)
+                TabelaBDVinhos.CAMPO_ID_REGIAO, TabelaBDVinhos.CAMPO_STOCK )
     }
 }

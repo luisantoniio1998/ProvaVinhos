@@ -16,7 +16,6 @@ data class Sales(
     fun toContentValues() : ContentValues {
         val valores = ContentValues()
 
-
         valores.put(TabelaBDVendas.CAMPO_QUANTIDADE, quantidade)
         valores.put(TabelaBDVendas.CAMPO_PRECO, preco)
         valores.put(TabelaBDVendas.CAMPO_ID_CLIENTE, cliente.id)
@@ -26,6 +25,7 @@ data class Sales(
     }
 
     companion object{
+
 
         fun fromCursor(cursor: Cursor): Sales {
            val posNomeCliente = cursor.getColumnIndex(TabelaBDClientes.CAMPO_NOME)
@@ -40,11 +40,11 @@ data class Sales(
 
             val cliente = Clients(nomeCliente, contactoCliente, nifCliente, idCliente)
 
-            val posnomeRegion = cursor.getColumnIndex(TabelaBDRegiao.CAMPO_NOME)
+           val posnomeRegion = cursor.getColumnIndex(TabelaBDRegiao.CAMPO_NOME)
             val posidRegion = cursor.getColumnIndex(TabelaBDVinhos.CAMPO_ID_REGIAO)
 
-            val nomeRegiao = cursor.getString(posnomeRegion)
-            val idRegiao = cursor.getLong(posidRegion)
+           val nomeRegiao = cursor.getString(posnomeRegion)
+           val idRegiao = cursor.getLong(posidRegion)
             val regiao = Region(nomeRegiao, idRegiao)
 
             val posIdVinho = cursor.getColumnIndex(TabelaBDVendas.CAMPO_ID_VINHO)
