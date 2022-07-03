@@ -15,7 +15,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
+            android:background="#c84058 "
             app:popupTheme="@style/Theme.ProvaVinhos.PopupOverlay" />
 
     </com.google.android.material.appbar.AppBarLayout>

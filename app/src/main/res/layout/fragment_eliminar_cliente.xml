@@ -30,8 +30,7 @@
             android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
             android:text="@string/client_name"
-            android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            android:textColor="#9C27B0" />
+            android:textAppearance="@style/TextAppearance.AppCompat.Small" />
 
         <TextView
             android:id="@+id/textViewNome"
@@ -40,7 +39,7 @@
             android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
             android:text="Luis Barros"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
         <TextView
             android:id="@+id/textView7"
@@ -49,8 +48,7 @@
             android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
             android:text="@string/mobile"
-            android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            android:textColor="#9C27B0" />
+            android:textAppearance="@style/TextAppearance.AppCompat.Small" />
 
         <TextView
             android:id="@+id/textViewContacto"
@@ -59,7 +57,7 @@
             android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
             android:text="936593763"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
         <TextView
             android:id="@+id/textView9"
@@ -68,8 +66,7 @@
             android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
             android:text="@string/social"
-            android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            android:textColor="#9C27B0" />
+            android:textAppearance="@style/TextAppearance.AppCompat.Small" />
 
         <TextView
             android:id="@+id/textViewNIF"
@@ -78,6 +75,6 @@
             android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
             android:text="231481933"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
     </LinearLayout>
 </FrameLayout>

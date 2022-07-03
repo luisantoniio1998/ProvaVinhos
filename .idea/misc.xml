@@ -5,6 +5,7 @@
       <map>
         <entry key="app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.251" />
         <entry key="app/src/main/res/drawable/ic_notifications_black_24dp.xml" value="0.251" />
+        <entry key="app/src/main/res/drawable/logo.xml" value="0.3515" />
         <entry key="app/src/main/res/layout/activity_client_update_delete.xml" value="0.30354852501068835" />
         <entry key="app/src/main/res/layout/activity_listar_clientes.xml" value="0.30354852501068835" />
         <entry key="app/src/main/res/layout/activity_listar_livros.xml" value="0.30354852501068835" />
@@ -35,7 +36,7 @@
         <entry key="app/src/main/res/layout/fragment_second.xml" value="0.30354852501068835" />
         <entry key="app/src/main/res/layout/item_cliente.xml" value="0.33" />
         <entry key="app/src/main/res/layout/item_venda.xml" value="0.22" />
-        <entry key="app/src/main/res/layout/item_vinho.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/item_vinho.xml" value="0.25" />
         <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.3697916666666667" />
         <entry key="app/src/main/res/menu/menu_edicao.xml" value="0.3026934587430526" />
         <entry key="app/src/main/res/menu/menu_eliminar.xml" value="0.25" />

@@ -30,8 +30,7 @@
             android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
             android:text="@string/name_wine"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:textColor="@color/purple_500" />
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
         <TextView
             android:id="@+id/textViewVinho"
@@ -49,8 +48,7 @@
             android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
             android:text="@string/price_per_bottle"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:textColor="@color/purple_500" />
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
         <TextView
             android:id="@+id/textViewprecoGarrafa"
@@ -67,9 +65,8 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
-            android:text="Stock"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:textColor="@color/purple_500" />
+            android:text="@string/stock"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
         <TextView
             android:id="@+id/textViewstock"
@@ -87,8 +84,7 @@
             android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
             android:text="@string/region"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:textColor="@color/purple_500" />
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
         <TextView
             android:id="@+id/textViewRegiaoVinho"
