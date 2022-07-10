@@ -6,9 +6,9 @@ import android.provider.BaseColumns
 import java.io.Serializable
 
 data class Wine(
-    var nomeVinho : String,
-    var precoGarrafa : Double,
-    var stock : Long,
+    var nomeVinho : String ,
+    var precoGarrafa : Double ,
+    var stock : Long ,
     var regiao : Region,
     var id: Long = -1
 ): Serializable{

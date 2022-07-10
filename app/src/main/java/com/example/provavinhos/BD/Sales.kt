@@ -11,6 +11,7 @@ data class Sales(
     var preco : Double,
     var cliente : Clients,
     var vinho : Wine,
+    var region : Region,
     var id: Long = -1
 ):Serializable {
     fun toContentValues() : ContentValues {
@@ -20,6 +21,7 @@ data class Sales(
         valores.put(TabelaBDVendas.CAMPO_PRECO, preco)
         valores.put(TabelaBDVendas.CAMPO_ID_CLIENTE, cliente.id)
         valores.put(TabelaBDVendas.CAMPO_ID_VINHO, vinho.id)
+        valores.put(TabelaBDVendas.CAMPO_ID_REGIAO, region.id)
 
         return valores
     }
@@ -28,47 +30,45 @@ data class Sales(
 
 
         fun fromCursor(cursor: Cursor): Sales {
-           val posNomeCliente = cursor.getColumnIndex(TabelaBDClientes.CAMPO_NOME)
-            val posNifCliente = cursor.getColumnIndex(TabelaBDClientes.CAMPO_NIF)
-            val posContactoCliente = cursor.getColumnIndex(TabelaBDClientes.CAMPO_CONTACTO)
-            val posIdCliente = cursor.getColumnIndex(TabelaBDVendas.CAMPO_ID_CLIENTE)
-
-            val nomeCliente = cursor.getString(posNomeCliente)
-            val nifCliente = cursor.getString(posNifCliente)
-            val contactoCliente = cursor.getString(posContactoCliente)
-            val idCliente = cursor.getLong(posIdCliente)
-
-            val cliente = Clients(nomeCliente, contactoCliente, nifCliente, idCliente)
-
-           val posnomeRegion = cursor.getColumnIndex(TabelaBDRegiao.CAMPO_NOME)
-            val posidRegion = cursor.getColumnIndex(TabelaBDVinhos.CAMPO_ID_REGIAO)
-
-           val nomeRegiao = cursor.getString(posnomeRegion)
-           val idRegiao = cursor.getLong(posidRegion)
-            val regiao = Region(nomeRegiao, idRegiao)
-
-            val posIdVinho = cursor.getColumnIndex(TabelaBDVendas.CAMPO_ID_VINHO)
-            val posnomeVinho = cursor.getColumnIndex(TabelaBDVinhos.CAMPO_NOME_VINHO)
-            val posstock = cursor.getColumnIndex(TabelaBDVinhos.CAMPO_STOCK)
-            val posprecoGarrafa = cursor.getColumnIndex(TabelaBDVinhos.CAMPO_PRECO_GARRAFA)
-
-
-            val nomeVinho = cursor.getString(posnomeVinho)
-            val stock = cursor.getLong(posstock)
-            val precoGarrafa = cursor.getDouble(posprecoGarrafa)
-            val idVinho = cursor.getLong(posIdVinho)
-
-            val vinho = Wine( nomeVinho, precoGarrafa, stock, regiao, idVinho)
-
-            val posId = cursor.getColumnIndex(BaseColumns._ID)
             val posQuantidade = cursor.getColumnIndex(TabelaBDVendas.CAMPO_QUANTIDADE)
             val posPreco = cursor.getColumnIndex(TabelaBDVendas.CAMPO_PRECO)
+            val posIdCliente = cursor.getColumnIndex(TabelaBDVendas.CAMPO_ID_CLIENTE)
+            val posIdVinho = cursor.getColumnIndex(TabelaBDVendas.CAMPO_ID_VINHO)
+            val posIdVenda = cursor.getColumnIndex(TabelaBDVendas.CAMPO_ID)
 
-            val id = cursor.getLong(posId)
-            val quantidade = cursor.getLong(posQuantidade)
-            val preco = cursor.getDouble(posPreco)
+            val posNomeCliente = cursor.getColumnIndex(TabelaBDClientes.CAMPO_NOME)
+            val posNifCliente = cursor.getColumnIndex(TabelaBDClientes.CAMPO_NIF)
+            val posContactoClinte = cursor.getColumnIndex(TabelaBDClientes.CAMPO_CONTACTO)
 
-            return Sales(quantidade, preco, cliente, vinho , id)
+
+            val idCliente = cursor.getLong(posIdCliente)
+            val nomeCliente= cursor.getString(posNomeCliente)
+            val NifCliente = cursor.getString(posNifCliente)
+            val ContactoCliente = cursor.getString(posContactoClinte)
+
+            val cliente = Clients(nomeCliente, ContactoCliente, NifCliente, idCliente)
+
+            val posNomeVinho = cursor.getColumnIndex(TabelaBDVinhos.CAMPO_NOME_VINHO)
+            val posPrecoGarrafa = cursor.getColumnIndex(TabelaBDVinhos.CAMPO_PRECO_GARRAFA)
+            val posStock = cursor.getColumnIndex(TabelaBDVinhos.CAMPO_STOCK)
+            val posIdRegiao = cursor.getColumnIndex(TabelaBDVinhos.CAMPO_ID_REGIAO)
+            val posnomeRegiao = cursor.getColumnIndex(TabelaBDRegiao.CAMPO_NOME)
+
+            val idRegiao = cursor.getLong(posIdRegiao)
+            val nomeRegiao = cursor.getString(posnomeRegiao)
+            val nomeVinho = cursor.getString(posNomeVinho)
+            val precoGarrafa = cursor.getDouble(posPrecoGarrafa)
+            val idVinho = cursor.getLong(posIdVinho)
+            val stock = cursor.getLong(posStock)
+
+            val regiao = Region(nomeRegiao, idRegiao)
+            val vinho = Wine(nomeVinho, precoGarrafa, stock, regiao, idVinho)
+
+            val vinhoQuantidade = cursor.getLong(posQuantidade)
+            val vendaPreco = cursor.getDouble(posPreco)
+            val idVenda = cursor.getLong(posIdVenda)
+
+            return Sales(vinhoQuantidade, vendaPreco, cliente, vinho, regiao, idVenda)
 
         }
     }

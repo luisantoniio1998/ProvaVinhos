@@ -13,7 +13,10 @@ class TabelaBDVendas (db: SQLiteDatabase) : TabelaBD(db, NOME){
         "$CAMPO_PRECO REAL NOT NULL, " +
         "$CAMPO_ID_CLIENTE INTEGER NOT NULL, " +
         "$CAMPO_ID_VINHO INTEGER NOT NULL," +
+                "$CAMPO_ID_REGIAO INTEGER NOT NULL, " +
+
         "FOREIGN KEY ($CAMPO_ID_CLIENTE) REFERENCES ${TabelaBDClientes.NOME}(${BaseColumns._ID}) ON DELETE RESTRICT, " +
+                "FOREIGN KEY ($CAMPO_ID_REGIAO) REFERENCES ${TabelaBDRegiao.NOME}(${BaseColumns._ID}) ON DELETE RESTRICT, " +
         "FOREIGN KEY ($CAMPO_ID_VINHO) REFERENCES ${TabelaBDVinhos.NOME}(${BaseColumns._ID}) ON DELETE RESTRICT)")
 
     }
@@ -28,6 +31,7 @@ class TabelaBDVendas (db: SQLiteDatabase) : TabelaBD(db, NOME){
     ): Cursor {
         val queryBuilder = SQLiteQueryBuilder()
         queryBuilder.tables = "$NOME INNER JOIN ${TabelaBDClientes.NOME} ON ${TabelaBDClientes.CAMPO_ID} = $CAMPO_ID_CLIENTE," +
+                " ${TabelaBDRegiao.NOME} ON ${TabelaBDRegiao.CAMPO_ID} = $CAMPO_ID_REGIAO, " +
                 " ${TabelaBDVinhos.NOME} ON ${TabelaBDVinhos.CAMPO_ID} = $CAMPO_ID_VINHO"
 
 
@@ -37,6 +41,7 @@ class TabelaBDVendas (db: SQLiteDatabase) : TabelaBD(db, NOME){
 
     companion object{
         const val NOME = "vendas"
+        const val CAMPO_ID_REGIAO = "idRegiao_Venda"
         const val CAMPO_ID = "$NOME.${BaseColumns._ID}"
         const val CAMPO_ID_CLIENTE = "clienteId"
         const val CAMPO_ID_VINHO = "vinhoId"
@@ -45,6 +50,6 @@ class TabelaBDVendas (db: SQLiteDatabase) : TabelaBD(db, NOME){
 
         val TODAS_COLUNAS = arrayOf(CAMPO_ID,CAMPO_QUANTIDADE, CAMPO_PRECO,  CAMPO_ID_CLIENTE, CAMPO_ID_VINHO, TabelaBDClientes.CAMPO_NOME,
             TabelaBDClientes.CAMPO_CONTACTO, TabelaBDClientes.CAMPO_NIF,  TabelaBDVinhos.CAMPO_NOME_VINHO,
-                TabelaBDVinhos.CAMPO_ID_REGIAO, TabelaBDVinhos.CAMPO_STOCK )
+                TabelaBDVinhos.CAMPO_ID_REGIAO, TabelaBDVinhos.CAMPO_STOCK, TabelaBDVinhos.CAMPO_PRECO_GARRAFA, TabelaBDRegiao.CAMPO_NOME)
     }
 }
