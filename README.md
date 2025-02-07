@@ -1,3 +1,33 @@
 # WineTasting
 
-Android App developed with Android Studio using Kotlin with the purpose of it being used by a wine shop manager, where he/she can work via a local DB for managing stocks, sales, etc..
+Android app for wine shop inventory management using Kotlin and local database.
+
+## Technologies
+- Kotlin
+- Android Studio
+- SQLite Database
+- Android UI Components
+
+## Features
+- Stock management
+- Sales tracking
+- Inventory control
+- Local database operations
+- User authentication
+
+## Setup
+1. Android Studio installed
+2. Clone repository
+3. Build project
+4. Run on Android device/emulator
+
+## Requirements
+- Android 6.0+
+- Android Studio
+- JDK 8+
+
+## Author
+Luís Barros
+
+## License
+MIT
