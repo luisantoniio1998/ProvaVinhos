@@ -1,33 +1,9 @@
-# WineTasting
+# ProvaVinhos
 
-Android app for wine shop inventory management using Kotlin and local database.
+My Android app for keeping track of a wine shop’s stock, clients, and sales. It is written in Kotlin and stores data locally with SQLite.
 
-## Technologies
-- Kotlin
-- Android Studio
-- SQLite Database
-- Android UI Components
+## Open the project
 
-## Features
-- Stock management
-- Sales tracking
-- Inventory control
-- Local database operations
-- User authentication
+Open the repository in Android Studio, sync Gradle, and run it on an emulator or Android device compatible with `app/build.gradle`.
 
-## Setup
-1. Android Studio installed
-2. Clone repository
-3. Build project
-4. Run on Android device/emulator
-
-## Requirements
-- Android 6.0+
-- Android Studio
-- JDK 8+
-
-## Author
-Luís Barros
-
-## License
-MIT
+The application code is under `app/src/main/java/com/example/provavinhos/`. Database models and helpers are in the `BD/` folder.
